@@ -4881,6 +4881,12 @@ The plan's denylist included `'^commands/(?!gsd/intel-gate-)'`. That's PCRE nega
 
 The plan orders Task 24 after Tasks 17–23. But Task 17 (master runner) expects all validators to pass against the live repo, and `validate-workflow-patches.sh`/`validate-seamless-fork.sh` both require `tools/patch-workflows.sh` to exist. Task 24 was therefore executed early, before Task 17, to satisfy the dependency. No content change to Task 24 itself — only execution order.
 
+### Post-PR fix: strip upstream GitHub Actions workflows (2026-05-06)
+
+After opening PR #1 against adelphidata/gsd-ic, 7 of upstream's 16 inherited workflows failed because they expect upstream's scripts (e.g. `npm run build:sdk`), conventions (changesets, issue links), and release infra. Our `ic-ci.yml` jobs all passed — the failures were noise, not bugs in our IC-pack code. Deleted all 16 upstream workflow files; kept only `.github/workflows/ic-ci.yml`. Added the deletion to `sync-from-upstream.sh` so upstream workflows are stripped after each merge (same pattern as the localized READMEs in deviation #4 above).
+
+This is a third allowed modification to upstream-owned content beyond the two listed in plan §"Seamless-fork guarantee" (`package.json` rename, `.github/workflows/ic-ci.yml` addition). Justification: the soft-fork's CI is ours, not theirs; running upstream's CI on our PRs creates false-positive review noise without value.
+
 ### Task 28 smoke uncovered five npm-publish-scope bugs (2026-05-06)
 
 The bottom-to-top smoke test revealed bugs that the validator + unit tests had missed. All fixed before declaring Plan 0 done.

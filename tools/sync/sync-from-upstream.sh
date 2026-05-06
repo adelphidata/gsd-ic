@@ -77,6 +77,9 @@ echo "==> VERSION updated: gsd_pinned: $upstream_version"
 echo "==> stripping upstream localized + docs READMEs (npm force-includes README*; we ship only the IC-pack README.md)..."
 rm -f README.ja-JP.md README.ko-KR.md README.pt-BR.md README.zh-CN.md docs/README.md
 
+echo "==> stripping upstream GitHub Actions workflows (we run our own ic-ci.yml; upstream workflows fail because we don't ship build:sdk, changesets, etc.)..."
+find .github/workflows -maxdepth 1 -name "*.yml" -not -name "ic-ci.yml" -delete 2>/dev/null || true
+
 echo "==> reapplying workflow patches..."
 bash tools/patch-workflows.sh
 
