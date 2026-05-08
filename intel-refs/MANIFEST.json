@@ -60,6 +60,54 @@
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-08",
       "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/poam-format.md": {
+      "applies_when": ["poam", "plan of action", "milestones", "findings", "remediation", "fisma", "compliance tracking"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/nist-800-53-rev5.md": {
+      "applies_when": ["nist 800-53", "rmf", "security controls", "control families", "moderate baseline", "high baseline", "classification"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/nist-800-171.md": {
+      "applies_when": ["nist 800-171", "cui", "controlled unclassified information", "110 controls", "dfars 7012", "classification", "tradecraft"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/cmmc-2.0.md": {
+      "applies_when": ["cmmc", "cmmc 2.0", "cybersecurity maturity", "level 2", "level 3", "fci", "cui", "classification", "tradecraft"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/itar-ear.md": {
+      "applies_when": ["itar", "ear", "export control", "usml", "ccl", "defense article", "dual-use", "classification", "ecosystem"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/fips-140-3.md": {
+      "applies_when": ["fips 140-3", "fips 140", "cryptographic module", "cmvp", "validated crypto", "classification", "ecosystem"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/dfars-252-204-7012.md": {
+      "applies_when": ["dfars 7012", "dfars 252.204-7012", "covered defense information", "cdi", "cyber incident reporting", "72 hour", "classification", "tradecraft"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/eo-14028.md": {
+      "applies_when": ["eo 14028", "executive order 14028", "sbom", "software bill of materials", "cyclonedx", "spdx", "zero trust", "ecosystem"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
     }
   }
 }
