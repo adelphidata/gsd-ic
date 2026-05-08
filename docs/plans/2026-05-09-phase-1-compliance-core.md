@@ -2153,4 +2153,8 @@ These items are **not** in Plan 2 and belong to subsequent plans:
 
 ## Deviations from plan during execution
 
+### Task 17 + 20: NIST 800-171 marker keeps `NIST` prefix (2026-05-09)
+
+Spec line 1269 prescribes `## 800-171 AUDIT COMPLETE` / `## 800-171 GAPS FOUND` for `gsd-nist-800-171-auditor`. But Plan 0's `validate-agents.sh` regex requires `[A-Z]` as the first non-`##`-non-space character (line `^##[[:space:]]+[A-Z][A-Z0-9 _&-]*...`). A marker starting with a digit (`8`) fails the regex. The drafted agent (Task 17) used `## NIST 800-171 AUDIT COMPLETE` / `## NIST 800-171 GAPS FOUND` — convention-conformant. Same kind of validator-vs-spec resolution applied in Plan 1 deviation #4 (`MAPPED` → `MAPPING COMPLETE`). Both the agent and the registry use the NIST-prefixed form. Spec deviation is stylistic; the lifecycle event is unchanged.
+
 (populated as deviations occur during implementation)
