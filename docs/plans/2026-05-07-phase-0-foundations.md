@@ -2345,3 +2345,7 @@ These items are **not** in Plan 1 and belong to subsequent plans:
 ## Deviations from plan during execution
 
 (populated as deviations occur during implementation — see Plan 0's deviations section for the format)
+
+### Task 11: hooks/patterns added to validate-no-classified-leak excludes (2026-05-08)
+
+The pattern catalog contains the literal compartment markings that the leak validator scans for, but only as escaped regex strings in JSON (`"regex": "\\bS//[A-Z]"`). The validator correctly ignores these as non-threats since it looks for the raw pattern `\bS//[A-Z]` (with single backslashes). Added `'hooks/patterns'` to the validator's EXCLUDES array anyway — defensive best practice, same rationale as `docs/specs`, `docs/plans`. No change to validator behavior on real upstream content.
