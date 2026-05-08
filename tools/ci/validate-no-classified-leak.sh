@@ -44,6 +44,7 @@ EXCLUDES=(
   'docs/superpowers'
   'docs/plans'
   'hooks/patterns'
+  'tests/hooks'
 )
 
 # Build a `find` exclusion clause.
