@@ -38,7 +38,6 @@ denylist=(
   '^README\.[A-Za-z][A-Za-z0-9_-]*\.md$'
   '^agents/gsd-\*'
   '^hooks/gsd-\*'
-  '^hooks/patterns'
 )
 
 files_arr="$(jq -r '.files // [] | .[]' "$PKG")"
