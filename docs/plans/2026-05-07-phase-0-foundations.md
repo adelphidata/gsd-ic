@@ -2357,3 +2357,7 @@ The Plan 0 fix for npm pack scope added `^hooks/patterns` to validate-publish-sc
 ### Task 20: completion marker changed from `MAPPED` to `MAPPING COMPLETE` (2026-05-08)
 
 Spec line 327 prescribes `## CONTEXT MAPPED` as the agent's completion marker. Plan 0's `tools/ci/validate-agents.sh` regex only accepts terminal words `(COMPLETE|BLOCKED|FOUND|FAILED|UPDATE COMPLETE)`; `MAPPED` is not in that set. All upstream stock agents use `<NAME> COMPLETE` form. Rather than loosening the validator regex (cross-cutting risk), changed the agent's marker to `## CONTEXT MAPPING COMPLETE` to conform to upstream convention. The semantic event being marked (lifecycle completion of the context-mapping work) is unchanged. Failure-mode marker `## CONTEXT MAPPING BLOCKED` was already convention-compliant. Task 21 registers the new marker form.
+
+### Task 22: tests/hooks added to validate-no-classified-leak excludes (2026-05-08)
+
+Task 22's bottom-to-top smoke caught that the leak-detector hook test (`tests/hooks/classified-leak-detector.test.cjs`) writes literal compartment markings (`S//NOFORN`, `TS//SI//NOFORN`, `HCS-O//NOFORN`) as fixture content to verify the detector flags them. The classified-leak validator scanned the test file and fired on those literal patterns. Same root cause as Task 11 (the pattern catalog excluded for the same reason) and analogous to Plan 0's docs/plans exclusion. Added `'tests/hooks'` to the validator's EXCLUDES array. The test fixtures are dev-only (excluded from npm pack via .npmignore) and don't ship to consumers.
