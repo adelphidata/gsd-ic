@@ -14,9 +14,10 @@ function makeFakePackSource() {
   fs.mkdirSync(path.join(src, 'agents'), { recursive: true });
   fs.writeFileSync(path.join(src, 'agents', 'gsd-x.md'), '---\nic_pack: true\nclassification: UNCLASSIFIED\n---\n## X COMPLETE\n');
   fs.writeFileSync(path.join(src, 'agents', 'gsd-stock-keeper.md'), 'stock content (should NOT be copied; lacks ic_pack)');
-  fs.mkdirSync(path.join(src, 'hooks'), { recursive: true });
+  fs.mkdirSync(path.join(src, 'hooks/patterns'), { recursive: true });
   fs.writeFileSync(path.join(src, 'hooks', 'gsd-x.js'), '// ic_pack: true\n// IC hook\n');
   fs.writeFileSync(path.join(src, 'hooks', 'gsd-stock.js'), '// stock upstream hook (should NOT be copied; lacks ic_pack marker)\n');
+  fs.writeFileSync(path.join(src, 'hooks/patterns/p.json'), '{"patterns":[]}');
   fs.mkdirSync(path.join(src, 'intel-refs'), { recursive: true });
   fs.writeFileSync(path.join(src, 'intel-refs', 'MANIFEST.json'), '{"version":"2026.05","topics":{}}');
   fs.mkdirSync(path.join(src, 'config-overlays', 'nga'), { recursive: true });
@@ -43,6 +44,7 @@ describe('installPack', () => {
     installPack({ packSource: src, target, customer: 'nga' });
     assert.equal(fs.existsSync(path.join(target, '.claude/hooks/gsd-x.js')), true);
     assert.equal(fs.existsSync(path.join(target, '.claude/hooks/gsd-stock.js')), false);
+    assert.equal(fs.existsSync(path.join(target, '.claude/hooks/patterns/p.json')), true);
     assert.equal(fs.existsSync(path.join(target, '.claude/intel-refs/MANIFEST.json')), true);
     assert.equal(fs.existsSync(path.join(target, '.claude/config-overlays/nga/overlay.json')), true);
     assert.equal(fs.existsSync(path.join(target, '.claude/skills/intel-coding-conventions/SKILL.md')), true);

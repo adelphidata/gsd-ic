@@ -1,0 +1,13 @@
+{
+  "version": "2026.05",
+  "description": "IC-flavored prompt-injection patterns detected by gsd-prompt-injection-scan-intel. Layered ON TOP of any stock GSD prompt-injection scanner; this hook does NOT replace the stock scanner.",
+  "patterns": [
+    { "id": "tradecraft-bypass-1",   "regex": "ignore\\s+(?:your\\s+)?(?:tradecraft|analytic\\s+standards|icd-?\\s*203)\\s+(?:rules?|standards?|requirements?)?", "label": "tradecraft-rule bypass",         "severity": "warn" },
+    { "id": "tradecraft-bypass-2",   "regex": "(?:disregard|skip|forget)\\s+(?:the\\s+)?(?:icd-?\\s*\\d+|analytic\\s+(?:rigor|standards))",                       "label": "tradecraft directive bypass",   "severity": "warn" },
+    { "id": "source-protection-1",   "regex": "(?:reveal|disclose|expose|name|identify)\\s+(?:the\\s+)?source(?:'s)?\\s+(?:identity|name|cover|alias|pseudonym)", "label": "source-protection evasion",     "severity": "block" },
+    { "id": "source-protection-2",   "regex": "who\\s+is\\s+(?:the\\s+)?(?:human\\s+)?source\\s+(?:for|behind|of)",                                              "label": "source-identity probe",         "severity": "warn" },
+    { "id": "classification-bypass", "regex": "(?:treat|consider|handle|mark)\\s+(?:this|the\\s+(?:above|preceding))\\s+as\\s+(?:unclassified|public|low-?side)", "label": "classification downgrade attempt", "severity": "block" },
+    { "id": "compartment-bypass",    "regex": "(?:ignore|bypass|override)\\s+(?:the\\s+)?(?:compartment(?:s|ation)?|need-?to-?know|caveats?)",                    "label": "compartment-control bypass",    "severity": "block" },
+    { "id": "audit-bypass",          "regex": "(?:do\\s+not|don'?t)\\s+(?:log|record|audit|capture)\\s+(?:this|the\\s+(?:above|conversation))",                  "label": "audit-trail bypass",            "severity": "warn" }
+  ]
+}

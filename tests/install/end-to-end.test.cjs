@@ -46,6 +46,10 @@ describe('end-to-end install', () => {
     // config.json was created/wired
     const cfg = JSON.parse(fs.readFileSync(path.join(target, '.planning/config.json'), 'utf8'));
     assert.equal(cfg.__gsd_ic.customer, 'nga');
+    // .claude/settings.json was created/wired with IC-pack hooks
+    const settings = JSON.parse(fs.readFileSync(path.join(target, '.claude/settings.json'), 'utf8'));
+    assert.ok(Array.isArray(settings.__gsd_ic?.managed_hooks));
+    assert.equal(settings.__gsd_ic.managed_hooks.length, 3);
   });
 
   it('errors on customer switch without --confirm-customer-switch', () => {

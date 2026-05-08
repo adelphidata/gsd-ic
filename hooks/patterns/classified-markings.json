@@ -1,0 +1,16 @@
+{
+  "version": "2026.05",
+  "description": "Classified compartment markings detected by gsd-classified-leak-detector hook. Patterns are uppercase + // delimiter (IC convention for portion marking). Lowercase variants are intentionally NOT included to avoid false-positives on URLs and code.",
+  "patterns": [
+    { "id": "secret",        "regex": "\\bS//[A-Z]",            "label": "SECRET portion marking",                 "severity": "block" },
+    { "id": "top-secret",    "regex": "\\bTS//[A-Z]",           "label": "TOP SECRET portion marking",             "severity": "block" },
+    { "id": "si",            "regex": "\\bSI//[A-Z]",           "label": "Special Intelligence (SIGINT) marking",  "severity": "block" },
+    { "id": "tk",            "regex": "\\bTK//[A-Z]",           "label": "Talent Keyhole (IMINT/SIGINT) marking",  "severity": "block" },
+    { "id": "hcs",           "regex": "\\bHCS-?[OP]?//",        "label": "HUMINT Control System marking",          "severity": "block" },
+    { "id": "kdk",           "regex": "\\bKDK//",               "label": "KDK compartment marking",                "severity": "block" },
+    { "id": "g-channel",     "regex": "\\bG//[A-Z]",            "label": "G-channel marking",                      "severity": "block" },
+    { "id": "orcon",         "regex": "\\bORCON\\b",            "label": "Originator Controlled handling caveat",  "severity": "warn" },
+    { "id": "noforn",        "regex": "\\bNOFORN\\b",           "label": "No Foreign Nationals handling caveat",   "severity": "warn" },
+    { "id": "cui-banner",    "regex": "\\bCUI//[A-Z]",          "label": "CUI banner with category marking",       "severity": "warn" }
+  ]
+}

@@ -1,4 +1,35 @@
 {
   "version": "2026.05",
-  "topics": {}
+  "topics": {
+    "int-disciplines/humint.md": {
+      "applies_when": ["humint", "case management", "asset validation", "biometrics", "domex"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-07",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/geoint.md": {
+      "applies_when": ["geoint", "imint", "fmv", "imagery", "nitf", "stanag-4609", "kml", "geotiff", "mgrs", "geojson"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-07",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/icd-203.md": {
+      "applies_when": ["icd-203", "analytic standards", "uncertainty", "tradecraft", "analytic product"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-07",
+      "classification": "UNCLASSIFIED"
+    },
+    "capability-patterns/entity-resolution.md": {
+      "applies_when": ["entity resolution", "er", "record linkage", "deduplication", "identity resolution"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-07",
+      "classification": "UNCLASSIFIED"
+    },
+    "capability-patterns/pattern-of-life.md": {
+      "applies_when": ["pol", "pattern of life", "abi", "activity-based intelligence", "behavior tracking"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-07",
+      "classification": "UNCLASSIFIED"
+    }
+  }
 }

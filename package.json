@@ -11,6 +11,12 @@
     "gsd-ic": "bin/gsd-ic-install.js"
   },
   "files": [
+    "agents/gsd-customer-context-mapper.md",
+    "hooks/gsd-classification-banner.js",
+    "hooks/gsd-classified-leak-detector.js",
+    "hooks/gsd-prompt-injection-scan-intel.js",
+    "hooks/patterns/classified-markings.json",
+    "hooks/patterns/intel-injection-patterns.json",
     "skills/intel-coding-conventions/",
     "skills/prototyping-discipline/",
     "skills/classification-conventions/",
