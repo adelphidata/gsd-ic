@@ -22,5 +22,14 @@ Format (one row per agent):
 | gsd-nist-800-171-auditor | ## NIST 800-171 AUDIT COMPLETE | ## NIST 800-171 GAPS FOUND | `.planning/NIST-800-171-AUDIT.md` |
 | gsd-dfars-incident-responder | ## DFARS PLAYBOOK COMPLETE | (none — playbook always produced) | `.planning/DFARS-INCIDENT-PLAYBOOK.md` |
 | gsd-privacy-reviewer | ## PRIVACY REVIEW COMPLETE | ## PRIVACY ISSUES FOUND / ## PIA REQUIRED | `.planning/phases/{phase}/{phase}-PRIVACY-REVIEW.md` (+ `.planning/PIA.md`, `.planning/PTA.md` when applicable) |
+| gsd-humint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-HUMINT-RESEARCH.md` |
+| gsd-geoint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-GEOINT-RESEARCH.md` |
+| gsd-sigint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-SIGINT-RESEARCH.md` |
+| gsd-osint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-OSINT-RESEARCH.md` |
+| gsd-masint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-MASINT-RESEARCH.md` |
+| gsd-cybint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-CYBINT-RESEARCH.md` |
+| gsd-finint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-FININT-RESEARCH.md` |
+| gsd-all-source-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-FUSION-RESEARCH.md` |
+| gsd-domex-engineer | ## DOMEX ENGINEERING COMPLETE | (none) | `.planning/phases/{phase}/{phase}-DOMEX-DESIGN.md` + implementation code in project source tree |
 
 (populated as agents land across Plans 1–8 — see Appendix D of the design spec for the full target list)

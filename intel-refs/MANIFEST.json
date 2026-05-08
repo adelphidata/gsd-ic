@@ -108,6 +108,36 @@
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
       "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/sigint.md": {
+      "applies_when": ["sigint", "comint", "elint", "fisint", "eob", "electronic order of battle", "communications metadata", "signal classification"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/osint.md": {
+      "applies_when": ["osint", "socmint", "pai", "publicly available information", "stix", "misp", "persona separation", "open-source"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/masint.md": {
+      "applies_when": ["masint", "radint", "acint", "irint", "nucint", "sensor fusion", "signature library", "phenomenology"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/cybint.md": {
+      "applies_when": ["cybint", "cyber threat intelligence", "cti", "att&ck", "d3fend", "diamond model", "kill chain", "threat intel platform", "tip"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/finint.md": {
+      "applies_when": ["finint", "financial intelligence", "swift", "blockchain", "sanctions", "illicit finance", "aml", "virtual asset", "fatf"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
     }
   }
 }
