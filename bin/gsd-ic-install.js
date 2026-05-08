@@ -9,6 +9,7 @@ const { verifyGsd } = require(path.join(__dirname, 'lib', 'gsd-ic', 'verify-gsd.
 const { installPack } = require(path.join(__dirname, 'lib', 'gsd-ic', 'install-pack.cjs'));
 const { wireOverlay } = require(path.join(__dirname, 'lib', 'gsd-ic', 'wire-overlay.cjs'));
 const { wireHooks } = require(path.join(__dirname, 'lib', 'gsd-ic', 'wire-hooks.cjs'));
+const { uninstall } = require(path.join(__dirname, 'lib', 'gsd-ic', 'uninstall.cjs'));
 
 function readGsdPinned() {
   const p = path.join(__dirname, '..', 'VERSION');
@@ -28,6 +29,17 @@ function main() {
 
   if (opts.subcommand === 'help') {
     process.stdout.write(`${USAGE}\n`);
+    process.exit(0);
+  }
+
+  if (opts.subcommand === 'uninstall') {
+    try {
+      uninstall({ target: opts.target });
+    } catch (e) {
+      process.stderr.write(`error: ${e.message}\n`);
+      process.exit(6);
+    }
+    process.stdout.write(`uninstall complete: @adelphi/gsd-ic removed from ${opts.target}\n`);
     process.exit(0);
   }
 

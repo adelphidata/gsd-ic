@@ -30,6 +30,36 @@
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-07",
       "classification": "UNCLASSIFIED"
+    },
+    "ecosystem/nga.md": {
+      "applies_when": ["nga", "national geospatial-intelligence agency", "geoint customer", "ecosystem"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-08",
+      "classification": "UNCLASSIFIED"
+    },
+    "ecosystem/nsa.md": {
+      "applies_when": ["nsa", "national security agency", "sigint customer", "cybersecurity", "ecosystem"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-08",
+      "classification": "UNCLASSIFIED"
+    },
+    "ecosystem/nro.md": {
+      "applies_when": ["nro", "national reconnaissance office", "overhead", "satellite reconnaissance", "ecosystem"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-08",
+      "classification": "UNCLASSIFIED"
+    },
+    "ecosystem/cia.md": {
+      "applies_when": ["cia", "central intelligence agency", "humint customer", "covert action", "ecosystem"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-08",
+      "classification": "UNCLASSIFIED"
+    },
+    "ecosystem/dia.md": {
+      "applies_when": ["dia", "defense intelligence agency", "masint customer", "military intelligence", "ecosystem"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-08",
+      "classification": "UNCLASSIFIED"
     }
   }
 }

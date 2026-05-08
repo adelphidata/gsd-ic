@@ -46,4 +46,24 @@ describe('parseArgs', () => {
     const opts = parseArgs(['--help']);
     assert.equal(opts.subcommand, 'help');
   });
+
+  it('parses uninstall subcommand without requiring --customer', () => {
+    const opts = parseArgs(['uninstall', '--target=/tmp/foo']);
+    assert.equal(opts.subcommand, 'uninstall');
+    assert.equal(opts.target, '/tmp/foo');
+    assert.equal(opts.customer, null);
+  });
+
+  it('uninstall accepts optional --customer (used to scope overlay removal explicitly)', () => {
+    const opts = parseArgs(['uninstall', '--customer=nga', '--target=/tmp/foo']);
+    assert.equal(opts.subcommand, 'uninstall');
+    assert.equal(opts.customer, 'nga');
+  });
+
+  it('uninstall does not require --customer (will read from target metadata)', () => {
+    // No throw expected.
+    const opts = parseArgs(['uninstall']);
+    assert.equal(opts.subcommand, 'uninstall');
+    assert.equal(opts.customer, null);
+  });
 });
