@@ -19,6 +19,7 @@ const IC_PACK_SKILL_NAMES = [
   'prototyping-discipline',
   'classification-conventions',
   'adelphi-house-style',
+  'poam-conventions',
 ];
 
 function ensureDir(p) {
