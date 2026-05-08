@@ -190,6 +190,14 @@ Documents the upsert algorithm every compliance agent follows when appending fin
 Write tool, `/Users/romansky/gsd-ic/skills/poam-conventions/SKILL.md`:
 
 ````markdown
+---
+name: poam-conventions
+description: POA&M upsert algorithm for compliance agents. Idempotent append-or-update of findings to .planning/POAM.md keyed by (agent-prefix, control-shortid, finding-hash). Read POAM, search Open/Closed tables for existing key, update Open or insert; leave Closed alone.
+classification: UNCLASSIFIED
+ic_pack: true
+allowed-tools: Read, Write, Edit, Bash
+---
+
 # poam-conventions
 
 You are injecting the **poam-conventions** skill. Follow this upsert algorithm precisely whenever you append findings to `.planning/POAM.md`.
