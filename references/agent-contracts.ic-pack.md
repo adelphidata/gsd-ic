@@ -31,5 +31,10 @@ Format (one row per agent):
 | gsd-finint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-FININT-RESEARCH.md` |
 | gsd-all-source-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-FUSION-RESEARCH.md` |
 | gsd-domex-engineer | ## DOMEX ENGINEERING COMPLETE | (none) | `.planning/phases/{phase}/{phase}-DOMEX-DESIGN.md` + implementation code in project source tree |
+| gsd-mission-gap-analyst | ## MISSION GAP COMPLETE | ## MISSION GAP BLOCKED | `.planning/MISSION-GAP.md`; `.planning/use-case.md` (if filled via interview) |
+| gsd-sow-decomposer | ## SOW DECOMPOSITION COMPLETE | ## SOW DECOMPOSITION BLOCKED | `.planning/SOW-DECOMPOSITION.md` |
+| gsd-mission-narrative-writer | ## NARRATIVE BLOCKS COMPLETE | ## NARRATIVE BLOCKS BLOCKED | `.planning/narrative/{capability}-NARRATIVE.md` |
+| gsd-capability-gap-analyst | ## CAPABILITY GAP ANALYSIS COMPLETE | ## CAPABILITY GAP ANALYSIS BLOCKED | `.planning/captures/CAPABILITY-GAP-{date}.md` |
+| gsd-fusion-architect | ## FUSION ARCHITECTURE COMPLETE | ## FUSION ARCHITECTURE BLOCKED | `.planning/phases/{phase}/{phase}-FUSION-ARCH.md` |
 
 (populated as agents land across Plans 1–8 — see Appendix D of the design spec for the full target list)
