@@ -2349,3 +2349,7 @@ These items are **not** in Plan 1 and belong to subsequent plans:
 ### Task 11: hooks/patterns added to validate-no-classified-leak excludes (2026-05-08)
 
 The pattern catalog contains the literal compartment markings that the leak validator scans for, but only as escaped regex strings in JSON (`"regex": "\\bS//[A-Z]"`). The validator correctly ignores these as non-threats since it looks for the raw pattern `\bS//[A-Z]` (with single backslashes). Added `'hooks/patterns'` to the validator's EXCLUDES array anyway — defensive best practice, same rationale as `docs/specs`, `docs/plans`. No change to validator behavior on real upstream content.
+
+### Task 19: dropped `^hooks/patterns` from validate-publish-scope denylist (2026-05-08)
+
+The Plan 0 fix for npm pack scope added `^hooks/patterns` to validate-publish-scope.sh's `files`-field denylist. That was correct in Plan 0 (no IC-pack pattern catalogs existed; any `hooks/patterns/*` entry in `files` would have been an upstream leak). Plan 1 ships legitimate IC-pack pattern catalogs at `hooks/patterns/{classified-markings,intel-injection-patterns}.json`, and those literal paths matched the denylist, blocking validation. The implementer caught this during Task 19 execution and removed the denylist entry. Actual-pack scan in the same file already had `hooks/patterns/` removed by Task 2; this completes the cleanup.
