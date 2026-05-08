@@ -7,7 +7,7 @@ const path = require('path');
 // Anything NOT in this list is program-owned and must not be touched.
 const MANAGED_PATHS = [
   '.claude/agents',          // only IC pack agents (gsd-* with ic_pack: true)
-  '.claude/hooks',           // only IC pack hooks (gsd-*)
+  '.claude/hooks',           // only IC pack hooks (gsd-*) + pattern catalogs
   '.claude/skills',          // only IC pack skills (4 named in spec §7)
   '.claude/intel-refs',
   '.claude/config-overlays', // only the selected customer's directory
@@ -89,12 +89,18 @@ function copyHooks(srcRoot, target) {
   const destDir = path.join(target, '.claude/hooks');
   if (!fs.existsSync(srcDir)) return;
   for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
-    if (!entry.isFile() || !entry.name.endsWith('.js')) continue;
-    const srcPath = path.join(srcDir, entry.name);
-    if (!isIcPackHook(srcPath)) continue;
-    copyFile(srcPath, path.join(destDir, entry.name));
+    if (entry.isFile() && entry.name.endsWith('.js')) {
+      const srcPath = path.join(srcDir, entry.name);
+      if (!isIcPackHook(srcPath)) continue;
+      copyFile(srcPath, path.join(destDir, entry.name));
+    }
   }
-  // Note: hooks/patterns/ is intentionally NOT copied — it belongs to upstream.
+  // Pattern catalogs (hooks/patterns/*.json) ship alongside the hooks; the
+  // hooks `require()` them at runtime relative to .claude/hooks/.
+  const patternsSrc = path.join(srcDir, 'patterns');
+  if (fs.existsSync(patternsSrc)) {
+    copyDir(patternsSrc, path.join(destDir, 'patterns'));
+  }
 }
 
 function copySkills(srcRoot, target) {
