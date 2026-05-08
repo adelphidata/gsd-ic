@@ -162,6 +162,18 @@
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-12",
       "classification": "UNCLASSIFIED"
+    },
+    "ai-ml/eval-patterns.md": {
+      "applies_when": ["ai-ml", "eval", "evaluation", "mission utility", "hitl", "model evaluation", "ic eval", "eval design"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-13",
+      "classification": "UNCLASSIFIED"
+    },
+    "classification/aws-partitions.md": {
+      "applies_when": ["classification", "aws", "govcloud", "il4", "il5", "iso", "isob", "isof", "partition", "cloud architecture"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-13",
+      "classification": "UNCLASSIFIED"
     }
   }
 }
