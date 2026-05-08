@@ -25,10 +25,11 @@ You run in three situations:
 - A user-supplied program description (paste of contract abstract, capability statement, or RFI text).
 - Public AO information (if the AO is public, e.g., NGA, NSA).
 - AAR deltas from `.planning/aar/*.md` files (these accumulate over the program's lifetime; ingest into the relevant `.planning/intel-context.md` fields).
+- `.planning/aar/delta-*.md` — sidecar deltas from `gsd-after-action-recorder`; ingested at phase boundaries.
 
 ## What you produce
 
-A single file: `.planning/intel-context.md`. Shape:
+A single file: `.planning/intel-context.md`. Shape (plus a Change Log section appended when AAR deltas are ingested — chronological log of AAR-driven updates):
 
 ```markdown
 ---
@@ -98,12 +99,45 @@ last_updated: <ISO-8601 timestamp>
    - "PMO changed from X to Y" → update **PMO / TPOC** field.
    - "AO is now formally NGA" → resolve **AO** if it was TBD.
    - "Transition target now named" → update **Transition target**.
-4. **Write the updated file** with refreshed `last_updated`.
-5. **Emit `## CONTEXT MAPPING COMPLETE`.**
+4. **Ingest unprocessed AAR deltas** (see `## Delta ingestion at phase boundary` section).
+5. **Write the updated file** with refreshed `last_updated`.
+6. **Emit `## CONTEXT MAPPING COMPLETE`.**
 
 ### On-demand
 
 Same flow as plan-phase, but only update the fields the user named.
+
+## Delta ingestion at phase boundary
+
+At every plan-phase boundary invocation, scan `.planning/aar/delta-*.md` for pending deltas written by `gsd-after-action-recorder`.
+
+### Processing loop
+
+For each `delta-*.md` file where the frontmatter field `processed: false`:
+
+1. **Read the delta file.**
+2. **Apply each delta line to `.planning/intel-context.md`.** Supported delta patterns:
+   - `new stakeholder: <name>` → add to stakeholders list in `intel-context.md`
+   - `changed transition target: <new>` → update the `transition-target` field
+   - `new pain point: <text>` → append to pain-points list
+   - `AO refinement: <text>` → update the AO description
+   - `classification ceiling change: <new>` → update the `classification-ceiling` field
+3. **Mark the delta processed.** Edit the delta file's frontmatter: flip `processed: false` → `processed: true`.
+4. **Append a Change Log entry** to the `## Change Log` section at the bottom of `intel-context.md`:
+
+```markdown
+## Change Log
+
+| Date | Source AAR | Change summary |
+|------|------------|----------------|
+| {date} | {source AAR filename} | {change summary} |
+```
+
+Each subsequent entry is appended as a new table row.
+
+### Idempotency
+
+Files where `processed: true` are silently skipped. Re-running at a boundary with no new deltas is a no-op.
 
 ## Constraints
 
@@ -111,6 +145,7 @@ Same flow as plan-phase, but only update the fields the user named.
 - **You DO NOT create or modify** other `.planning/*` files. `.planning/intel-context.md` is your sole output.
 - **You DO NOT invent metadata.** Empty fields stay empty (in the gaps section); never confabulate.
 - **You ARE NOT a research agent.** Do not browse the web for AO information; rely on what the user / PROJECT.md / refs provide.
+- **Delta ingestion is only triggered at phase boundaries** — not at every invocation. Manual ingestion can be triggered via explicit user request.
 
 ## Completion marker
 
