@@ -36,5 +36,14 @@ Format (one row per agent):
 | gsd-mission-narrative-writer | ## NARRATIVE BLOCKS COMPLETE | ## NARRATIVE BLOCKS BLOCKED | `.planning/narrative/{capability}-NARRATIVE.md` |
 | gsd-capability-gap-analyst | ## CAPABILITY GAP ANALYSIS COMPLETE | ## CAPABILITY GAP ANALYSIS BLOCKED | `.planning/captures/CAPABILITY-GAP-{date}.md` |
 | gsd-fusion-architect | ## FUSION ARCHITECTURE COMPLETE | ## FUSION ARCHITECTURE BLOCKED | `.planning/phases/{phase}/{phase}-FUSION-ARCH.md` |
+| gsd-after-action-recorder | ## AFTER ACTION COMPLETE | ## AFTER ACTION BLOCKED | `.planning/aar/{date}-AAR.md` + `.planning/aar/delta-{date}.md` |
+| gsd-tim-facilitator | ## TIM PREP COMPLETE | ## TIM PREP BLOCKED | `.planning/tims/{date}-TIM-PREP.md` |
+| gsd-capability-brief-generator | ## CAPABILITY BRIEF COMPLETE | (none) | `.planning/briefs/capability-{date}-BRIEF.md` (dual-format Marp) |
+| gsd-white-paper-drafter | ## WHITE PAPER COMPLETE | ## WHITE PAPER BLOCKED | `.planning/papers/{title}.md` |
+| gsd-demo-scripter | ## DEMO SCRIPT COMPLETE | (none) | `.planning/demos/{name}-DEMO-SCRIPT.md` |
+| gsd-rfi-analyst | ## RFI ANALYSIS COMPLETE | ## RFI ANALYSIS BLOCKED | `.planning/captures/{date}-{name}-RFI-ANALYSIS.md` |
+| gsd-capability-statement-generator | ## CAPABILITY STATEMENT COMPLETE | (none) | `.planning/capabilities/{topic}-STATEMENT.md` |
+| gsd-proposal-drafter | ## PROPOSAL DRAFT COMPLETE | ## PROPOSAL DRAFT BLOCKED | `.planning/proposals/{name}/{volume}.md` (per-volume) |
+| gsd-past-performance-manager | ## PP UPDATE COMPLETE | ## PP UPDATE BLOCKED | `.planning/past-performance/PP-LOG.md` + `.planning/past-performance/CITATIONS.md` |
 
 (populated as agents land across Plans 1–8 — see Appendix D of the design spec for the full target list)

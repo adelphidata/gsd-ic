@@ -144,6 +144,24 @@
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-11",
       "classification": "UNCLASSIFIED"
+    },
+    "house-style/white-papers.md": {
+      "applies_when": ["white paper", "technical paper", "capability paper", "pitch paper", "ic deliverable", "technical writing"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-12",
+      "classification": "UNCLASSIFIED"
+    },
+    "house-style/proposals.md": {
+      "applies_when": ["proposal", "far 15", "ota", "contract response", "technical volume", "management volume", "past performance volume", "cost volume", "win themes"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-12",
+      "classification": "UNCLASSIFIED"
+    },
+    "house-style/briefs.md": {
+      "applies_when": ["capability brief", "milestone brief", "slides", "marp", "slide deck", "briefing", "customer brief", "audience adaptation"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-12",
+      "classification": "UNCLASSIFIED"
     }
   }
 }
