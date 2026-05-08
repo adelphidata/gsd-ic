@@ -8,6 +8,7 @@ const { parseArgs, USAGE } = require(path.join(__dirname, 'lib', 'gsd-ic', 'pars
 const { verifyGsd } = require(path.join(__dirname, 'lib', 'gsd-ic', 'verify-gsd.cjs'));
 const { installPack } = require(path.join(__dirname, 'lib', 'gsd-ic', 'install-pack.cjs'));
 const { wireOverlay } = require(path.join(__dirname, 'lib', 'gsd-ic', 'wire-overlay.cjs'));
+const { wireHooks } = require(path.join(__dirname, 'lib', 'gsd-ic', 'wire-hooks.cjs'));
 
 function readGsdPinned() {
   const p = path.join(__dirname, '..', 'VERSION');
@@ -59,6 +60,15 @@ function main() {
     process.exit(4);
   }
   process.stderr.write(`[gsd-ic] customer overlay wired (${opts.customer})\n`);
+
+  // 4. Register IC-pack hooks in .claude/settings.json.
+  try {
+    wireHooks({ target: opts.target });
+  } catch (e) {
+    process.stderr.write(`error: ${e.message}\n`);
+    process.exit(5);
+  }
+  process.stderr.write(`[gsd-ic] IC-pack hooks registered in .claude/settings.json\n`);
 
   process.stdout.write(`install complete: @adelphi/gsd-ic for customer=${opts.customer} in ${opts.target}\n`);
 }
