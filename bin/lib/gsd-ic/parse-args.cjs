@@ -6,12 +6,14 @@ const KNOWN_CUSTOMERS = new Set(['nga', 'nsa', 'nro', 'cia', 'dia']);
 const USAGE = `
 Usage:
   npx @adelphi/gsd-ic install --customer=<name> [--target=<path>]
+  npx @adelphi/gsd-ic uninstall [--target=<path>]
 
 Subcommands:
   install     Install the IC pack into a program directory
+  uninstall   Remove the IC pack from a program directory
   --help      Show this help
 
-Required:
+Required for install:
   --customer=<name>   One of: ${[...KNOWN_CUSTOMERS].join(', ')}
 
 Optional:
@@ -19,7 +21,7 @@ Optional:
 
 Examples:
   npx @adelphi/gsd-ic install --customer=nga
-  npx @adelphi/gsd-ic@2026.05.0 install --customer=nsa --target=/path/to/program
+  npx @adelphi/gsd-ic uninstall --target=/path/to/program
 `.trim();
 
 function parseArgs(argv) {
@@ -47,7 +49,7 @@ function parseArgs(argv) {
   if (!opts.subcommand) {
     throw new Error(`missing subcommand. ${USAGE}`);
   }
-  if (!['install', 'help'].includes(opts.subcommand)) {
+  if (!['install', 'uninstall', 'help'].includes(opts.subcommand)) {
     throw new Error(`unknown subcommand "${opts.subcommand}". ${USAGE}`);
   }
   if (opts.subcommand === 'install') {
@@ -58,6 +60,7 @@ function parseArgs(argv) {
       throw new Error(`unknown customer "${opts.customer}". Known: ${[...KNOWN_CUSTOMERS].join(', ')}`);
     }
   }
+  // uninstall has no required args (target defaults to $PWD; customer is read from target metadata if absent)
   return opts;
 }
 
