@@ -45,5 +45,12 @@ Format (one row per agent):
 | gsd-capability-statement-generator | ## CAPABILITY STATEMENT COMPLETE | (none) | `.planning/capabilities/{topic}-STATEMENT.md` |
 | gsd-proposal-drafter | ## PROPOSAL DRAFT COMPLETE | ## PROPOSAL DRAFT BLOCKED | `.planning/proposals/{name}/{volume}.md` (per-volume) |
 | gsd-past-performance-manager | ## PP UPDATE COMPLETE | ## PP UPDATE BLOCKED | `.planning/past-performance/PP-LOG.md` + `.planning/past-performance/CITATIONS.md` |
+| gsd-synthetic-data-engineer | ## SYNTHETIC DATA COMPLETE | (none) | `.planning/synthetic-data/{name}/` (datasets + generator scripts) — **deviation: spec line 382 says `## SYNTHETIC DATA READY`; validator regex requires the recognized terminal `COMPLETE`, so we use `## SYNTHETIC DATA COMPLETE`. Same pattern as NIST 800-171 marker deviation in Plan 2.** |
+| gsd-intel-devops | ## DEVOPS PLAN COMPLETE | (none) | `.planning/iac/` (IaC files + CI/CD configs + hardening guidance + partition-translation notes) |
+| gsd-stig-auditor | ## STIG AUDIT COMPLETE | ## STIG AUDIT GAPS FOUND | `.planning/STIG-AUDIT.md` |
+| gsd-ci-analyst | ## CI ANALYSIS COMPLETE | (none) | `.planning/phases/{phase}/{phase}-CI-ANALYSIS.md` |
+| gsd-targeting-analyst | ## TARGETING ANALYSIS COMPLETE | (none) | `.planning/phases/{phase}/{phase}-TARGETING-ANALYSIS.md` |
+| gsd-insider-threat-analyst | ## INSIDER THREAT ANALYSIS COMPLETE | (none) | `.planning/phases/{phase}/{phase}-INSIDER-THREAT.md` |
+| gsd-adversary-modeler | ## ADVERSARY MODEL COMPLETE | (none) | `.planning/phases/{phase}/{phase}-ADVERSARY-MODEL.md` |
 
 (populated as agents land across Plans 1–8 — see Appendix D of the design spec for the full target list)
