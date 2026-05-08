@@ -138,6 +138,12 @@
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-10",
       "classification": "UNCLASSIFIED"
+    },
+    "modernization/modernization-themes.md": {
+      "applies_when": ["modernization", "data fabric", "ai/ml adoption", "zero trust", "hybrid cloud", "it modernization", "classification-aware compute"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-11",
+      "classification": "UNCLASSIFIED"
     }
   }
 }
