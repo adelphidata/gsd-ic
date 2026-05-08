@@ -13,5 +13,6 @@ Format (one row per agent):
 
 | agent | completion-marker | failure-marker | output artifact |
 |---|---|---|---|
+| gsd-customer-context-mapper | ## CONTEXT MAPPING COMPLETE | ## CONTEXT MAPPING BLOCKED | `.planning/intel-context.md` |
 
-(empty in Plan 0; populated as agents land in Plans 1–8 — see Appendix D of the design spec for the full target list)
+(populated as agents land across Plans 1–8 — see Appendix D of the design spec for the full target list)
