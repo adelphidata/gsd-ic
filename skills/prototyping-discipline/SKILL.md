@@ -52,9 +52,9 @@ Defer multi-region deployment, auto-scaling groups, high-availability configurat
 
 ### Rule 4 — Show what you can show
 
-Frame every customer demo at the lowest classification level the content supports. If the full system operates at TS//SCI, build an UNCLASSIFIED demo environment that shows the same algorithmic capability over synthetic or publicly releasable data. Do not let classification be the reason a demo cannot happen.
+Frame every customer demo at the lowest classification level the content supports. If the full system operates at a high classification level, build an UNCLASSIFIED demo environment that shows the same algorithmic capability over synthetic or publicly releasable data. Do not let classification be the reason a demo cannot happen.
 
-**Rationale:** Most customer eval sessions happen in uncleared conference rooms or low-side collaboration environments; a TS-only demo excludes decision-makers and delays the sales cycle.
+**Rationale:** Most customer eval sessions happen in uncleared conference rooms or low-side collaboration environments; a high-side-only demo excludes decision-makers and delays the sales cycle.
 
 **Positive example:** Full geospatial change-detection system ingests classified imagery, but the demo environment runs the identical model over Sentinel-2 public imagery and shows the same detection outputs on a laptop in an unclassified venue.
 
