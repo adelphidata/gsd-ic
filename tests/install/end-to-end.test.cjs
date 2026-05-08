@@ -58,4 +58,30 @@ describe('end-to-end install', () => {
     runInstall(['install', '--customer=nga', `--target=${target}`]);
     assert.throws(() => runInstall(['install', '--customer=nsa', `--target=${target}`]), /customer switch/i);
   });
+
+  it('install → uninstall round-trip leaves only stock content', () => {
+    const target = tmp('roundtrip');
+    setupFakeGsdInstall(target);
+    runInstall(['install', '--customer=nga', `--target=${target}`]);
+    // Sanity: IC-pack content is present.
+    assert.equal(fs.existsSync(path.join(target, '.claude/intel-refs/MANIFEST.json')), true);
+    const out = runInstall(['uninstall', `--target=${target}`]);
+    assert.match(out, /uninstall complete/i);
+    // IC-pack content gone.
+    assert.equal(fs.existsSync(path.join(target, '.claude/intel-refs')), false);
+    assert.equal(fs.existsSync(path.join(target, '.claude/agents/gsd-customer-context-mapper.md')), false);
+    assert.equal(fs.existsSync(path.join(target, '.claude/hooks/gsd-classification-banner.js')), false);
+    // Stock GSD signal still present.
+    assert.equal(fs.existsSync(path.join(target, '.claude/skills/gsd-help/SKILL.md')), true);
+  });
+
+  it('uninstall is idempotent on a non-installed target', () => {
+    const target = tmp('clean-uninstall');
+    setupFakeGsdInstall(target);
+    // Just-set-up-stock-GSD target; never installed IC pack.
+    const out = runInstall(['uninstall', `--target=${target}`]);
+    assert.match(out, /uninstall complete/i);
+    // Stock content still present.
+    assert.equal(fs.existsSync(path.join(target, '.claude/skills/gsd-help/SKILL.md')), true);
+  });
 });
