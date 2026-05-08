@@ -211,9 +211,9 @@ When the output directory is written, the generator script is runnable, sample o
 `README.md` and `CLASSIFICATION.md` sidecars are complete:
 
 ```
-## SYNTHETIC DATA READY
+## SYNTHETIC DATA COMPLETE
 ```
 
 ---
 
-## SYNTHETIC DATA READY
+## SYNTHETIC DATA COMPLETE
