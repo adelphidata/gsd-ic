@@ -8,17 +8,20 @@ owners: ["unassigned-sme"]
 
 # ATO Document Suite
 
-This reference consolidates five NIST publications — NIST SP 800-18 Rev 1 (SSP), NIST SP 800-61 Rev 2 (IRP),
-NIST SP 800-137 (ConMon), and NIST SP 800-34 Rev 1 (Contingency/DR) — plus Evidence Packaging conventions
-into a single source of truth for the IC pack Family D ATO Documentation Specialists. The seven direct
-consumers are `gsd-ssp-drafter`, `gsd-irp-author`, `gsd-conmon-planner`, `gsd-contingency-planner`,
-`gsd-evidence-packager`, `gsd-sar-dryrun`, and `gsd-iv-and-v-dryrun`; each agent draws primarily from the
-section that corresponds to its output artifact (see the Cross-References table below). In addition,
-`gsd-isso` (Family C) consumes this reference in its entirety via the ISSO synthesis pattern: the ISSO uses
-all five document types when assembling the authorization package and status reports for ISSM review.
-Scope boundary: the ATO lifecycle phases, RACI, decision types, and continuous authorization posture are
-covered in `tradecraft/ato-process-overview.md`; this document addresses the formal artifact content
-requirements that the lifecycle produces.
+This reference consolidates the four NIST publications that govern the formal ATO documentation suite —
+SP 800-18 Rev 1 (System Security Plan), SP 800-34 Rev 1 (Contingency Plan), SP 800-61 Rev 2 (Incident
+Response Plan), and SP 800-137 (Continuous Monitoring) — plus an evidence-packaging conventions section
+for milestone deliverables. NIST SP 800-37 Rev 2 (RMF lifecycle) is intentionally covered in the sibling
+reference `intel-refs/tradecraft/ato-process-overview.md`; this document focuses on the documents that
+lifecycle produces. The seven direct consumers are `gsd-ssp-drafter`, `gsd-irp-author`,
+`gsd-conmon-planner`, `gsd-contingency-planner`, `gsd-evidence-packager`, `gsd-sar-dryrun`, and
+`gsd-iv-and-v-dryrun`; each agent draws primarily from the section that corresponds to its output artifact
+(see the Cross-References table below). In addition, `gsd-isso` (Family C) consumes this reference in its
+entirety via the ISSO synthesis pattern: the ISSO uses all four document types plus the evidence-packaging
+conventions when assembling the authorization package and status reports for ISSM review. Scope boundary:
+the ATO lifecycle phases, RACI, decision types, and continuous authorization posture are covered in
+`tradecraft/ato-process-overview.md`; this document addresses the formal artifact content requirements that
+the lifecycle produces.
 
 ## System Security Plan (SSP)
 
@@ -320,7 +323,7 @@ definitive record of the system's security posture at the time of authorization.
 
 All evidence packages use the following directory layout under the program's `.planning/` directory:
 
-```
+```text
 .planning/evidence-packages/{date}/
     index.md                    ← catalog of all artifacts in this package
     ssps/                       ← SSP current version
@@ -366,8 +369,8 @@ is governed by `tradecraft/poam-format.md`.
 | `gsd-conmon-planner` | Continuous Monitoring Plan (ConMon) |
 | `gsd-contingency-planner` | Contingency Plan / Disaster Recovery |
 | `gsd-evidence-packager` | Evidence Packaging Conventions |
-| `gsd-sar-dryrun` | SSP (assesses SSP + control matrix) |
-| `gsd-iv-and-v-dryrun` | SSP (assesses full evidence package) |
+| `gsd-sar-dryrun` | SSP (assesses control implementation); Evidence Packaging (reads milestone-stage artifact catalog) |
+| `gsd-iv-and-v-dryrun` | SSP (assesses full evidence package); Evidence Packaging (reads milestone-stage artifact catalog) |
 | `gsd-poam-tracker` | SSP (control implementation status) + Evidence Packaging (artifact inputs) |
 
 Cross-references to related tradecraft refs:
