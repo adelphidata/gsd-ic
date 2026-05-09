@@ -1,7 +1,7 @@
 ---
 classification: UNCLASSIFIED
 topic: tradecraft/ato-process-overview
-applies_when: [ato, rmf, authorization, isso, issm, ao, authorizing official, atc, denial, continuous authorization]
+applies_when: [ato, rmf, authorization, isso, issm, ao, authorizing official, iatt, denial, continuous authorization]
 ic_pack: true
 owners: ["unassigned-sme"]
 ---
@@ -14,7 +14,7 @@ federal and DoD acquisition context, ATOs are issued under the Risk Management F
 800-37 Rev 2, which replaced the legacy Certification and Accreditation (C&A) process. An ATO is not a one-time
 event — it is the output of a structured, repeatable lifecycle that begins at system inception, runs through security
 control assessment, and continues via ongoing continuous monitoring. IC pack Phase 6 agents (`gsd-rmf-control-mapper`,
-`gsd-sar-dryrun`, `gsd-iv-and-v-dryrun`, `gsd-issm`, `gsd-conmon-planner`, and their siblings) instrument every
+`gsd-sar-dryrun`, `gsd-iv-and-v-dryrun`, `gsd-issm`, `gsd-isso`, `gsd-conmon-planner`, and their siblings) instrument every
 phase of this lifecycle, reducing the manual documentation burden on the ISSO and ISSM while preserving human
 judgment at the AO boundary.
 
@@ -117,11 +117,7 @@ The AO evaluates whether the residual risk documented in the package is acceptab
 and issues an authorization decision: ATO, ATO-with-conditions, Interim Authority To Test (IATT), or denial.
 The ISSM owns the authorization package assembly and submission; the AO owns the decision.
 
-**Framework boundary (per spec §5, line 280):** The IC pack framework stops at the ISSM. `gsd-issm`
-produces the ISSM determination section (`READY-FOR-AO`, `REMEDIATE-FIRST`, or
-`RISK-ACCEPTED-WITH-MITIGATION`), prepares the "Likely AO Questions" appendix, and drafts the cover
-memo — but it does not submit to or communicate with the AO. The human-to-human conversation in which
-the ISSM presents the package and receives the decision is outside the framework boundary.
+*Framework boundary:* see the §RACI note below — humans handle the AO interaction; the framework stops at ISSM. `gsd-issm` produces the ISSM determination section (`READY-FOR-AO`, `REMEDIATE-FIRST`, or `RISK-ACCEPTED-WITH-MITIGATION`), prepares the "Likely AO Questions" appendix, and drafts the cover memo.
 
 ### Step 6 — Monitor
 
@@ -158,7 +154,7 @@ The following table maps the six RMF steps to the three primary security persona
 | 5. Authorize | R (assembles package) | A (signs & submits) | A (decides) |
 | 6. Monitor | R | A | I |
 
-**Framework boundary note (per spec §5, line 280):** The IC pack framework stops at the ISSM. The AO
+**Framework boundary note (per the IC pack design spec (`docs/specs/2026-05-05-ic-agent-pack-design.md`) §5, line 280):** The IC pack framework stops at the ISSM. The AO
 interaction — the human-to-human conversation in which the ISSM presents the package and receives the
 authorization decision — is outside the framework boundary and must not be automated. `gsd-issm` prepares
 the ISSM for this conversation (via the "Likely AO Questions" appendix and the `## Determination` section)
