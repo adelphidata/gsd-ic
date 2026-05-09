@@ -197,17 +197,19 @@ Edit tool, `intel-refs/MANIFEST.json`. Locate the existing `tradecraft/` block (
 ```json
 "tradecraft/ato-document-suite.md": {
   "applies_when": ["ssp", "system security plan", "irp", "incident response", "conmon", "continuous monitoring", "contingency", "dr", "disaster recovery", "evidence package", "pdr", "cdr", "trr", "ato submission"],
-  "classification": "UNCLASSIFIED",
-  "owners": ["unassigned-sme"]
+  "owner": "intel-pack@adelphi.ai",
+  "last_reviewed": "2026-05-09",
+  "classification": "UNCLASSIFIED"
 },
 "tradecraft/ato-process-overview.md": {
   "applies_when": ["ato", "rmf", "authorization", "isso", "issm", "ao", "authorizing official", "iatt", "denial", "continuous authorization"],
-  "classification": "UNCLASSIFIED",
-  "owners": ["unassigned-sme"]
+  "owner": "intel-pack@adelphi.ai",
+  "last_reviewed": "2026-05-09",
+  "classification": "UNCLASSIFIED"
 },
 ```
 
-Place these alphabetically before the existing `tradecraft/cmmc-2.0.md` entry. The `ato-document-suite` entry comes before `ato-process-overview` alphabetically.
+Place these alphabetically before the existing `tradecraft/cmmc-2.0.md` entry. The `ato-document-suite` entry comes before `ato-process-overview` alphabetically. Schema mirrors the existing tradecraft entries (`owner`, `last_reviewed`, `classification`, `applies_when`); the file-level frontmatter `ic_pack`, `owners`, and `topic` are only inside the `.md` file, NOT in the manifest entry.
 
 - [ ] **Step 2: Validate JSON + topic count**
 
