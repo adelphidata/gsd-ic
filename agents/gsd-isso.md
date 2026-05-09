@@ -189,7 +189,6 @@ When `POAM.md` is present, count items by status field. If the POA&M does not us
 
 When the ISSO Brief is successfully written to `.planning/phases/{phase}/{phase}-ISSO-BRIEF.md`, emit:
 
-
 ```
 ## ISSO REVIEW COMPLETE
 ```
