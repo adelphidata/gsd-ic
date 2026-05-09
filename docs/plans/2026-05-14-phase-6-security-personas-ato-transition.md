@@ -104,7 +104,7 @@ Establishes the RMF / ATO lifecycle vocabulary the Family C orchestrators consum
 **Spec source:** Spec §5 lines 279-280 (ISSO/ISSM roles); §13 line 1074 (Phase 6 scope). NIST SP 800-37 Rev 2 (RMF) is the authoritative external reference for the lifecycle.
 
 **Content requirements:**
-1. Frontmatter: `topic: tradecraft/ato-process-overview`, `applies_when: [ato, rmf, authorization, isso, issm, ao, authorizing official, atc, denial, continuous authorization]`, `classification: UNCLASSIFIED`, `ic_pack: true`, owners stub.
+1. Frontmatter: `topic: tradecraft/ato-process-overview`, `applies_when: [ato, rmf, authorization, isso, issm, ao, authorizing official, iatt, denial, continuous authorization]`, `classification: UNCLASSIFIED`, `ic_pack: true`, owners stub.
 2. `# ATO Process Overview` — one-paragraph framing.
 3. `## RMF Six-Step Lifecycle` — categorize, select, implement, assess, authorize, monitor (per NIST SP 800-37 Rev 2). One paragraph per step describing what the framework expects to happen, who owns it, and which Phase 6 agent contributes (e.g., assess → SAR/IV&V dryruns; authorize → ISSM determination + AO conversation; monitor → ConMon planner output drives the cadence).
 4. `## ISSO / ISSM / AO RACI` — Markdown table mapping the six RMF steps × the three personas, plus the one-row "framework boundary" note (the framework stops at ISSM; humans handle the AO interaction — per spec line 280).
@@ -201,7 +201,7 @@ Edit tool, `intel-refs/MANIFEST.json`. Locate the existing `tradecraft/` block (
   "owners": ["unassigned-sme"]
 },
 "tradecraft/ato-process-overview.md": {
-  "applies_when": ["ato", "rmf", "authorization", "isso", "issm", "ao", "authorizing official", "atc", "denial", "continuous authorization"],
+  "applies_when": ["ato", "rmf", "authorization", "isso", "issm", "ao", "authorizing official", "iatt", "denial", "continuous authorization"],
   "classification": "UNCLASSIFIED",
   "owners": ["unassigned-sme"]
 },
