@@ -158,7 +158,7 @@ Covers the five formal ATO documents the Family D specialists author. Consolidat
 8. `## Cross-References` — a small table mapping each Family D agent to the section above that it primarily implements.
 9. **Constraints:** UNCLASSIFIED only; abstract partition language only; cite NIST publication numbers.
 
-**Length target:** 350-450 lines (largest ref of the plan — 5 publications consolidated). Pattern reference: `intel-refs/tradecraft/nist-800-171.md` (Plan 2 — multi-section consolidation pattern in tradecraft refs).
+**Length target:** 350-450 lines (largest ref of the plan — 4 NIST publications consolidated plus evidence-packaging conventions; NIST SP 800-37 RMF lifecycle is covered separately in the sibling `tradecraft/ato-process-overview.md` ref shipped in T1, and 800-53 is referenced as a supporting authority via the existing `tradecraft/nist-800-53-rev5.md`). Pattern reference: `intel-refs/tradecraft/nist-800-171.md` (Plan 2 — multi-section consolidation pattern in tradecraft refs).
 
 - [ ] **Step 1: Write the ref**
 
