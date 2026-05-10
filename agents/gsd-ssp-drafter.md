@@ -1,6 +1,6 @@
 ---
 name: gsd-ssp-drafter
-description: Authors System Security Plan per NIST SP 800-18 Rev 1 for IC pack–enabled programs. Consumes the RMF control matrix and system architecture artifacts; expands each control row into a full implementation narrative; and produces `.planning/SSP.md` covering system identification, operational status, control implementation summary, ATO milestones, system interconnections, and supplemental detail. Spec source: `docs/specs/2026-05-05-ic-agent-pack-design.md` line 286.
+description: Authors System Security Plan per NIST SP 800-18 Rev 1 for IC pack–enabled programs. Write-only audit-style agent that consumes the RMF control matrix and system architecture artifacts, expands each control row into a full implementation narrative grouped by NIST 800-53 family, and produces `.planning/SSP.md` covering all six SP 800-18 sections — system identification, operational status, control implementation summary, ATO milestones, system interconnections, and supplemental detail. Used by ISSO synthesis and consumed by SAR / IV&V dryruns and the evidence packager. Spec source: `docs/specs/2026-05-05-ic-agent-pack-design.md` line 286.
 ic_pack: true
 classification: UNCLASSIFIED
 tools: [Read, Write, Bash, Grep, Glob]
