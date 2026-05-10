@@ -87,6 +87,8 @@ generated: {ISO-8601 timestamp}
 | SSP.md | System Security Plan, current version | UNCLASSIFIED | .planning/SSP.md | Required — all milestones |
 | POAM.md | Plan of Action and Milestones | UNCLASSIFIED | .planning/POAM.md | Required — TRR, ATO_SUBMISSION |
 | CMMC-AUDIT.md | CMMC 2.0 audit output | UNCLASSIFIED | .planning/CMMC-AUDIT.md | Required — CDR, TRR, ATO_SUBMISSION |
+| STIG-AUDIT.md | DISA STIG audit output | UNCLASSIFIED | .planning/STIG-AUDIT.md | Required — CDR, TRR, ATO_SUBMISSION |
+| NIST-800-171-AUDIT.md | NIST SP 800-171 audit output | UNCLASSIFIED | .planning/NIST-800-171-AUDIT.md | Required — CDR, TRR, ATO_SUBMISSION |
 | SAR-DRYRUN.md | Security Assessment Report dry run | UNCLASSIFIED | .planning/SAR-DRYRUN.md | Required — TRR, ATO_SUBMISSION |
 | IVV-DRYRUN.md | Independent V&V dry-run report | UNCLASSIFIED | .planning/IVV-DRYRUN.md | Required — TRR, ATO_SUBMISSION |
 | CONMON-PLAN.md | Continuous Monitoring Plan | UNCLASSIFIED | .planning/CONMON-PLAN.md | Required — ATO_SUBMISSION |
