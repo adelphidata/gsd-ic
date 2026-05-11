@@ -3,10 +3,10 @@
 
 The IC pack is a soft-fork extension of [Get Shit Done (GSD)](https://github.com/gsd-build/get-shit-done) that adds 58 specialized agents, 3 deterministic hooks, and 5 behavioral skills tailored to intelligence-community software prototyping.
 
-It is distributed as the npm package `@adelphi/gsd-ic` and installed per program via:
+It is distributed as a local npm tarball (`adelphi-gsd-ic-<version>.tgz`) — built locally with `npm pack` and shared via Adelphi's internal distribution channel. The pack is NOT published to a public npm registry. Per program install:
 
 ```bash
-npx @adelphi/gsd-ic@latest install --customer=<nga|nsa|nro|cia|dia>
+npx /path/to/adelphi-gsd-ic-<version>.tgz install --customer=<nga|nsa|nro|cia|dia>
 ```
 
 Per the [design spec](../specs/2026-05-05-ic-agent-pack-design.md) §2.3, each program runs its own GSD-IC instance — one program, one customer, one repo.
