@@ -36,7 +36,7 @@ npx @adelphi/gsd-ic@latest install --customer=<nga|nsa|nro|cia|dia>
 
 **Expected output** (stderr progress lines, then one stdout completion line):
 
-```
+```text
 [gsd-ic] GSD detected (modern-skills); pack pinned to GSD 1.39.0-rc.4
 [gsd-ic] pack content installed under /path/to/your/program/.claude/
 [gsd-ic] customer overlay wired (nga)
@@ -44,7 +44,7 @@ npx @adelphi/gsd-ic@latest install --customer=<nga|nsa|nro|cia|dia>
 install complete: @adelphi/gsd-ic for customer=nga in /path/to/your/program
 ```
 
-The install verifies GSD is present, copies pack content (58 agents, 3 hooks, 5 skills, 36 reference docs) into `.claude/`, writes the customer overlay's `agent_skills` assignments into `.planning/config.json`, and registers the three IC-pack hooks in `.claude/settings.json`. Re-running with the same `--customer` is a safe idempotent refresh.
+The install verifies GSD is present, copies pack content (58 agents, 3 hooks, 5 skills, 36 reference docs) into `.claude/`, writes the customer overlay's `agent_skills` assignments into `.planning/config.json`, and registers the three IC-pack hooks in `.claude/settings.json`. Re-running with the same `--customer=<name>` is a safe idempotent refresh.
 
 ---
 
@@ -116,7 +116,7 @@ Run these three sanity checks from your program directory:
 ```bash
 # 1. IC-pack agents are present
 ls .claude/agents/gsd-*.md | wc -l
-# Expected: 58 (IC-pack agents only; stock GSD agents are not prefixed gsd- with ic_pack:true)
+# Expected: 58 (only IC-pack agents have ic_pack:true frontmatter; upstream GSD agents that share the gsd-* prefix are not counted)
 ```
 
 ```bash
@@ -156,28 +156,31 @@ If required information is unavailable, it emits `## CONTEXT MAPPING BLOCKED` an
 
 ## Step 7: Run your first gate (optional)
 
-Gates are workflow control points defined in `.planning/intel-gates.json`. The IC pack ships a template at `workflow-patches/intel-gates.template.json` inside the npm package. You need to copy it to your program on first install:
+Gates are workflow control points defined in `.planning/intel-gates.json`. The pack does not auto-create this file on install — you create it when you are ready to opt in to gates. Start with a minimal `intel-gates.json` containing one Family L gate:
 
 ```bash
-cp node_modules/@adelphi/gsd-ic/workflow-patches/intel-gates.template.json \
-   .planning/intel-gates.json
-```
-
-All gates in the template ship with `"enabled": false` — this is intentional. The IC pack is a zero-footprint overlay; no gate fires until you opt in.
-
-**Family L** is the canonical fan-out pattern to try first. It contains four mission-framing agents (`gsd-ci-analyst`, `gsd-targeting-analyst`, `gsd-insider-threat-analyst`, `gsd-adversary-modeler`) that fire in parallel from the `plan-phase.5-handle-research` trigger. To enable one:
-
-```json
-"family-l-ci": {
-  "enabled": true,
-  "trigger": "plan-phase.5-handle-research",
-  "agent": "gsd-ci-analyst"
+mkdir -p .planning && cat > .planning/intel-gates.json <<'JSON'
+{
+  "version": "2026.05",
+  "hooks": {
+    "classification_banner": { "enabled": true },
+    "classified_leak": { "enabled": true, "block_on_match": false },
+    "prompt_injection_intel": { "enabled": true }
+  },
+  "gates": {
+    "family-l-ci": {
+      "enabled": false,
+      "trigger": "plan-phase.5-handle-research",
+      "agent": "gsd-ci-analyst"
+    }
+  }
 }
+JSON
 ```
 
-Once enabled, the agent fires automatically when a `plan-phase` workflow reaches step 5. Observe the configured agent fire and emit its completion marker.
+All gates ship `"enabled": false` — the IC pack is a zero-footprint overlay; no gate fires until you opt in. To enable the gate above, open the file and flip `"enabled": false` to `"enabled": true`. Once enabled, the agent fires automatically when a `plan-phase` workflow reaches step 5. **Family L** contains four mission-framing agents (`gsd-ci-analyst`, `gsd-targeting-analyst`, `gsd-insider-threat-analyst`, `gsd-adversary-modeler`) that fire in parallel from the same trigger — add each as its own gate entry to enable the full fan-out.
 
-See [intel-gates-schema.md](intel-gates-schema.md) for the full gate schema including `trigger` slug format, fan-out syntax, and validation rules.
+The full v1 template with all four Family L gates lives in the pack repo at `workflow-patches/intel-gates.template.json`. The dispatcher schema is documented in [intel-gates-schema.md](intel-gates-schema.md).
 
 ---
 
