@@ -28,9 +28,10 @@ Do not create a new subdirectory unless 2+ refs will live there immediately.
 
 ## Step 1: Pick a subdirectory and topic key
 
-The topic key is the file path **relative to the repo root** — e.g.,
-`intel-refs/int-disciplines/sigint.md` or `intel-refs/tradecraft/nist-800-171.md`. This path
-is the **primary key** in `MANIFEST.json`; there is no separate `path` field. See spec
+The topic key is the file path **relative to `intel-refs/`** — e.g.,
+`int-disciplines/sigint.md` or `tradecraft/nist-800-171.md` (NOT `intel-refs/int-disciplines/sigint.md`).
+This is the **primary key** under the manifest's `"topics": { ... }` wrapper; there is no
+separate `path` field. See spec
 [§8.1](../specs/2026-05-05-ic-agent-pack-design.md#81-manifest-schema-intel-refsmanifestjson)
 (line 499) for the canonical schema definition.
 
@@ -73,10 +74,11 @@ justification. For the full schema and body conventions, see
 
 ## Step 3: Register in MANIFEST.json
 
-Open `intel-refs/MANIFEST.json` and add one entry under `"topics"`. Key = repo-relative path:
+Open `intel-refs/MANIFEST.json` and add one entry inside the existing top-level `"topics": { ... }`
+block. The key is the path relative to `intel-refs/` (not the repo root):
 
 ```json
-"intel-refs/tradecraft/example-framework.md": {
+"tradecraft/example-framework.md": {
   "applies_when": ["example-framework", "compliance", "risk management"],
   "owner": "intel-pack@adelphi.ai",
   "last_reviewed": "2026-05-11",
@@ -150,7 +152,7 @@ Top-level structure of `intel-refs/MANIFEST.json`:
 {
   "version": "YYYY.MM",
   "topics": {
-    "<relative-path-from-repo-root>": {
+    "<subdir>/<file>.md": {
       "applies_when": ["<keyword>", ...],
       "owner": "<email-string>",
       "last_reviewed": "<YYYY-MM-DD>",
@@ -169,8 +171,8 @@ Per-entry field contract:
 | `last_reviewed` | string | ISO 8601 `YYYY-MM-DD` |
 | `classification` | string | `"UNCLASSIFIED"` for all v1 content |
 
-The topic key encodes the full repo-relative path. There is no separate `path`, `id`, or
-`topic` field at the manifest level.
+The topic key is the path relative to `intel-refs/` (i.e., `<subdir>/<file>.md`). There is
+no separate `path`, `id`, or `topic` field at the manifest level.
 
 Spec reference: §8.1 (line 499) in
 [`docs/specs/2026-05-05-ic-agent-pack-design.md`](../specs/2026-05-05-ic-agent-pack-design.md).
