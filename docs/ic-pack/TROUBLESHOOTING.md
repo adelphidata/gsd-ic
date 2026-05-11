@@ -53,6 +53,9 @@ pack is pinned to GSD `1.39.0-rc.4` (see `VERSION`).
 **Validator / tool that catches it:**
 `<none — npm peer resolution at install time>`
 
+Diagnostic: `npm ls get-shit-done-cc` confirms the installed version against the
+pinned range.
+
 ---
 
 ## Install: "unknown customer"
@@ -178,9 +181,21 @@ source code, comments, or test data contain an uppercase token matching a patter
 1. Identify the pattern ID in the advisory; cross-reference the exact regex in
    `hooks/patterns/classified-markings.json`.
 2. Rephrase the matched text — change casing, split the token, or reword.
-3. If rephrasing is not feasible, set in `.planning/intel-gates.json`:
-   `"classified_leak": { "enabled": false }` to disable, or
-   `"block_on_match": false` to downgrade to advisory-only.
+3. If rephrasing is not feasible, update `.planning/intel-gates.json`. The
+   `classified_leak` settings live under the top-level `hooks:` block (see
+   [intel-gates-schema.md](intel-gates-schema.md)):
+   ```json
+   {
+     "hooks": {
+       "classified_leak": {
+         "enabled": false,
+         "block_on_match": false
+       }
+     }
+   }
+   ```
+   Set `"enabled": false` to disable entirely, or keep it enabled but set
+   `"block_on_match": false` to downgrade from blocking to advisory-only.
 4. Confirm the text is non-sensitive before suppressing the hook.
 
 **Validator / tool that catches it:**
@@ -215,3 +230,5 @@ failure on first invocation.
 
 **Validator / tool that catches it:**
 `<none — runtime only>`
+
+Diagnostic: `node --version` should print `v22.x.x` or higher.
