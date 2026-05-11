@@ -26,10 +26,12 @@ If GSD is already installed, this is a no-op refresh. The IC pack install step (
 
 ## Step 2: Install the IC pack
 
+> **Prerequisite:** The IC pack ships as a tarball, not as a public npm package. Obtain `adelphi-gsd-ic-<version>.tgz` from your Adelphi distribution channel and note its local path. The install commands below use that path.
+
 From your program directory:
 
 ```bash
-npx @adelphi/gsd-ic@latest install --customer=<nga|nsa|nro|cia|dia>
+npx /path/to/adelphi-gsd-ic-<version>.tgz install --customer=<nga|nsa|nro|cia|dia>
 ```
 
 `--customer` is required — there is no default. The five valid values are enforced by the CLI; an unknown name exits with code 2. (See Step 3 for details on what the customer overlay does.)
@@ -63,7 +65,7 @@ The overlay you selected via `--customer=` in Step 2 maps specific agents to cus
 **Switching customers later.** Customer is usually a property of the program, not the engineer. If your program genuinely needs a different customer overlay (e.g., a contract re-compete changed the AO), re-run install with the new `--customer=` and add `--confirm-customer-switch`:
 
 ```bash
-npx @adelphi/gsd-ic@latest install --customer=nsa --confirm-customer-switch
+npx /path/to/adelphi-gsd-ic-<version>.tgz install --customer=nsa --confirm-customer-switch
 ```
 
 Without `--confirm-customer-switch`, a detected customer switch aborts with an error. See [CONSUMER-UPGRADE.md](CONSUMER-UPGRADE.md) for the full upgrade flow.
@@ -132,7 +134,7 @@ grep -A3 '"__gsd_ic"' .planning/config.json
 # Expected: customer, pack_version, installed_at fields
 ```
 
-If check 1 returns fewer than 58, rerun `npx @adelphi/gsd-ic@latest install --customer=<name>` — the install is idempotent and safe to repeat. If check 2 returns 0, settings.json may be malformed; see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+If check 1 returns fewer than 58, rerun `npx /path/to/adelphi-gsd-ic-<version>.tgz install --customer=<name>` — the install is idempotent and safe to repeat. If check 2 returns 0, settings.json may be malformed; see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
 ---
 
@@ -196,7 +198,7 @@ The full v1 template with all four Family L gates lives in the pack repo at `wor
 ## Uninstall
 
 ```bash
-npx @adelphi/gsd-ic@latest uninstall
+npx /path/to/adelphi-gsd-ic-<version>.tgz uninstall
 ```
 
 This removes all IC-pack content from `.claude/` (agents, hooks, skills, intel-refs, the contract registry, and the customer overlay directory), unwires the hooks from `.claude/settings.json`, and strips the IC-pack metadata block from `.planning/config.json`. Stock GSD files and program-owned files are not touched. `.planning/intel-context.md` and `.planning/intel-gates.json` (if you created it) are program-owned and are left in place.
