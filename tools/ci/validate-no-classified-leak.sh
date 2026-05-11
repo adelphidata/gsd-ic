@@ -43,6 +43,7 @@ EXCLUDES=(
   'docs/specs'
   'docs/superpowers'
   'docs/plans'
+  'docs/ic-pack'
   'hooks/patterns'
   'tests/hooks'
 )
