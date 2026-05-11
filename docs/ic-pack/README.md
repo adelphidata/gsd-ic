@@ -29,7 +29,7 @@ Per the [design spec](../specs/2026-05-05-ic-agent-pack-design.md) §2.3, each p
 - **5 customer overlays:** `cia`, `dia`, `nga`, `nro`, `nsa` (select at install time via `--customer=`).
 - **3 deterministic hooks:** classification banner, classified-leak detector, prompt-injection scan.
 - **5 behavioral skills:** classification conventions, intel coding conventions, prototyping discipline, Adelphi house style, POA&M conventions.
-- **23 reference docs** spanning 10 INT disciplines, 13 tradecraft / compliance / ATO topics, 2 capability patterns, and 4 ATO-evidence templates.
+- **36 reference docs** spanning 10 INT disciplines, 13 tradecraft / compliance / ATO topics, 2 capability patterns, 5 IC-customer ecosystem briefs, 3 house-style guides, and 3 cross-cutting topics (AI/ML eval patterns, classification partitions, modernization themes).
 - **13 CI validators** that gate every change to the pack (manifest schema, completion markers, classification banners, workflow patches, trigger strings, seamless-fork guarantee, etc.).
 
 ## Documentation map
