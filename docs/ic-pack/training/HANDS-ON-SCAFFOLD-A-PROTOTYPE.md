@@ -1,4 +1,4 @@
-<!-- UNCLASSIFIED -->
+<!-- CLASSIFICATION: UNCLASSIFIED -->
 
 # Hands-On: Scaffold a Prototype with the IC Pack (30 minutes)
 
