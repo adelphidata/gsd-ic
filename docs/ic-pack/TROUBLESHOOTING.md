@@ -22,7 +22,7 @@ Installer exits with code **3**.
 **Fix:**
 1. Navigate to the target directory (or set `--target`).
 2. Install GSD: `npx get-shit-done-cc@latest`
-3. Re-run: `npx @adelphi/gsd-ic install --customer=<name> [--target=<path>]`
+3. Re-run: `npx /path/to/adelphi-gsd-ic-<version>.tgz install --customer=<name> [--target=<path>]`
 
 **Validator / tool that catches it:**
 `bin/lib/gsd-ic/verify-gsd.cjs` (exit code 3)
@@ -47,7 +47,7 @@ pack is pinned to GSD `1.39.0-rc.4` (see `VERSION`).
 **Fix:**
 1. Upgrade GSD: `npx get-shit-done-cc@latest`
 2. If you cannot upgrade, pin the IC pack to a matching older release:
-   `npx @adelphi/gsd-ic@<older-version> install --customer=<name>`
+   `npx /path/to/adelphi-gsd-ic-<older-version>.tgz install --customer=<name>`
 3. Confirm no peer-dep warnings remain, then re-run the installer.
 
 **Validator / tool that catches it:**

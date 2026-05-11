@@ -39,7 +39,7 @@ describe('parseArgs', () => {
   });
 
   it('exports a USAGE string', () => {
-    assert.match(USAGE, /npx @adelphi\/gsd-ic install/);
+    assert.match(USAGE, /npx.*\.tgz.*install/);
   });
 
   it('treats --help as a request to print usage and exit cleanly', () => {
