@@ -29,6 +29,9 @@ Format (one row per agent):
 | gsd-masint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-MASINT-RESEARCH.md` |
 | gsd-cybint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-CYBINT-RESEARCH.md` |
 | gsd-finint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-FININT-RESEARCH.md` |
+| gsd-techint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-TECHINT-RESEARCH.md` |
+| gsd-medint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-MEDINT-RESEARCH.md` |
+| gsd-techsigint-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-TECHSIGINT-RESEARCH.md` |
 | gsd-all-source-researcher | ## RESEARCH COMPLETE | ## RESEARCH BLOCKED | `.planning/phases/{phase}/{phase}-FUSION-RESEARCH.md` |
 | gsd-domex-engineer | ## DOMEX ENGINEERING COMPLETE | (none) | `.planning/phases/{phase}/{phase}-DOMEX-DESIGN.md` + implementation code in project source tree |
 | gsd-mission-gap-analyst | ## MISSION GAP COMPLETE | ## MISSION GAP BLOCKED | `.planning/MISSION-GAP.md`; `.planning/use-case.md` (if filled via interview) |
@@ -65,8 +68,8 @@ Format (one row per agent):
 | gsd-cdrl-mapper | ## CDRL MAPPING COMPLETE | ## UNMAPPED CDRLS FOUND | `.planning/CDRL-MAP.md` — **deviation: spec §5 line 299 says `## UNMAPPED CDRLs FOUND` (lowercase `s`); validator regex character class `[A-Z][A-Z0-9 _&-]*` rejects lowercase, so we ship `## UNMAPPED CDRLS FOUND` (uppercase `S`).** |
 | gsd-milestone-brief-generator | ## MILESTONE BRIEF COMPLETE | (none) | `.planning/briefs/{milestone}-{date}-BRIEF.md` (dual-format Marp) |
 | gsd-transition-advisor | ## TRANSITION READINESS COMPLETE | ## TRANSITION GAPS FOUND | `.planning/TRANSITION-READINESS.md` (per-stage checks) |
-| gsd-icd-203-enforcer | ## ICD 203 AUDIT COMPLETE | ## ICD 203 VIOLATIONS FOUND | `.planning/phases/{phase}/{phase}-ICD203-AUDIT.md` |
+| gsd-icd-203-enforcer | ## ICD 203 AUDIT COMPLETE | ## ICD 203 VIOLATIONS FOUND | `.planning/phases/{phase}/{phase}-ICD-203-AUDIT.md` |
 | gsd-ai-eval-auditor | ## AI EVAL DESIGN COMPLETE | ## AI EVAL AUDIT COMPLETE / ## AI EVAL ISSUES FOUND | `.planning/phases/{phase}/{phase}-AI-EVAL-DESIGN.md` or `.planning/ai-evals/{capability}-DESIGN.md` (design mode); `.planning/phases/{phase}/{phase}-AI-EVAL-AUDIT.md` (audit mode) |
 | gsd-fm-adaptation-engineer | ## FM ADAPTATION COMPLETE | (none) | `.planning/phases/{phase}/{phase}-FM-ADAPTATION-DESIGN.md` + implementation code in project source tree |
 
-(populated as agents land across Plans 1–8 — see Appendix D of the design spec for the full target list)
+(populated across Plans 1–8 — v1 roster complete at 58 agents per Appendix D)
