@@ -38,7 +38,7 @@ This calls `tools/sync/sync-from-upstream.sh` and performs the following in orde
 1. Validates that the working tree is clean and the `upstream` remote is configured.
 2. Fetches `upstream` and reports how many commits behind the local branch is.
 3. Merges `upstream/main` with `--no-edit`. If the merge produces conflicts, the script exits non-zero and prompts you to resolve them manually before re-running validators.
-4. Refreshes `package.upstream.json` with upstream's `package.json` content, then reads the upstream version from that file.
+4. Reads the upstream version from `package.upstream.json` (initial pass), then refreshes that file with the newly merged upstream `package.json` content and re-reads the version to confirm.
 5. Updates `VERSION`'s `gsd_pinned:` field to the upstream version just merged (Step 4 covers the manual path if you resolved conflicts outside the script).
 6. Strips upstream-only files that must not ship in the pack (localized READMEs, upstream GitHub Actions workflows that reference build targets the IC pack does not carry).
 7. Reapplies workflow patches via `bash tools/patch-workflows.sh`.
@@ -64,7 +64,7 @@ git add <resolved-files>
 npm run ci
 ```
 
-`npm run ci` re-runs the full validator suite and will surface any remaining issues before you continue.
+`npm run ci` re-runs the full validator suite and will surface any remaining issues before you continue. Note: `npm run ci` fails on the first validator that trips (fail-fast). If you want a full report with all validators run regardless of failures, use `bash tools/ci/_run-all.sh --continue` directly.
 
 ## Step 4: Update gsd_pinned in VERSION
 
@@ -82,16 +82,19 @@ The `gsd_pinned:` value must match the `version` field in upstream's `package.js
 
 ```json
 "peerDependencies": {
-  "get-shit-done-cc": ">=1.39.0-rc.4 <3.0.0"
+  "get-shit-done-cc": ">=<X.Y.Z> <<X+1>.0.0"
 }
 ```
+
+The literal current value lives in `package.json`'s `peerDependencies` field. On a major bump, widen the upper bound to `<(X+1)+1>.0.0`.
 
 ## Step 5: Run the full validator suite
 
 ```bash
-npm run ci           # canonical gate — runs all 12 validators via tools/ci/_run-all.sh
-npm run test:validators  # same validators via the test harness
-npm test             # full test suite including install tests
+npm run ci                # canonical gate — runs all 12 validators via tools/ci/_run-all.sh
+npm run test:validators   # same validators via the test harness
+npm test                  # unit suite (vitest run)
+npm run test:install      # install-path integration tests
 ```
 
 The 12 validators and what each checks:
