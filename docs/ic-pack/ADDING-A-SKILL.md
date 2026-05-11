@@ -6,7 +6,7 @@ They modify agent behavior without forking agent source files.
 
 ## Decide: skill or agent?
 
-Per spec §7.0, a behavior stays a skill when **fewer than 2** of these criteria apply:
+Per spec [§7.0 Skill → Agent promotion rule](../specs/2026-05-05-ic-agent-pack-design.md#70-skill--agent-promotion-rule) (line 447), a behavior stays a skill when **fewer than 2** of these criteria apply:
 
 1. **Multi-step reasoning required** — the behavior needs structured thinking with distinct steps
    that don't fit into a host agent's existing flow.
@@ -44,21 +44,36 @@ below). Project-local frontmatter conventions:
 
 ```yaml
 ---
-name: <skill-name>           # must match the directory name exactly
-description: <one-line>      # consumed by validators and the manifest
-classification: UNCLASSIFIED # mandatory; never omit or change
-ic_pack: true
-injected_into: [<agent-1>, <agent-2>]  # every agent that loads this skill
-activation: always           # or: on-demand (overlay-only wiring)
+name: <skill-name>                       # required; must match the directory name exactly
+description: <behavioral summary ≤300 chars>  # consumed by validators and the manifest
+classification: UNCLASSIFIED             # mandatory; never omit or change
+ic_pack: true                            # mandatory — marks this as IC pack content
+allowed-tools: Read, Write, Edit, Bash  # optional — least-privilege tool list for hosts
+injected_into: [gsd-agent-a, gsd-agent-b]  # optional — explicit list of host agents
+activation: always                       # optional — `always` or omit for on-demand
 ---
 ```
 
-`classification: UNCLASSIFIED` is mandatory — the CI validator rejects any omission or alternate
-value.
+**Field choice guidance:**
 
-Body conventions:
+- `name`, `description`, `classification`, `ic_pack` are mandatory in every shipped skill.
+- `allowed-tools` is used by 4 of 5 existing skills (`classification-conventions`,
+  `intel-coding-conventions`, `poam-conventions`, `prototyping-discipline`) to declare the
+  least-privilege tool list available when the skill is injected.
+- `injected_into` + `activation: always` is the alternate convention used by `adelphi-house-style`
+  and `prototyping-discipline` when the skill is always-on across a fixed, enumerable set of host
+  agents. Use this when activation is unconditional and the host agent set is known at authoring time.
+- The two conventions are not mutually exclusive — `prototyping-discipline` carries both.
+
+**Body conventions:**
 
 - **First paragraph:** "When to invoke" — what the skill does and which host agents load it.
+  Include activation semantics: skill activation is either **always-on** (every run of a host
+  agent injects the skill, declared via `activation: always` paired with `injected_into:`) or
+  **on-demand** (loaded only when the customer overlay's `agent_skills` map lists it for an agent).
+  Always-on is appropriate for behavioral overlays that must apply to every output of the host
+  (e.g., classification banners, voice conventions); on-demand is appropriate when applicability
+  varies by customer or context.
 - **Numbered or bulleted rules:** the actual behavioral content the model acts on; keep rules
   concrete and imperative.
 - **Cross-references:** link to `intel-refs/...` docs where the skill draws on tradecraft
