@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. Two-stage review (spec compliance, then code quality) after every task. Sonnet implementers for content tasks; sonnet reviewers.
 
-**Goal:** Rewrite the 11 stub or near-stub markdown files in `docs/ic-pack/` so they accurately reflect the shipped v1 reality (58 agents, 5 customer overlays, 5 skills, 3 hooks, 13 CI validators, npm-published `@adelphi/gsd-ic` install entry, working sync-upstream tooling). Eliminate every "Stub", "Fleshed out by Task N of Plan N", "(More detail to come)", and stale forward-reference; replace with content a real consumer or contributor can act on without reading the spec.
+**Goal:** Rewrite the 11 stub or near-stub markdown files in `docs/ic-pack/` so they accurately reflect the shipped v1 reality (58 agents, 5 customer overlays, 5 skills, 3 hooks, 12 CI validators, npm-published `@adelphi/gsd-ic` install entry, working sync-upstream tooling). Eliminate every "Stub", "Fleshed out by Task N of Plan N", "(More detail to come)", and stale forward-reference; replace with content a real consumer or contributor can act on without reading the spec.
 
 **Architecture:** Each doc lives at one absolute path; rewrites are self-contained per file (DRY-violation only at the README index level, which is intentional). Spec is the source of truth for templates (Appendix A/B/C) and for the layered model (§4); the docs are a customer-friendly subset. No code changes; no validator changes; pack VERSION not bumped. The pack stays on `0.1.0`/`gsd_pinned: 1.39.0-rc.4`.
 
@@ -57,7 +57,7 @@ Stub files (current) and target lengths:
 - **5 customer overlays:** `cia, dia, nga, nro, nsa` (enforced by `KNOWN_CUSTOMERS` in `bin/lib/gsd-ic/parse-args.cjs`).
 - **5 skills:** `adelphi-house-style, classification-conventions, intel-coding-conventions, poam-conventions, prototyping-discipline`. Spec §7 names 4; `poam-conventions` was added during Phase 5/6.
 - **3 hooks:** `gsd-classification-banner.js, gsd-classified-leak-detector.js, gsd-prompt-injection-scan-intel.js`.
-- **13 CI validators** under `tools/ci/validate-*.sh`, each with a sibling `tests/validate-*.test.sh`.
+- **12 CI validators** under `tools/ci/validate-*.sh`, each with a sibling `tests/validate-*.test.sh`.
 - **10 INT-discipline refs:** cybint, finint, geoint, humint, masint, medint, osint, sigint, techint, techsigint.
 - **13 tradecraft refs:** ato-document-suite, ato-process-overview, cmmc-2.0, dfars-252-204-7012, eo-14028, fips-140-3, icd-203, icd-206, itar-ear, nist-800-171, nist-800-53-rev5, poam-format, words-of-estimative-probability.
 - **Install CLI subcommands:** `install`, `uninstall`, `--help`.
@@ -125,7 +125,7 @@ A six-bullet quick inventory (counts only; no per-item enumeration):
 - **3 deterministic hooks:** classification banner, classified-leak detector, prompt-injection scan.
 - **5 behavioral skills:** classification conventions, intel coding conventions, prototyping discipline, Adelphi house style, POA&M conventions.
 - **36 reference docs** spanning 10 INT disciplines, 13 tradecraft / compliance / ATO topics, 2 capability patterns, 5 IC-customer ecosystem briefs, 3 house-style guides, and 3 cross-cutting topics (AI/ML eval patterns, classification partitions, modernization themes).
-- **13 CI validators** that gate every change to the pack (manifest schema, completion markers, classification banners, workflow patches, trigger strings, seamless-fork guarantee, etc.).
+- **12 CI validators** that gate every change to the pack (manifest schema, completion markers, classification banners, workflow patches, trigger strings, seamless-fork guarantee, etc.).
 ```
 
 - [ ] **Step 4: Rewrite the doc map to cover all 11 current docs**
@@ -240,7 +240,7 @@ Keep the current paragraph (lines 19–22) verbatim. Expand with: validator `too
 
 - [ ] **Step 7: Write the CI surface section**
 
-Enumerate the 13 validators by name with one-line each (run `ls /Users/romansky/gsd-ic/tools/ci/validate-*.sh | xargs -n1 basename | sort` to get the canonical order). One paragraph noting the test sibling at `tools/ci/tests/*.test.sh` and the `npm run ci` / `npm run test:validators` entry points.
+Enumerate the 12 validators by name with one-line each (run `ls /Users/romansky/gsd-ic/tools/ci/validate-*.sh | xargs -n1 basename | sort` to get the canonical order). One paragraph noting the test sibling at `tools/ci/tests/*.test.sh` and the `npm run ci` / `npm run test:validators` entry points.
 
 - [ ] **Step 8: Write the "deliberately not in v1" section**
 
@@ -491,7 +491,7 @@ Most new agents don't ship with a trigger (they're invoked ad-hoc by the user or
 - [ ] **Step 8: Write Step 6 (validators)**
 
 ```bash
-npm run ci   # runs all 13 validators
+npm run ci   # runs all 12 validators
 ```
 
 Or run individually:
@@ -1295,7 +1295,7 @@ gh pr create --repo adelphidata/gsd-ic --base main \
   --body "$(cat <<'EOF'
 ## Summary
 
-Post-v1 docs polish — rewrites the 11 stub or near-stub files in `docs/ic-pack/` to reflect shipped v1 reality (58 agents, 5 overlays, 5 skills, 3 hooks, 13 validators, npm install entry, sync-upstream tooling).
+Post-v1 docs polish — rewrites the 11 stub or near-stub files in `docs/ic-pack/` to reflect shipped v1 reality (58 agents, 5 overlays, 5 skills, 3 hooks, 12 validators, npm install entry, sync-upstream tooling).
 
 Per spec §15.2 documentation set + adjacent stubs (TROUBLESHOOTING, PER-CUSTOMER-PLAYBOOK, ADDING-A-SKILL).
 
@@ -1344,7 +1344,7 @@ If during execution we discovered a non-obvious convention (e.g., a doc-style pr
 - [x] **Spec coverage:** §15.2 names 8 docs (README, ARCHITECTURE, QUICKSTART, ADDING-AN-AGENT, ADDING-A-REFERENCE, ADDING-A-CUSTOMER-OVERLAY, UPGRADE-PROCEDURE, CONSUMER-UPGRADE) — all 8 are tasks 1–9 here (skill = Task 6 adjacent). TROUBLESHOOTING + PER-CUSTOMER-PLAYBOOK + ADDING-A-SKILL added per user scoping decision (§15.2 + adjacent stubs).
 - [x] **Placeholder scan:** No `TBD`/`TODO`/`fill in details` strings in this plan. Length targets are concrete numbers. Every step has executable content.
 - [x] **Type consistency:** "completion-marker registry" / "agent-contracts.ic-pack.md" terminology consistent. "Customer overlay" / "config-overlays" consistent. `applies_when` (snake_case array) consistent.
-- [x] **Inventory facts:** verified at plan-write time (58 agents, 5 overlays, 5 skills, 3 hooks, 13 validators, 10 INT refs, 13 tradecraft refs, 5 install-CLI customer values). If any change during execution, halt + escalate.
+- [x] **Inventory facts:** verified at plan-write time (58 agents, 5 overlays, 5 skills, 3 hooks, 12 validators, 10 INT refs, 13 tradecraft refs, 5 install-CLI customer values). If any change during execution, halt + escalate.
 - [x] **Spec line refs:** all line numbers captured from `grep -n "^### " docs/specs/2026-05-05-ic-agent-pack-design.md` at plan time. Implementers re-verify per Task header note.
 - [x] **Forbidden-language scan applied to plan itself:** grep -niE "stub|tbd|todo|fleshed out|more detail to come|placeholder|coming soon|\(populated later\)" → zero hits in this plan (other than quoted as the forbidden patterns themselves, which is expected).
 
