@@ -57,8 +57,8 @@ generated: <ISO-8601 timestamp>
 ### Citation (ICD 203 §C.6.5(9))
 <Findings related to citation conventions, attribution discipline.>
 
-### Uncertainty / WEP discipline (ICD 203 §C.6.5(2))
-<Findings related to confidence-language use: uncalibrated qualifiers, WEP-on-facts, WEP-numeric-mix, evidence-band mismatch.>
+### WEP discipline (ICD 203 §C.6.5(2))
+<Findings related to confidence-language use: uncalibrated qualifiers, WEP-on-facts, WEP-numeric-mix, evidence-band mismatch. Category tag: `wep`.>
 
 ### Assertion / judgment-vs-fact (ICD 203 §C.6.5(3))
 <Findings where analytic judgments are stated as facts, or vice versa.>
@@ -80,7 +80,7 @@ generated: <ISO-8601 timestamp>
 For each finding:
 
 - **Severity:** blocker | major | minor
-- **Category:** sourcing | citation | uncertainty | assertion | argumentation | alternative-analysis | customer-relevance | change-explanation
+- **Category:** sourcing | citation | wep | assertion | argumentation | alternative-analysis | customer-relevance | change-explanation
 - **Location in artifact:** {section / line reference}
 - **Pattern:** <what was found>
 - **Standard cite:** <ICD 203 §C.6.5(N) or ICD 206 §X>
@@ -104,11 +104,21 @@ For each finding:
 6. Scan for missing required sections: alternative analysis where product type requires it (ICD 203 §C.6.5(5));
    customer-relevance / "so what" framing (ICD 203 §C.6.5(6)); citation format — one citation per claim not
    per paragraph (ICD 203 §C.6.5(9)).
-7. Categorize each finding; assign severity: blocker = customer-delivery impact (uncited factual assertions,
-   uncalibrated WEP in disseminated product); major = correctness concern (missing reliability/credibility,
-   aggregated sourcing, WEP-on-fact, WEP-numeric-mix); minor = polish.
-8. Write the output audit report to the appropriate output path.
-9. Emit the appropriate completion marker.
+7. Scan for changes in analytic judgment versus prior products without explanation per §C.6.5(8). If the
+   artifact references a prior position, prior assessment, or earlier product without explaining the change
+   in reasoning (or affirming consistency where the judgment is unchanged), flag as a §C.6.5(8) violation.
+8. Categorize each finding; assign severity per the ref contracts (`icd-206.md` §How gsd-icd-203-enforcer Uses
+   This Ref; `words-of-estimative-probability.md` §How gsd-icd-203-enforcer Uses This Ref):
+   - `major` = uncited factual assertions, reliability/credibility field omission, aggregated source
+     characterization without per-source detail, uncalibrated WEP qualifier, WEP applied to a fact,
+     WEP-numeric mix.
+   - `minor` = partial collection-date context, inline-vs-footnote format deviation, band marginally
+     inconsistent with evidence, lower-band underuse where a stronger band is defensible.
+   - `blocker` = reserved for artifact-level failures (artifact unreadable or empty per Constraints) or
+     a categorical absence required by product type (missing alternative analysis where required;
+     missing customer-relevance framing).
+9. Write the output audit report to the appropriate output path.
+10. Emit the appropriate completion marker.
 
 This agent is rule-based, not generative — it identifies patterns and reports them; remediation is left to the authoring agent or human.
 
