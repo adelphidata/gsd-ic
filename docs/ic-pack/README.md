@@ -58,6 +58,7 @@ Per the [design spec](../specs/2026-05-05-ic-agent-pack-design.md) §2.3, each p
 - [ADDING-A-HOOK.md](ADDING-A-HOOK.md) — add a deterministic hook with patterns + tests
 - [ADDING-A-CUSTOMER-OVERLAY.md](ADDING-A-CUSTOMER-OVERLAY.md) — onboard a new customer to the catalog
 - [UPGRADE-PROCEDURE.md](UPGRADE-PROCEDURE.md) — dev-side soft-fork sync from upstream `gsd-build/get-shit-done`
+- [MAINTAINER-RELEASE.md](MAINTAINER-RELEASE.md) — cut a pack release (version bump → tag → tarball → distribute)
 
 ### Schemas
 
