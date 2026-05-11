@@ -33,22 +33,26 @@ intelligence contexts). Hooks are deterministic and exit-code-driven; they fire 
 
 ### Layer 1: Agents
 
-58 thin markdown agent files reside in `agents/gsd-*.md`. Each carries YAML frontmatter with
-`name`, `description`, `tools`, `applies_when`, `classification`, and `ic_pack: true` fields,
-followed by an execution flow and a structured-return section that specifies the agent's completion
-marker. Every agent matches exactly one completion-marker pattern enforced by
-`tools/ci/validate-completion-markers.sh`. Agents are scoped to a single responsibility; none
-duplicate behaviors available in other agents or in the upstream GSD pack.
+The pack adds **58 IC-pack agents** to `agents/gsd-*.md` (the directory also contains ~33
+upstream-vendored agents from stock GSD; the 58 IC-pack agents are exactly those listed in
+`package.json` `files[]`). Each IC-pack agent carries YAML frontmatter with `name`, `description`,
+`tools`, `applies_when`, `classification`, and `ic_pack: true` fields, followed by an execution
+flow and a structured-return section that specifies the agent's completion marker. Every agent
+matches exactly one completion-marker pattern enforced by `tools/ci/validate-completion-markers.sh`.
+Agents are scoped to a single responsibility; none duplicate behaviors available in other agents or
+in the upstream GSD pack.
 
 ### Layer 2: Manifest-indexed reference docs
 
 `intel-refs/MANIFEST.json` is the authoritative index of all reference documents. Content files
-live under `intel-refs/{int-disciplines,tradecraft,capability-patterns,ai-ml,classification-partitions,
-ic-customer-ecosystem,modernization-themes,house-style,cross-cutting}/`. Each document carries
-frontmatter with `applies_when`, `owner`, `last_reviewed`, and `classification` fields. Agents load
-the refs whose `applies_when` tags intersect the active phase scope at runtime. v1 ships 36 reference
-docs across 9 subdirectories: 10 INT-discipline refs, 13 tradecraft/compliance/ATO refs, and 2
-capability-pattern refs among the remainder. All v1 content is UNCLASSIFIED. See
+live under `intel-refs/{int-disciplines,tradecraft,capability-patterns,ai-ml,classification,
+ecosystem,house-style,modernization,demo}/`. (`demo/` is empty in v1 — the directory exists for
+future pattern-level demonstrations.) Each document carries frontmatter with `applies_when`,
+`owner`, `last_reviewed`, and `classification` fields. Agents load the refs whose `applies_when`
+tags intersect the active phase scope at runtime. v1 ships 36 reference docs across 9
+subdirectories: 10 INT-discipline refs, 13 tradecraft/compliance/ATO refs, 2 capability-pattern
+refs, 5 IC-customer ecosystem briefs, 3 house-style guides, and 3 cross-cutting refs (AI/ML eval
+patterns, classification partitions, modernization themes). All v1 content is UNCLASSIFIED. See
 [REF-FRONTMATTER-SCHEMA.md](REF-FRONTMATTER-SCHEMA.md) for the full frontmatter contract and
 [ADDING-A-REFERENCE.md](ADDING-A-REFERENCE.md) for the per-directory conventions.
 
@@ -98,9 +102,10 @@ all sharing the same trigger `plan-phase.5-handle-research`. All four ship `enab
 default — opt-in is per-program. The template for this pattern lives in
 `workflow-patches/intel-gates.template.json`.
 
-`tools/ci/validate-triggers.sh` enforces that every trigger string conforms to the
-`<workflow>.<step>` slug form specified in the design spec (§9.6 Trigger string vocabulary,
-line 785). Gates with malformed trigger strings are rejected in CI before merge.
+The conventional trigger format is `<workflow>.<step>` (spec §9.6 Trigger string vocabulary,
+line 785), but the vocabulary is open-ended — any string is valid. `tools/ci/validate-triggers.sh`
+validates that every trigger referenced in `intel-gates.json` resolves to a real step in a known
+stock workflow; it does not enforce a string-format constraint.
 
 ---
 
