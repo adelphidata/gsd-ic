@@ -558,7 +558,7 @@ Subdirectories under `intel-refs/`:
 
 - [ ] **Step 3: Write Step 1 (subdir + topic key)**
 
-Topic key = file path relative to repo root (e.g., `intel-refs/int-disciplines/sigint.md`). The topic key is the *primary key* in `MANIFEST.json` (not a separate `path` field — the key IS the path). This is the project-local convention; spec §8.1 is consistent with this.
+Topic key = file path relative to `intel-refs/` (e.g., `int-disciplines/sigint.md` — NOT `intel-refs/int-disciplines/sigint.md`). The topic key is the *primary key* under the manifest's top-level `"topics": { ... }` wrapper (not a separate `path` field — the key IS the path). This is the project-local convention; spec §8.1 is consistent with this.
 
 - [ ] **Step 4: Write Step 2 (write the file with frontmatter)**
 
@@ -594,11 +594,16 @@ Body shape: see [REF-FRONTMATTER-SCHEMA.md](REF-FRONTMATTER-SCHEMA.md) for the f
 Add one entry under the appropriate subdirectory section. Schema (project-local — keys are paths, no `path` field):
 
 ```json
-"intel-refs/<subdir>/<name>.md": {
-  "applies_when": ["<keyword>", "<keyword>"],
-  "owner": "intel-pack@adelphi.ai",
-  "last_reviewed": "<YYYY-MM-DD>",
-  "classification": "UNCLASSIFIED"
+{
+  "version": "<YYYY.MM>",
+  "topics": {
+    "<subdir>/<name>.md": {
+      "applies_when": ["<keyword>", "<keyword>"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "<YYYY-MM-DD>",
+      "classification": "UNCLASSIFIED"
+    }
+  }
 }
 ```
 
