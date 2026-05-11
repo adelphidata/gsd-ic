@@ -14,7 +14,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-13",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "partial"
     },
     "capability-patterns/entity-resolution.md": {
       "applies_when": [
@@ -26,7 +27,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-07",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "capability-patterns/pattern-of-life.md": {
       "applies_when": [
@@ -38,7 +40,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-07",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "classification/aws-partitions.md": {
       "applies_when": [
@@ -55,7 +58,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-13",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
     },
     "ecosystem/cia.md": {
       "applies_when": [
@@ -67,7 +71,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-08",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "ecosystem/dia.md": {
       "applies_when": [
@@ -79,7 +84,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-08",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "ecosystem/nga.md": {
       "applies_when": [
@@ -90,7 +96,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-08",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "ecosystem/nro.md": {
       "applies_when": [
@@ -102,7 +109,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-08",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "ecosystem/nsa.md": {
       "applies_when": [
@@ -114,7 +122,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-08",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "house-style/briefs.md": {
       "applies_when": [
@@ -129,7 +138,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-12",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
     },
     "house-style/proposals.md": {
       "applies_when": [
@@ -145,7 +155,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-12",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
     },
     "house-style/white-papers.md": {
       "applies_when": [
@@ -158,7 +169,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-12",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
     },
     "int-disciplines/cybint.md": {
       "applies_when": [
@@ -174,7 +186,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "int-disciplines/finint.md": {
       "applies_when": [
@@ -190,7 +203,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "int-disciplines/geoint.md": {
       "applies_when": [
@@ -207,7 +221,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-07",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "int-disciplines/humint.md": {
       "applies_when": [
@@ -219,7 +234,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-07",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "int-disciplines/masint.md": {
       "applies_when": [
@@ -234,7 +250,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "int-disciplines/medint.md": {
       "applies_when": [
@@ -250,7 +267,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-11",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "partial"
     },
     "int-disciplines/osint.md": {
       "applies_when": [
@@ -265,7 +283,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "int-disciplines/sigint.md": {
       "applies_when": [
@@ -280,7 +299,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "int-disciplines/techint.md": {
       "applies_when": [
@@ -295,7 +315,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-11",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "partial"
     },
     "int-disciplines/techsigint.md": {
       "applies_when": [
@@ -310,7 +331,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-11",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "partial"
     },
     "modernization/modernization-themes.md": {
       "applies_when": [
@@ -324,7 +346,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-11",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "partial"
     },
     "tradecraft/ato-document-suite.md": {
       "applies_when": [
@@ -345,7 +368,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
     },
     "tradecraft/ato-process-overview.md": {
       "applies_when": [
@@ -362,7 +386,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
     },
     "tradecraft/cmmc-2.0.md": {
       "applies_when": [
@@ -378,7 +403,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "tradecraft/dfars-252-204-7012.md": {
       "applies_when": [
@@ -393,7 +419,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "tradecraft/eo-14028.md": {
       "applies_when": [
@@ -408,7 +435,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "tradecraft/fips-140-3.md": {
       "applies_when": [
@@ -422,7 +450,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "tradecraft/icd-203.md": {
       "applies_when": [
@@ -434,7 +463,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-07",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "tradecraft/icd-206.md": {
       "applies_when": [
@@ -449,7 +479,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-11",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
     },
     "tradecraft/itar-ear.md": {
       "applies_when": [
@@ -465,7 +496,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "tradecraft/nist-800-171.md": {
       "applies_when": [
@@ -479,7 +511,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "tradecraft/nist-800-53-rev5.md": {
       "applies_when": [
@@ -493,7 +526,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     },
     "tradecraft/poam-format.md": {
       "applies_when": [
@@ -507,7 +541,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "partial"
     },
     "tradecraft/words-of-estimative-probability.md": {
       "applies_when": [
@@ -522,7 +557,8 @@
       ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-11",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
     }
   }
 }
