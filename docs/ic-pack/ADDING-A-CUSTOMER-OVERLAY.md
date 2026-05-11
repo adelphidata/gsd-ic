@@ -155,7 +155,7 @@ git commit -m "config-overlays: add <slug> overlay"
 
 Bump the `pack:` field in `VERSION` per the minor/patch policy in `VERSIONING.md`
 at next release. The overlay is inert until a program runs
-`npx @adelphi/gsd-ic install --customer=<slug>`.
+`npx /path/to/adelphi-gsd-ic-<version>.tgz install --customer=<slug>`.
 
 ---
 
