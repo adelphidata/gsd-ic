@@ -98,6 +98,11 @@ After this plan merges, the IC pack has **58 agents** total — the entire v1 ag
 
 15. **Customer overlay updates for 6 new agents deferred to SME ref curation post-merge.** Same posture as Plan 7. Customer overlays at `intel-refs/overlays/*/` (NGA, NSA, NRO, etc.) may want per-customer additions for the new INTs (e.g., NGA's TECHINT relationship to GEOINT collection); those updates are not in this plan's scope.
 
+16. **Frontmatter `topic_id` vs `topic` field — directory-specific convention.** The `intel-refs/MANIFEST.json` validator (`tools/ci/validate-manifest.sh`) does NOT inspect either field — it iterates manifest topic keys and resolves to file paths. The in-file field is informational. However, two directory-local conventions exist:
+    - `intel-refs/int-disciplines/` — all 7 existing siblings (cybint, finint, geoint, humint, masint, osint, sigint) use `topic_id`. T1-T3 (techint, medint, techsigint) ship `topic_id` to keep the INT family consistent (10-of-10).
+    - `intel-refs/tradecraft/` — split: older Plan 0/2 refs (icd-203, poam-format, nist-*, cmmc-2.0, etc.) use `topic_id`; the newest two refs from Plan 7 (ato-process-overview, ato-document-suite) use `topic`. T4-T5 (icd-206, WEP) ship `topic` to match the most recent convention in the directory.
+    - Symmetric rule for future ref additions: match the most recent ref pattern in the target directory. Older inconsistencies remain until SME curation phase.
+
 ---
 
 ## Task 1: int-disciplines/techint.md ref scaffold
@@ -110,7 +115,7 @@ Establishes the TECHINT (technical intelligence — foreign materiel exploitatio
 **Spec source:** Spec §5 line 344 (Family I #43 knowledge tags); §13 line 1075 (Phase 7 scope).
 
 **Content requirements:**
-1. Frontmatter: `topic: int-disciplines/techint`, `applies_when: [techint, foreign materiel exploitation, fmx, captured equipment, reverse engineering, weapon system analysis, hardware exploitation, foreign weapon systems]`, `classification: UNCLASSIFIED`, `ic_pack: true`, owners stub, `last_reviewed: 2026-05-11`.
+1. Frontmatter: `topic_id: int-disciplines/techint` (matches the 7 existing INT-discipline siblings — `topic_id`, not `topic` — see §Convention note below), `title: TECHINT — Foreign Materiel Exploitation`, `classification: UNCLASSIFIED`, `applies_when: [techint, foreign materiel exploitation, fmx, captured equipment, reverse engineering, weapon system analysis, hardware exploitation, foreign weapon systems]`, `ic_pack: true`, `owners: [intel-pack@adelphi.ai]`, `last_reviewed: 2026-05-11`.
 2. `# TECHINT — Foreign Materiel Exploitation` — one-paragraph framing distinguishing TECHINT from SIGINT/HUMINT/GEOINT (TECHINT is the analysis of foreign hardware/materiel itself, not the signals it emits or the people who operate it).
 3. `## Discipline Scope` — what TECHINT analysts do: captured-equipment exploitation, reverse engineering of foreign systems, weapon-system performance characterization, supply-chain provenance analysis. Reference DIA's National Center for Medical Intelligence pattern (sister discipline) for the captured-materiel → finished-product workflow.
 4. `## Data Shapes` — typical artifacts: exploitation reports (TECHREP-style narratives), captured-equipment manifests, photogrammetry / mechanical-drawing outputs, materials-analysis lab reports, performance-envelope estimates. Note: most genuine TECHINT product is classified; the framework supports analytic-design work on synthetic/abstract analogs only.
@@ -119,7 +124,7 @@ Establishes the TECHINT (technical intelligence — foreign materiel exploitatio
 7. `## See Also` — `int-disciplines/sigint.md` (paired collection patterns), `int-disciplines/geoint.md` (imagery of fielded equipment), `capability-patterns/entity-resolution.md`, `capability-patterns/pattern-of-life.md`.
 8. **Constraints:** UNCLASSIFIED only; abstract partition language only; no specific foreign-system names that would imply classified holdings; cite public DIA/IC publications by title only (no quoted content).
 
-**Length target:** 200-280 lines. Pattern reference: `intel-refs/int-disciplines/cybint.md` (Plan 2 — INT-discipline ref structure; same frontmatter conventions; same section split).
+**Length target:** 80-120 lines (scaffold-plus posture). The 7 existing INT-discipline siblings are 35-39 line scaffolds awaiting SME curation per spec §15.1.1; the new INT refs land at "scaffold-plus" — cover all 8 spec content requirements thoroughly but stay proportionate to existing siblings rather than jumping to the 400-line Plan 7 ato-ref length. Pattern reference: `intel-refs/int-disciplines/cybint.md` (Plan 2 — INT-discipline ref structure; same frontmatter conventions including `topic_id` field name; same section split).
 
 - [ ] **Step 1: Write the ref**
 
@@ -152,7 +157,7 @@ git commit -m "[N] feat(intel-refs): int-disciplines/techint — TECHINT/FMX dis
 **Spec source:** Spec §5 line 345 (Family I #44); §13 line 1075.
 
 **Content requirements:**
-1. Frontmatter: `topic: int-disciplines/medint`, `applies_when: [medint, medical intelligence, biosurveillance, disease surveillance, biothreat, public health, pandemic, epidemiology, ncmi]`, `classification: UNCLASSIFIED`, `ic_pack: true`, owners stub, `last_reviewed: 2026-05-11`.
+1. Frontmatter: `topic_id: int-disciplines/medint` (matches existing INT-discipline siblings), `title: MEDINT — Medical Intelligence`, `classification: UNCLASSIFIED`, `applies_when: [medint, medical intelligence, biosurveillance, disease surveillance, biothreat, public health, pandemic, epidemiology, ncmi]`, `ic_pack: true`, `owners: [intel-pack@adelphi.ai]`, `last_reviewed: 2026-05-11`.
 2. `# MEDINT — Medical Intelligence` — one-paragraph framing referencing DIA NCMI (National Center for Medical Intelligence) as the canonical IC mission owner; clarify MEDINT is intelligence on medical capabilities/conditions/biological threats abroad, distinct from operational military medicine.
 3. `## Discipline Scope` — disease surveillance, biothreat indicators (state and non-state programs), biosurveillance prototypes, public-health data models, foreign-medical-system capability assessment, environmental health intelligence.
 4. `## Data Shapes` — typical artifacts: surveillance feeds (WHO / national CDCs / open-source), epidemiological reports, lab capability inventories, biothreat indicator tables, syndromic surveillance time-series. Note synthetic-data needs for prototyping — real biosurveillance data is frequently HIPAA-protected even when unclassified.
@@ -161,7 +166,7 @@ git commit -m "[N] feat(intel-refs): int-disciplines/techint — TECHINT/FMX dis
 7. `## See Also` — `int-disciplines/osint.md` (public-health PAI is a primary MEDINT input), `int-disciplines/finint.md` (illicit-procurement tracing for biothreat programs), `ai-ml/eval-patterns.md`, `capability-patterns/pattern-of-life.md`.
 8. **Constraints:** UNCLASSIFIED only; abstract language only; cite NCMI / WHO / CDC publications by title.
 
-**Length target:** 200-280 lines. Pattern reference: `intel-refs/int-disciplines/cybint.md`.
+**Length target:** 80-120 lines (scaffold-plus posture; same rationale as T1). Pattern reference: `intel-refs/int-disciplines/cybint.md` (frontmatter convention including `topic_id` field name).
 
 - [ ] **Step 1: Write the ref**
 
@@ -194,7 +199,7 @@ git commit -m "[N] feat(intel-refs): int-disciplines/medint — MEDINT/biosurvei
 **Spec source:** Spec §5 line 346 (Family I #45); §13 line 1075.
 
 **Content requirements:**
-1. Frontmatter: `topic: int-disciplines/techsigint`, `applies_when: [techsigint, technical sigint, elint, fisint, radar emissions, foreign instrumentation, telemetry, electronic order of battle]`, `classification: UNCLASSIFIED`, `ic_pack: true`, owners stub, `last_reviewed: 2026-05-11`.
+1. Frontmatter: `topic_id: int-disciplines/techsigint` (matches existing INT-discipline siblings), `title: Technical SIGINT — ELINT / FISINT / Telemetry`, `classification: UNCLASSIFIED`, `applies_when: [techsigint, technical sigint, elint, fisint, radar emissions, foreign instrumentation, telemetry, electronic order of battle]`, `ic_pack: true`, `owners: [intel-pack@adelphi.ai]`, `last_reviewed: 2026-05-11`.
 2. `# Technical SIGINT — ELINT / FISINT / Telemetry` — one-paragraph framing distinguishing technical SIGINT (non-communications signal collection) from COMINT (which is covered in `int-disciplines/sigint.md`). Explicitly note the pair-with-COMINT convention from spec line 346 — when a phase requires both, spawn `gsd-sigint-researcher` and `gsd-techsigint-researcher` in parallel.
 3. `## Discipline Scope` — ELINT (radar emissions and EOB construction), FISINT (foreign instrumentation signals — weapon-system telemetry, launch beacons, fuze signals), instrumentation telemetry analysis, signal classification / fingerprinting.
 4. `## Data Shapes` — typical artifacts: emitter parametric records (frequency / PRI / pulse width / antenna characteristics), EOB tables, telemetry-channel decodes, signal-fingerprint libraries. Note STANAG and US-IC parametric-record schema families (cite by name; do not transcribe).
@@ -203,7 +208,7 @@ git commit -m "[N] feat(intel-refs): int-disciplines/medint — MEDINT/biosurvei
 7. `## See Also` — `int-disciplines/sigint.md` (COMINT companion; pair these two for full SIGINT coverage), `int-disciplines/geoint.md` (geolocation of emitter sites), `int-disciplines/techint.md` (parametric reports of fielded foreign equipment), `capability-patterns/entity-resolution.md`.
 8. **Constraints:** UNCLASSIFIED only; abstract parametric ranges only (no specific frequencies that imply real-system characterizations); cite NSA / IC publications by title only.
 
-**Length target:** 200-280 lines. Pattern reference: `intel-refs/int-disciplines/sigint.md` (closest sibling — the COMINT-focused INT-discipline ref).
+**Length target:** 80-120 lines (scaffold-plus posture; same rationale as T1). Pattern reference: `intel-refs/int-disciplines/sigint.md` (closest sibling — the COMINT-focused INT-discipline ref; uses `topic_id` frontmatter field).
 
 - [ ] **Step 1: Write the ref**
 
@@ -343,34 +348,43 @@ git commit -m "[N] feat(intel-refs): tradecraft/words-of-estimative-probability 
 
 Add 5 new entries to the `topics` object. Current topic count: 31; target: 36.
 
-**Entries to add** (with applies_when arrays matching the ref frontmatters from T1-T5):
+**Actual manifest schema (verified from existing entries — `validate-manifest.sh` treats the topic key as the path, no explicit `path` field needed):**
+
+Each topic entry has these 4 fields: `applies_when: [array]`, `owner: "string"` (singular, not `owners`), `last_reviewed: "YYYY-MM-DD"`, `classification: "UNCLASSIFIED"`.
+
+**Entries to add:**
 
 ```json
 {
   "int-disciplines/techint.md": {
-    "path": "intel-refs/int-disciplines/techint.md",
     "applies_when": ["techint", "foreign materiel exploitation", "fmx", "captured equipment", "reverse engineering", "weapon system analysis", "hardware exploitation", "foreign weapon systems"],
-    "owners": ["intel-pack@adelphi.ai"]
+    "owner": "intel-pack@adelphi.ai",
+    "last_reviewed": "2026-05-11",
+    "classification": "UNCLASSIFIED"
   },
   "int-disciplines/medint.md": {
-    "path": "intel-refs/int-disciplines/medint.md",
     "applies_when": ["medint", "medical intelligence", "biosurveillance", "disease surveillance", "biothreat", "public health", "pandemic", "epidemiology", "ncmi"],
-    "owners": ["intel-pack@adelphi.ai"]
+    "owner": "intel-pack@adelphi.ai",
+    "last_reviewed": "2026-05-11",
+    "classification": "UNCLASSIFIED"
   },
   "int-disciplines/techsigint.md": {
-    "path": "intel-refs/int-disciplines/techsigint.md",
     "applies_when": ["techsigint", "technical sigint", "elint", "fisint", "radar emissions", "foreign instrumentation", "telemetry", "electronic order of battle"],
-    "owners": ["intel-pack@adelphi.ai"]
+    "owner": "intel-pack@adelphi.ai",
+    "last_reviewed": "2026-05-11",
+    "classification": "UNCLASSIFIED"
   },
   "tradecraft/icd-206.md": {
-    "path": "intel-refs/tradecraft/icd-206.md",
     "applies_when": ["icd 206", "icd-206", "source description", "sourcing standards", "source reliability", "source credibility", "citation", "attribution"],
-    "owners": ["intel-pack@adelphi.ai"]
+    "owner": "intel-pack@adelphi.ai",
+    "last_reviewed": "2026-05-11",
+    "classification": "UNCLASSIFIED"
   },
   "tradecraft/words-of-estimative-probability.md": {
-    "path": "intel-refs/tradecraft/words-of-estimative-probability.md",
     "applies_when": ["wep", "words of estimative probability", "sherman kent", "confidence language", "hedging", "estimative language", "icd 203", "analytic confidence"],
-    "owners": ["intel-pack@adelphi.ai"]
+    "owner": "intel-pack@adelphi.ai",
+    "last_reviewed": "2026-05-11",
+    "classification": "UNCLASSIFIED"
   }
 }
 ```
@@ -388,16 +402,15 @@ bash /Users/romansky/gsd-ic/tools/ci/validate-manifest.sh
 
 Expected: count = `36`; validator OK.
 
-- [ ] **Step 3: Verify each new entry resolves to its file**
+- [ ] **Step 3: Verify each new topic key resolves to its file (key = path under intel-refs/)**
 
 ```bash
 for t in int-disciplines/techint.md int-disciplines/medint.md int-disciplines/techsigint.md tradecraft/icd-206.md tradecraft/words-of-estimative-probability.md; do
-  jq -r --arg t "$t" '.topics[$t].path' /Users/romansky/gsd-ic/intel-refs/MANIFEST.json
-  test -f /Users/romansky/gsd-ic/$(jq -r --arg t "$t" '.topics[$t].path' /Users/romansky/gsd-ic/intel-refs/MANIFEST.json) && echo "  → file present"
+  if [ -f "/Users/romansky/gsd-ic/intel-refs/$t" ]; then echo "$t → file present"; else echo "$t → MISSING"; fi
 done
 ```
 
-Expected: 5 paths printed, each with `→ file present`.
+Expected: 5 lines all echoing `→ file present`. The validator (`validate-manifest.sh`) confirms this by iterating `.topics | keys[]` and resolving each to `$ROOT/intel-refs/$key`.
 
 - [ ] **Step 4: Commit**
 
