@@ -89,6 +89,7 @@
     "skills/intel-coding-conventions/",
     "skills/poam-conventions/",
     "skills/prototyping-discipline/",
+    "templates/",
     "tools/ci/*.sh",
     "tools/patch-workflows.sh",
     "workflow-patches/"
