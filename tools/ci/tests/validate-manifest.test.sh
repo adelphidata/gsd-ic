@@ -106,7 +106,49 @@ JSON
 run_validator "$VALIDATOR" "$fx"
 expect_pass "entry with curation_status 'scaffold' passes"
 
-# --- Case 8: entry with curation_status "invalid" -> fail ---
+# --- Case 8: entry with curation_status "partial" -> pass ---
+fx="$(mkfixture curation-status-partial)"
+mkdir -p "$fx/intel-refs/int-disciplines"
+echo "<!-- CLASSIFICATION: UNCLASSIFIED -->" > "$fx/intel-refs/int-disciplines/humint.md"
+cat > "$fx/intel-refs/MANIFEST.json" <<JSON
+{
+  "version": "2026.05",
+  "topics": {
+    "int-disciplines/humint.md": {
+      "applies_when": ["humint"],
+      "owner": "alice@adelphi.ai",
+      "last_reviewed": "2026-04-15",
+      "classification": "UNCLASSIFIED",
+      "curation_status": "partial"
+    }
+  }
+}
+JSON
+run_validator "$VALIDATOR" "$fx"
+expect_pass "entry with curation_status 'partial' passes"
+
+# --- Case 9: entry with curation_status "curated" -> pass ---
+fx="$(mkfixture curation-status-curated)"
+mkdir -p "$fx/intel-refs/int-disciplines"
+echo "<!-- CLASSIFICATION: UNCLASSIFIED -->" > "$fx/intel-refs/int-disciplines/humint.md"
+cat > "$fx/intel-refs/MANIFEST.json" <<JSON
+{
+  "version": "2026.05",
+  "topics": {
+    "int-disciplines/humint.md": {
+      "applies_when": ["humint"],
+      "owner": "alice@adelphi.ai",
+      "last_reviewed": "2026-04-15",
+      "classification": "UNCLASSIFIED",
+      "curation_status": "curated"
+    }
+  }
+}
+JSON
+run_validator "$VALIDATOR" "$fx"
+expect_pass "entry with curation_status 'curated' passes"
+
+# --- Case 11: entry with curation_status "invalid" -> fail ---
 fx="$(mkfixture curation-status-invalid)"
 mkdir -p "$fx/intel-refs/int-disciplines"
 echo "<!-- CLASSIFICATION: UNCLASSIFIED -->" > "$fx/intel-refs/int-disciplines/humint.md"
@@ -128,7 +170,7 @@ run_validator "$VALIDATOR" "$fx"
 expect_fail "entry with invalid curation_status is fatal"
 expect_output "invalid curation_status error mentions value" "invalid curation_status"
 
-# --- Case 9: entry without curation_status -> pass (field is optional) ---
+# --- Case 12: entry without curation_status -> pass (field is optional) ---
 fx="$(mkfixture curation-status-absent)"
 mkdir -p "$fx/intel-refs/int-disciplines"
 echo "<!-- CLASSIFICATION: UNCLASSIFIED -->" > "$fx/intel-refs/int-disciplines/humint.md"
