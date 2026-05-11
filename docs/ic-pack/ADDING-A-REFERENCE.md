@@ -82,9 +82,12 @@ block. The key is the path relative to `intel-refs/` (not the repo root):
   "applies_when": ["example-framework", "compliance", "risk management"],
   "owner": "intel-pack@adelphi.ai",
   "last_reviewed": "2026-05-11",
-  "classification": "UNCLASSIFIED"
+  "classification": "UNCLASSIFIED",
+  "curation_status": "scaffold"
 }
 ```
+
+New refs ship at `curation_status: scaffold`. Status is bumped via the SME curation workflow — see [SME-CURATION-FRAMEWORK.md](SME-CURATION-FRAMEWORK.md).
 
 - `owner` is a **singular string** (not an array).
 - `applies_when` is the only array field.
@@ -156,7 +159,8 @@ Top-level structure of `intel-refs/MANIFEST.json`:
       "applies_when": ["<keyword>", ...],
       "owner": "<email-string>",
       "last_reviewed": "<YYYY-MM-DD>",
-      "classification": "UNCLASSIFIED"
+      "classification": "UNCLASSIFIED",
+      "curation_status": "scaffold"
     }
   }
 }
@@ -170,6 +174,7 @@ Per-entry field contract:
 | `owner` | string | Singular — one email, not an array |
 | `last_reviewed` | string | ISO 8601 `YYYY-MM-DD` |
 | `classification` | string | `"UNCLASSIFIED"` for all v1 content |
+| `curation_status` | string (optional) | One of `scaffold \| partial \| curated`; new refs ship at `scaffold` |
 
 The topic key is the path relative to `intel-refs/` (i.e., `<subdir>/<file>.md`). There is
 no separate `path`, `id`, or `topic` field at the manifest level.

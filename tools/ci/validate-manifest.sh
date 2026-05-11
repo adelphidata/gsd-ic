@@ -40,6 +40,16 @@ while IFS= read -r topic; do
       vfail "manifest entry '$topic' missing required field '$field'"
     fi
   done
+  # Optional: curation_status (enum: scaffold | partial | curated)
+  status=$(jq -r --arg t "$topic" '.topics[$t].curation_status // empty' "$MANIFEST")
+  if [ -n "$status" ]; then
+    case "$status" in
+      scaffold|partial|curated) ;;
+      *)
+        vfail "manifest entry '$topic' has invalid curation_status '$status' (must be: scaffold | partial | curated)"
+        ;;
+    esac
+  fi
 done < <(jq -r '.topics | keys[]' "$MANIFEST" 2>/dev/null || true)
 
 # Sanity: top-level shape.
