@@ -79,6 +79,18 @@
       "last_reviewed": "2026-05-09",
       "classification": "UNCLASSIFIED"
     },
+    "tradecraft/ato-document-suite.md": {
+      "applies_when": ["ssp", "system security plan", "irp", "incident response", "conmon", "continuous monitoring", "contingency", "dr", "disaster recovery", "evidence package", "pdr", "cdr", "trr", "ato submission"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/ato-process-overview.md": {
+      "applies_when": ["ato", "rmf", "authorization", "isso", "issm", "ao", "authorizing official", "iatt", "denial", "continuous authorization"],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
     "tradecraft/cmmc-2.0.md": {
       "applies_when": ["cmmc", "cmmc 2.0", "cybersecurity maturity", "level 2", "level 3", "fci", "cui", "classification", "tradecraft"],
       "owner": "intel-pack@adelphi.ai",

@@ -52,5 +52,18 @@ Format (one row per agent):
 | gsd-targeting-analyst | ## TARGETING ANALYSIS COMPLETE | (none) | `.planning/phases/{phase}/{phase}-TARGETING-ANALYSIS.md` |
 | gsd-insider-threat-analyst | ## INSIDER THREAT ANALYSIS COMPLETE | (none) | `.planning/phases/{phase}/{phase}-INSIDER-THREAT.md` |
 | gsd-adversary-modeler | ## ADVERSARY MODEL COMPLETE | (none) | `.planning/phases/{phase}/{phase}-ADVERSARY-MODEL.md` |
+| gsd-isso | ## ISSO REVIEW COMPLETE | (none) | `.planning/phases/{phase}/{phase}-ISSO-BRIEF.md` — **deviation: spec §5 line 279 lists `## ISSO REVIEW COMPLETE` / `## ISSO BRIEF READY` as alternative success markers; we ship the single primary `## ISSO REVIEW COMPLETE` to keep one terminal state per agent. The brief-ready synonym is folded into REVIEW COMPLETE. Same deviation pattern as Plan 6 SYNTHETIC DATA marker.** |
+| gsd-issm | ## ISSM DETERMINATION COMPLETE | (none) | `.planning/phases/{phase}/{phase}-ISSM-DETERMINATION.md` (Risk Assessment + `## Determination` body section labeled READY-FOR-AO / REMEDIATE-FIRST / RISK-ACCEPTED-WITH-MITIGATION + Likely AO Questions appendix) |
+| gsd-ssp-drafter | ## SSP DRAFT COMPLETE | ## SSP DRAFT BLOCKED | `.planning/SSP.md` |
+| gsd-poam-tracker | ## POAM UPDATE COMPLETE | (none) | `.planning/POAM.md` (idempotent upsert via `skills/poam-conventions`) |
+| gsd-sar-dryrun | ## SAR DRYRUN COMPLETE | ## SAR DRYRUN GAPS FOUND | `.planning/SAR-DRYRUN.md` — **deviation: spec §5 line 288 says `## SAR FINDINGS`; validator regex requires terminal `(COMPLETE\|BLOCKED\|FOUND\|FAILED\|UPDATE COMPLETE)`, so we ship `## SAR DRYRUN GAPS FOUND`. Same pattern as Plan 6 SYNTHETIC DATA marker.** |
+| gsd-iv-and-v-dryrun | ## IVV DRYRUN COMPLETE | ## IVV DRYRUN GAPS FOUND | `.planning/IVV-DRYRUN.md` — **deviation: spec §5 line 289 says `## IVV FINDINGS`; same validator-regex constraint, so we ship `## IVV DRYRUN GAPS FOUND`.** |
+| gsd-conmon-planner | ## CONMON PLAN COMPLETE | (none) | `.planning/CONMON-PLAN.md` |
+| gsd-irp-author | ## IRP COMPLETE | (none) | `.planning/IRP.md` |
+| gsd-contingency-planner | ## CONTINGENCY PLAN COMPLETE | (none) | `.planning/CONTINGENCY-PLAN.md` |
+| gsd-evidence-packager | ## EVIDENCE PACKAGE COMPLETE | ## EVIDENCE PACKAGE BLOCKED | `.planning/evidence-packages/{date}/` (directory + `index.md` + `MILESTONE.md`; engineer-driven `zip -r` is optional follow-step) — **deviation: spec §5 line 293 says `## EVIDENCE PACKAGE INCOMPLETE`; validator regex requires terminal `BLOCKED`, so we ship `## EVIDENCE PACKAGE BLOCKED`.** |
+| gsd-cdrl-mapper | ## CDRL MAPPING COMPLETE | ## UNMAPPED CDRLS FOUND | `.planning/CDRL-MAP.md` — **deviation: spec §5 line 299 says `## UNMAPPED CDRLs FOUND` (lowercase `s`); validator regex character class `[A-Z][A-Z0-9 _&-]*` rejects lowercase, so we ship `## UNMAPPED CDRLS FOUND` (uppercase `S`).** |
+| gsd-milestone-brief-generator | ## MILESTONE BRIEF COMPLETE | (none) | `.planning/briefs/{milestone}-{date}-BRIEF.md` (dual-format Marp) |
+| gsd-transition-advisor | ## TRANSITION READINESS COMPLETE | ## TRANSITION GAPS FOUND | `.planning/TRANSITION-READINESS.md` (per-stage checks) |
 
 (populated as agents land across Plans 1–8 — see Appendix D of the design spec for the full target list)
