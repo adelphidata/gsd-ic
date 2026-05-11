@@ -54,7 +54,7 @@ color: <terminal-color>   # optional
 
 - `ic_pack: true` — **load-bearing**. `install-pack.cjs` skips agents without this field.
 - `tools:` — least privilege. Add `Edit` for implementers only; `Task` for orchestrators only.
-- `applies_when:` — prefer Appendix E vocabulary; justify one-offs in PR.
+- `applies_when:` — prefer keywords from [Appendix E — Manifest Topic Tag Vocabulary](../specs/2026-05-05-ic-agent-pack-design.md#appendix-e--manifest-topic-tag-vocabulary) (search `### Appendix E` in the spec if the anchor drifts); justify one-offs in PR.
 - Length targets: researchers 80–120 lines; auditors 100–150; dual-mode/orchestrators 200–260.
 
 ## Step 3: Register the completion marker
@@ -90,7 +90,11 @@ bash tools/ci/validate-publish-scope.sh
 
 ## Step 5: Wire workflow trigger (optional)
 
-Most agents are invoked ad-hoc or via another agent's `Spawned by:` reference.
+Most agents are invoked ad-hoc or via another agent's `Spawned by:` reference. Note:
+`Spawned by:` is a human-readable cross-reference for documentation purposes; it does not
+trigger automatic invocation. Agents are invoked by user request, by gate triggers, or by
+another agent's tool calls.
+
 For always-on gating, add an entry to `workflow-patches/intel-gates.template.json` (schema below):
 
 ```json
@@ -117,7 +121,11 @@ bash tools/ci/validate-classification.sh      # classification banner present
 bash tools/ci/validate-seamless-fork.sh       # new gates/hooks default to disabled
 ```
 
-All 12 validators are under `tools/ci/validate-*.sh` with sibling tests at
+The remaining 7 (`validate-manifest.sh`, `validate-skills.sh`, `validate-workflow-patches.sh`,
+`validate-triggers.sh`, `validate-no-classified-leak.sh`, `validate-audit-log.sh`,
+`validate-reference-staleness.sh`) cover the rest of the pack surface; they run on every PR
+and rarely trip on agent-only additions, but will fail loudly if a change cross-cuts. All 12
+validators are under `tools/ci/validate-*.sh` with sibling tests at
 `tools/ci/tests/validate-*.test.sh`.
 
 ## Step 7: Smoke-test the agent
@@ -128,7 +136,8 @@ No automated end-to-end "fire-the-agent-in-Claude-Code" test exists in v1 — se
 1. `npm pack`; unpack into a scratch GSD program directory.
 2. Invoke the agent from Claude Code with a minimal test prompt.
 3. Confirm the output contains the exact completion marker registered in Step 3.
-4. Confirm `gsd-classified-leak-detector.js` does not fire.
+4. Confirm `gsd-classified-leak-detector.js` (an IC-pack hook under `hooks/`; fires on every
+   `Read`/`Write`/`Bash` tool call during agent execution) does not fire on the output.
 
 ## Step 8: Commit
 
