@@ -1,0 +1,35 @@
+{
+  "version": "2026.05",
+  "_comment": "Shipping intel-gates template. Consumer copies this to .planning/intel-gates.json and tunes per program. All gates ship enabled:false; opt-in is per-program. See docs/ic-pack/intel-gates-schema.md for the full schema.",
+  "hooks": {
+    "classification_banner": { "enabled": true },
+    "classified_leak": { "enabled": true, "block_on_match": false },
+    "prompt_injection_intel": { "enabled": true }
+  },
+  "gates": {
+    "family-l-ci": {
+      "enabled": false,
+      "trigger": "plan-phase.5-handle-research",
+      "agent": "gsd-ci-analyst",
+      "_comment": "Family L always-on parallel: counterintelligence framing on every phase with analytic content. Opt in by setting enabled:true."
+    },
+    "family-l-targeting": {
+      "enabled": false,
+      "trigger": "plan-phase.5-handle-research",
+      "agent": "gsd-targeting-analyst",
+      "_comment": "Family L always-on parallel: targeting analysis."
+    },
+    "family-l-insider": {
+      "enabled": false,
+      "trigger": "plan-phase.5-handle-research",
+      "agent": "gsd-insider-threat-analyst",
+      "_comment": "Family L always-on parallel: insider-threat analytic patterns."
+    },
+    "family-l-adversary": {
+      "enabled": false,
+      "trigger": "plan-phase.5-handle-research",
+      "agent": "gsd-adversary-modeler",
+      "_comment": "Family L always-on parallel: structured adversary modeling."
+    }
+  }
+}
