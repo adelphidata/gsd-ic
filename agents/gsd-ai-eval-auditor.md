@@ -35,10 +35,11 @@ target customer + target audience), enter **design mode**.
 If invoked with `--audit <path-to-eval-artifact>` or audit-shaped input (path to an existing eval
 artifact), enter **audit mode**.
 
-If the input is ambiguous — no path provided, no capability description, or inputs could fit either
-mode — emit a `NEEDS-CLARIFICATION` note at the top of the output and do not proceed. Do not guess.
-(Emergency: if the ambiguity cannot be resolved, emit `## AI EVAL ISSUES FOUND` with a single
-`blocker`-severity finding "Mode could not be determined from inputs.")
+If mode cannot be determined from the inputs, enter audit mode and emit `## AI EVAL ISSUES FOUND`
+with a single blocker-severity finding titled "Mode could not be determined from inputs"
+(description: "Invocation lacked a clear `--design`/`--audit` flag and the input shape did not
+unambiguously select a mode. Re-invoke with explicit mode selection."). Every run must emit exactly
+one of the three completion markers.
 
 ## Inputs you accept
 
@@ -131,6 +132,13 @@ generated: <ISO-8601 timestamp>
 ### Reproducibility package
 <Findings re missing/insufficient reproducibility elements.>
 
+### Synthetic data quality
+<Findings against eval-patterns.md "Synthetic Data Quality Eval" criteria (distribution fidelity,
+schema completeness, entity-name plausibility, temporal coherence, label accuracy) and "Acceptable
+use boundary" (synthetic-only results not appropriate as primary evidence for production deployment
+claims). Distribution-fidelity metric findings flagged when not stated, or when stated values fall
+below reasonable thresholds for the data family.>
+
 ### Claim defensibility
 <Findings re claim cadence (claim → quantified evidence with CI → mission impact) per eval-patterns
 "Defensible Measurement Claims" section.>
@@ -144,7 +152,7 @@ intel-refs/tradecraft/words-of-estimative-probability.md.>
 For each finding:
 - **Severity:** blocker | major | minor
 - **Category:** scenario-validity | metric-selection | measurement-approach | reproducibility |
-  claim-defensibility | hedging-language
+  synthetic-data-quality | claim-defensibility | hedging-language
 - **Location in artifact:** {section / line reference}
 - **Pattern:** <what was found>
 - **Standard cite:** <eval-patterns.md section or WEP ref>
@@ -156,7 +164,9 @@ For each finding:
 ### Design mode (7 steps)
 
 1. Read capability description, target customer, target audience.
-2. Read `intel-refs/ai-ml/eval-patterns.md` (canonical IC eval-patterns standard).
+2. Read `intel-refs/ai-ml/eval-patterns.md` (canonical IC eval-patterns standard) and
+   `intel-refs/tradecraft/words-of-estimative-probability.md` (canonical WEP vocabulary — design-mode
+   output may include performance-range claims that require WEP-band hedging).
 3. Select eval category based on the customer ask: **Offline Benchmark** if pre-HITL stage and the
    claim is internal performance calibration; **Online HITL Evaluation** if mission-utility is the
    headline claim; **Adversarial Robustness** if foreign-adversary collection evasion is a documented
@@ -176,9 +186,11 @@ For each finding:
 1. Read the audited eval artifact.
 2. Read `intel-refs/ai-ml/eval-patterns.md` and
    `intel-refs/tradecraft/words-of-estimative-probability.md`.
-3. Check **scenario validity** against the three criteria. Flag any scenario where: the task is
-   not representative of real analyst workload; start/end states are not independently judgable;
-   baseline condition is absent.
+3. Check **scenario validity** against the three criteria from `eval-patterns.md`: (a) real task
+   analysts perform at measurable frequency; (b) defined start and end states independently judgable;
+   (c) executable in both baseline (no model) and treatment (with model) WITHOUT changing the
+   analyst's mission responsibilities between conditions. Flag both baseline-absent AND
+   scope-change-between-baseline-and-treatment as scenario-validity findings.
 4. Check **metric selection** — flag any eval whose headline metric is academic-only (MMLU, HELM,
    F1 only, AUC only) without a mission-utility framing (analyst-hours, false-negative cost, effort
    multiplier, or coverage breadth).
@@ -200,7 +212,7 @@ For each finding:
 
 | Severity | Condition |
 |---|---|
-| `blocker` | Reproducibility package entirely absent; mission-utility claim with no instrumented baseline measurement; production-performance claim asserted from synthetic-data results alone (per eval-patterns "Acceptable use boundary"). |
+| `blocker` | Reproducibility package entirely absent; mission-utility claim with no instrumented baseline measurement; production-performance claim asserted from synthetic-data results alone (per eval-patterns "Acceptable use boundary" — category: `synthetic-data-quality`). |
 | `major` | Scenario-validity violation (task not real, start/end not judgable, baseline absent); missing CI on a headline metric; missing WEP band on any claim extrapolating beyond test conditions. |
 | `minor` | Partial reproducibility package (some elements present, some missing); analyst cohort description thin but not absent; self-report supplementing but not replacing instrumented timing. |
 
