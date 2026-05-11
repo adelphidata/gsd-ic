@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "description": "Adelphi IC pack for the Get Shit Done framework — IC-flavored agents, hooks, skills, and tradecraft references for rapid prototyping in the intelligence community contracting space.",
   "license": "UNLICENSED",
-  "private": false,
-  "publishConfig": {
-    "access": "restricted"
-  },
+  "private": true,
   "bin": {
     "gsd-ic": "bin/gsd-ic-install.js"
   },
