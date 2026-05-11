@@ -5,8 +5,12 @@ const KNOWN_CUSTOMERS = new Set(['nga', 'nsa', 'nro', 'cia', 'dia']);
 
 const USAGE = `
 Usage:
-  npx @adelphi/gsd-ic install --customer=<name> [--target=<path>]
-  npx @adelphi/gsd-ic uninstall [--target=<path>]
+  npx <path-to-adelphi-gsd-ic-<version>.tgz> install --customer=<name> [--target=<path>]
+  npx <path-to-adelphi-gsd-ic-<version>.tgz> uninstall [--target=<path>]
+
+The pack is distributed as a local tarball (not published to a public npm
+registry). Obtain the tarball from your Adelphi internal distribution channel,
+then invoke install/uninstall via npx pointing at the tarball path.
 
 Subcommands:
   install     Install the IC pack into a program directory
@@ -20,8 +24,8 @@ Optional:
   --target=<path>     Program directory (default: $PWD)
 
 Examples:
-  npx @adelphi/gsd-ic install --customer=nga
-  npx @adelphi/gsd-ic uninstall --target=/path/to/program
+  npx ./adelphi-gsd-ic-0.1.0.tgz install --customer=nga
+  npx ./adelphi-gsd-ic-0.1.0.tgz uninstall --target=/path/to/program
 `.trim();
 
 function parseArgs(argv) {

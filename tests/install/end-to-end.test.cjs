@@ -28,7 +28,7 @@ function runInstall(args, opts = {}) {
 describe('end-to-end install', () => {
   it('--help prints usage and exits 0', () => {
     const out = runInstall(['--help']);
-    assert.match(out, /npx @adelphi\/gsd-ic install/);
+    assert.match(out, /npx.*\.tgz.*install/);
   });
 
   it('errors clearly when GSD is not installed in target', () => {
