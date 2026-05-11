@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
-# release-pack.sh — bump pack version, tag, validate, dry-run publish.
+# release-pack.sh — bump pack version, tag, validate, build tarball.
 #
 # Usage:
 #   tools/release/release-pack.sh --version=YYYY.MM.N
 #
-# After this script succeeds, the maintainer runs `npm publish --access=restricted`
-# manually to push the release to npm. This intentional separation prevents
-# accidental publishes from automation.
+# After this script succeeds, the maintainer:
+#   1. git push origin <branch> && git push origin v<version>
+#   2. npm pack    (produces adelphi-gsd-ic-<version>.tgz)
+#   3. Upload the .tgz to Adelphi's internal distribution channel.
+#
+# The pack is NEVER published to a public npm registry. See package.json
+# "private": true.
 
 set -euo pipefail
 
@@ -66,5 +70,7 @@ echo "==> Release prepared."
 echo "    Tag: v$new_version (local; not pushed)"
 echo "    Next steps:"
 echo "      1. Review the npm pack --dry-run output above for unexpected files."
-echo "      2. git push origin main && git push origin v$new_version"
-echo "      3. npm publish --access=restricted    (manual; not automated)"
+echo "      2. git push origin <branch> && git push origin v$new_version"
+echo "      3. npm pack    (produces adelphi-gsd-ic-$new_version.tgz)"
+echo "      4. Upload tarball to internal distribution channel."
+echo "    Do NOT run 'npm publish' — package is marked private."
