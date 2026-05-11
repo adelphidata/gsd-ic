@@ -436,7 +436,6 @@ Family I agent #43. Standard Family I researcher; mirrors the 7 existing Family 
 - `ic_pack: true`, `classification: UNCLASSIFIED`
 - `tools: [Read, Write, Bash, Grep, Glob, WebSearch, WebFetch, mcp__context7__*]`
 - `applies_when: [techint, foreign materiel exploitation, captured equipment, reverse engineering, weapon system, fmx, materiel]`
-- `knowledge_tags: [int-disciplines/techint, capability-patterns, tradecraft]`
 
 **Required sections (standard Family I shape):**
 1. `# gsd-techint-researcher` heading + role paragraph.
@@ -489,7 +488,6 @@ Family I agent #44. Standard Family I researcher. Knowledge tags include `ai-ml`
 - `ic_pack: true`, `classification: UNCLASSIFIED`
 - `tools: [Read, Write, Bash, Grep, Glob, WebSearch, WebFetch, mcp__context7__*]`
 - `applies_when: [medint, medical intelligence, biosurveillance, disease surveillance, biothreat, public health, pandemic, epidemiology]`
-- `knowledge_tags: [int-disciplines/medint, capability-patterns, ai-ml]`
 
 **Required sections:** same shape as T7 (Family I standard), substituting MEDINT scope and biosurveillance patterns. Cross-INT pairing: OSINT (public-health PAI), FININT (illicit-procurement tracing for state biothreat programs).
 
@@ -533,7 +531,6 @@ Family I agent #45. Standard Family I researcher. Knowledge tags include both `i
 - `ic_pack: true`, `classification: UNCLASSIFIED`
 - `tools: [Read, Write, Bash, Grep, Glob, WebSearch, WebFetch, mcp__context7__*]`
 - `applies_when: [techsigint, technical sigint, elint, fisint, radar, foreign instrumentation, telemetry, emitter, electronic order of battle, eob]`
-- `knowledge_tags: [int-disciplines/techsigint, int-disciplines/sigint, capability-patterns]`
 
 **Required sections:** same shape as T7, substituting technical-SIGINT scope (ELINT / FISINT / telemetry). Cross-INT pairing: SIGINT (COMINT sibling — explicitly document the pair convention from spec line 346), GEOINT (emitter geolocation), TECHINT (parametric records of fielded foreign weapons).
 
@@ -578,7 +575,6 @@ Family J agent #47. Audits analytic artifacts against ICD 203 standards and the 
 - `ic_pack: true`, `classification: UNCLASSIFIED`
 - `tools: [Read, Write, Bash, Grep, Glob]`
 - `applies_when: [icd 203, icd-203, icd 206, icd-206, wep, words of estimative probability, analytic standards, sourcing, tradecraft enforcement, analytic review]`
-- `knowledge_tags: [tradecraft, capability-patterns]`
 
 **Required sections:**
 1. `# gsd-icd-203-enforcer` heading + role paragraph.
@@ -631,7 +627,6 @@ Family N agent #56. **Dual-mode agent — design and audit paths.** Three marker
 - `ic_pack: true`, `classification: UNCLASSIFIED`
 - `tools: [Read, Write, Bash, Grep, Glob]`
 - `applies_when: [ai eval, ml eval, mission utility, eval audit, eval design, hitl eval, adversarial robustness, classification-aware eval, defensible measurement, ic eval]`
-- `knowledge_tags: [ai-ml, capability-patterns, tradecraft]`
 
 **Required sections:**
 1. `# gsd-ai-eval-auditor` heading + role paragraph explaining the two operating modes (design and audit) and pairing with stock `gsd-eval-planner` (general eval mechanics) and Plan 6's existing `ai-ml/eval-patterns.md` ref.
@@ -692,7 +687,6 @@ Family N agent #57. **Only Phase 7 agent with `Edit` tool.** Implements (not jus
 - `ic_pack: true`, `classification: UNCLASSIFIED`
 - `tools: [Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch, mcp__context7__*]`
 - `applies_when: [fm adaptation, foundation model, rag, fine-tune, prompting, llm adaptation, retrieval augmented generation, on-prem inference, classification-aware retrieval, ic ai]`
-- `knowledge_tags: [ai-ml, capability-patterns, ecosystem]`
 
 **Required sections:**
 1. `# gsd-fm-adaptation-engineer` heading + role paragraph emphasizing implementation scope (Edit tool is present because this agent modifies code in the consumer's source tree, not just designs artifacts).
