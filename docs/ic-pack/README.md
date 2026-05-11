@@ -42,6 +42,12 @@ Per the [design spec](../specs/2026-05-05-ic-agent-pack-design.md) §2.3, each p
 - [TROUBLESHOOTING.md](TROUBLESHOOTING.md) — known install / CI / runtime failure modes
 - [PER-CUSTOMER-PLAYBOOK.md](PER-CUSTOMER-PLAYBOOK.md) — AO-specific gotchas, tradecraft notes, and watch-outs
 
+### Training
+
+- [training/WALKTHROUGH.md](training/WALKTHROUGH.md) — 60-min framework overview (self-guided)
+- [training/HANDS-ON-ADD-A-REFERENCE.md](training/HANDS-ON-ADD-A-REFERENCE.md) — 30-min hands-on: add a ref to the manifest
+- [training/HANDS-ON-SCAFFOLD-A-PROTOTYPE.md](training/HANDS-ON-SCAFFOLD-A-PROTOTYPE.md) — 30-min hands-on: scaffold a prototype with the pack
+
 ### Contributing (dev-side)
 
 - [ADDING-AN-AGENT.md](ADDING-AN-AGENT.md) — author and register a new agent
