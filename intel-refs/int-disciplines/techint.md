@@ -2,7 +2,6 @@
 classification: UNCLASSIFIED
 title: TECHINT — Foreign Materiel Exploitation
 topic_id: int-disciplines/techint
-topic: int-disciplines/techint
 applies_when:
   - techint
   - foreign materiel exploitation
