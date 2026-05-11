@@ -448,7 +448,7 @@ Family I agent #43. Standard Family I researcher; mirrors the 7 existing Family 
 7. `## Completion marker` — emit `## RESEARCH COMPLETE` on success, `## RESEARCH BLOCKED` if scope is unclear or required refs are missing.
 8. Trailing self-emit `## RESEARCH COMPLETE` heading example.
 
-**Length target:** 180-220 lines. Pattern reference: `agents/gsd-cybint-researcher.md` (Plan 2 — closest Family I sibling; identical structure).
+**Length target:** 90-110 lines (existing Family I sibling researchers are 93-98 lines; new researchers stay proportionate). Pattern reference: `agents/gsd-cybint-researcher.md` (Plan 2 — closest Family I sibling; identical structure).
 
 - [ ] **Step 1: Write the agent**
 
@@ -493,7 +493,7 @@ Family I agent #44. Standard Family I researcher. Knowledge tags include `ai-ml`
 
 **Required sections:** same shape as T7 (Family I standard), substituting MEDINT scope and biosurveillance patterns. Cross-INT pairing: OSINT (public-health PAI), FININT (illicit-procurement tracing for state biothreat programs).
 
-**Length target:** 180-220 lines. Pattern reference: `agents/gsd-cybint-researcher.md`.
+**Length target:** 90-110 lines (matches Family I siblings 93-98). Pattern reference: `agents/gsd-cybint-researcher.md`.
 
 - [ ] **Step 1: Write the agent**
 
@@ -537,7 +537,7 @@ Family I agent #45. Standard Family I researcher. Knowledge tags include both `i
 
 **Required sections:** same shape as T7, substituting technical-SIGINT scope (ELINT / FISINT / telemetry). Cross-INT pairing: SIGINT (COMINT sibling — explicitly document the pair convention from spec line 346), GEOINT (emitter geolocation), TECHINT (parametric records of fielded foreign weapons).
 
-**Length target:** 180-220 lines. Pattern reference: `agents/gsd-sigint-researcher.md` (closest sibling — the COMINT-focused researcher in the same Family I; explicit pair to this agent).
+**Length target:** 90-110 lines (matches Family I siblings 93-98). Pattern reference: `agents/gsd-sigint-researcher.md` (closest sibling — the COMINT-focused researcher in the same Family I; explicit pair to this agent).
 
 - [ ] **Step 1: Write the agent**
 
@@ -590,7 +590,7 @@ Family J agent #47. Audits analytic artifacts against ICD 203 standards and the 
 7. `## Completion marker` — emit `## ICD 203 AUDIT COMPLETE` on success (no findings or audit successfully produced with findings listed); emit `## ICD 203 VIOLATIONS FOUND` if `blocker`-severity findings exist.
 8. Trailing self-emit markers as appropriate.
 
-**Length target:** 240-300 lines. Pattern references: `agents/gsd-cmmc-auditor.md` (Plan 1 — tradecraft auditor template; same dual-marker pattern with success / findings-found split), `agents/gsd-nist-800-171-auditor.md` (Plan 2 — similar structural pattern with the validator-compliant marker convention).
+**Length target:** 110-140 lines (existing auditors gsd-cmmc-auditor 98, gsd-nist-800-171-auditor 105; icd-203-enforcer has more complex audit logic — slight bump above 100). Pattern references: `agents/gsd-cmmc-auditor.md` (Plan 1 — tradecraft auditor template; same dual-marker pattern with success / findings-found split), `agents/gsd-nist-800-171-auditor.md` (Plan 2 — similar structural pattern with the validator-compliant marker convention).
 
 - [ ] **Step 1: Write the agent**
 
@@ -650,7 +650,7 @@ Family N agent #56. **Dual-mode agent — design and audit paths.** Three marker
 8. `## Completion marker(s)` — design mode: emit `## AI EVAL DESIGN COMPLETE` on success; audit mode: emit `## AI EVAL AUDIT COMPLETE` if no `blocker` findings, else `## AI EVAL ISSUES FOUND`.
 9. Trailing example markers (one per mode).
 
-**Length target:** 280-340 lines (longer than single-mode agents because both mode paths must be documented). Pattern references: `agents/gsd-rmf-control-mapper.md` (multi-terminal-output agent), `agents/gsd-cmmc-auditor.md` (audit-with-findings pattern), `intel-refs/ai-ml/eval-patterns.md` (the canonical standard this agent enforces).
+**Length target:** 150-200 lines (dual-mode adds ~50% over single-mode auditors; gsd-rmf-control-mapper at 95 is the closest multi-terminal-output precedent). Pattern references: `agents/gsd-rmf-control-mapper.md` (multi-terminal-output agent), `agents/gsd-cmmc-auditor.md` (audit-with-findings pattern), `intel-refs/ai-ml/eval-patterns.md` (the canonical standard this agent enforces).
 
 - [ ] **Step 1: Write the agent**
 
@@ -704,7 +704,7 @@ Family N agent #57. **Only Phase 7 agent with `Edit` tool.** Implements (not jus
 7. `## Completion marker` — emit `## FM ADAPTATION COMPLETE` on success.
 8. Trailing self-emit marker.
 
-**Length target:** 240-300 lines. Pattern references: `agents/gsd-domex-engineer.md` (Plan 2 — Edit-tool implementation agent; "designs AND implements" pattern), `agents/gsd-synthetic-data-engineer.md` (Plan 6 — Edit-tool implementation agent in `ai-ml` knowledge tag space; closest sibling on multiple axes).
+**Length target:** 180-240 lines (existing Edit-tool implementers: gsd-domex-engineer 103, gsd-synthetic-data-engineer 219; fm-adaptation lands closer to synthetic-data scale because it covers RAG + fine-tune + prompting + classification-aware retrieval). Pattern references: `agents/gsd-domex-engineer.md` (Plan 2 — Edit-tool implementation agent; "designs AND implements" pattern), `agents/gsd-synthetic-data-engineer.md` (Plan 6 — Edit-tool implementation agent in `ai-ml` knowledge tag space; closest sibling on multiple axes).
 
 - [ ] **Step 1: Write the agent**
 
