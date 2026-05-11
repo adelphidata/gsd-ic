@@ -1,190 +1,527 @@
 {
   "version": "2026.05",
   "topics": {
-    "int-disciplines/humint.md": {
-      "applies_when": ["humint", "case management", "asset validation", "biometrics", "domex"],
+    "ai-ml/eval-patterns.md": {
+      "applies_when": [
+        "ai-ml",
+        "eval",
+        "evaluation",
+        "mission utility",
+        "hitl",
+        "model evaluation",
+        "ic eval",
+        "eval design"
+      ],
       "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-07",
-      "classification": "UNCLASSIFIED"
-    },
-    "int-disciplines/geoint.md": {
-      "applies_when": ["geoint", "imint", "fmv", "imagery", "nitf", "stanag-4609", "kml", "geotiff", "mgrs", "geojson"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-07",
-      "classification": "UNCLASSIFIED"
-    },
-    "tradecraft/icd-203.md": {
-      "applies_when": ["icd-203", "analytic standards", "uncertainty", "tradecraft", "analytic product"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-07",
+      "last_reviewed": "2026-05-13",
       "classification": "UNCLASSIFIED"
     },
     "capability-patterns/entity-resolution.md": {
-      "applies_when": ["entity resolution", "er", "record linkage", "deduplication", "identity resolution"],
+      "applies_when": [
+        "entity resolution",
+        "er",
+        "record linkage",
+        "deduplication",
+        "identity resolution"
+      ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-07",
       "classification": "UNCLASSIFIED"
     },
     "capability-patterns/pattern-of-life.md": {
-      "applies_when": ["pol", "pattern of life", "abi", "activity-based intelligence", "behavior tracking"],
+      "applies_when": [
+        "pol",
+        "pattern of life",
+        "abi",
+        "activity-based intelligence",
+        "behavior tracking"
+      ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-07",
       "classification": "UNCLASSIFIED"
     },
-    "ecosystem/nga.md": {
-      "applies_when": ["nga", "national geospatial-intelligence agency", "geoint customer", "ecosystem"],
+    "classification/aws-partitions.md": {
+      "applies_when": [
+        "classification",
+        "aws",
+        "govcloud",
+        "il4",
+        "il5",
+        "iso",
+        "isob",
+        "isof",
+        "partition",
+        "cloud architecture"
+      ],
       "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-08",
-      "classification": "UNCLASSIFIED"
-    },
-    "ecosystem/nsa.md": {
-      "applies_when": ["nsa", "national security agency", "sigint customer", "cybersecurity", "ecosystem"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-08",
-      "classification": "UNCLASSIFIED"
-    },
-    "ecosystem/nro.md": {
-      "applies_when": ["nro", "national reconnaissance office", "overhead", "satellite reconnaissance", "ecosystem"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-08",
+      "last_reviewed": "2026-05-13",
       "classification": "UNCLASSIFIED"
     },
     "ecosystem/cia.md": {
-      "applies_when": ["cia", "central intelligence agency", "humint customer", "covert action", "ecosystem"],
+      "applies_when": [
+        "cia",
+        "central intelligence agency",
+        "humint customer",
+        "covert action",
+        "ecosystem"
+      ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-08",
       "classification": "UNCLASSIFIED"
     },
     "ecosystem/dia.md": {
-      "applies_when": ["dia", "defense intelligence agency", "masint customer", "military intelligence", "ecosystem"],
+      "applies_when": [
+        "dia",
+        "defense intelligence agency",
+        "masint customer",
+        "military intelligence",
+        "ecosystem"
+      ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-08",
       "classification": "UNCLASSIFIED"
     },
-    "tradecraft/poam-format.md": {
-      "applies_when": ["poam", "plan of action", "milestones", "findings", "remediation", "fisma", "compliance tracking"],
+    "ecosystem/nga.md": {
+      "applies_when": [
+        "nga",
+        "national geospatial-intelligence agency",
+        "geoint customer",
+        "ecosystem"
+      ],
       "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
+      "last_reviewed": "2026-05-08",
       "classification": "UNCLASSIFIED"
     },
-    "tradecraft/nist-800-53-rev5.md": {
-      "applies_when": ["nist 800-53", "rmf", "security controls", "control families", "moderate baseline", "high baseline", "classification"],
+    "ecosystem/nro.md": {
+      "applies_when": [
+        "nro",
+        "national reconnaissance office",
+        "overhead",
+        "satellite reconnaissance",
+        "ecosystem"
+      ],
       "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
+      "last_reviewed": "2026-05-08",
       "classification": "UNCLASSIFIED"
     },
-    "tradecraft/nist-800-171.md": {
-      "applies_when": ["nist 800-171", "cui", "controlled unclassified information", "110 controls", "dfars 7012", "classification", "tradecraft"],
+    "ecosystem/nsa.md": {
+      "applies_when": [
+        "nsa",
+        "national security agency",
+        "sigint customer",
+        "cybersecurity",
+        "ecosystem"
+      ],
       "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
+      "last_reviewed": "2026-05-08",
       "classification": "UNCLASSIFIED"
     },
-    "tradecraft/ato-document-suite.md": {
-      "applies_when": ["ssp", "system security plan", "irp", "incident response", "conmon", "continuous monitoring", "contingency", "dr", "disaster recovery", "evidence package", "pdr", "cdr", "trr", "ato submission"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
-    },
-    "tradecraft/ato-process-overview.md": {
-      "applies_when": ["ato", "rmf", "authorization", "isso", "issm", "ao", "authorizing official", "iatt", "denial", "continuous authorization"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
-    },
-    "tradecraft/cmmc-2.0.md": {
-      "applies_when": ["cmmc", "cmmc 2.0", "cybersecurity maturity", "level 2", "level 3", "fci", "cui", "classification", "tradecraft"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
-    },
-    "tradecraft/itar-ear.md": {
-      "applies_when": ["itar", "ear", "export control", "usml", "ccl", "defense article", "dual-use", "classification", "ecosystem"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
-    },
-    "tradecraft/fips-140-3.md": {
-      "applies_when": ["fips 140-3", "fips 140", "cryptographic module", "cmvp", "validated crypto", "classification", "ecosystem"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
-    },
-    "tradecraft/dfars-252-204-7012.md": {
-      "applies_when": ["dfars 7012", "dfars 252.204-7012", "covered defense information", "cdi", "cyber incident reporting", "72 hour", "classification", "tradecraft"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
-    },
-    "tradecraft/eo-14028.md": {
-      "applies_when": ["eo 14028", "executive order 14028", "sbom", "software bill of materials", "cyclonedx", "spdx", "zero trust", "ecosystem"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-09",
-      "classification": "UNCLASSIFIED"
-    },
-    "int-disciplines/sigint.md": {
-      "applies_when": ["sigint", "comint", "elint", "fisint", "eob", "electronic order of battle", "communications metadata", "signal classification"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
-    },
-    "int-disciplines/osint.md": {
-      "applies_when": ["osint", "socmint", "pai", "publicly available information", "stix", "misp", "persona separation", "open-source"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
-    },
-    "int-disciplines/masint.md": {
-      "applies_when": ["masint", "radint", "acint", "irint", "nucint", "sensor fusion", "signature library", "phenomenology"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
-    },
-    "int-disciplines/cybint.md": {
-      "applies_when": ["cybint", "cyber threat intelligence", "cti", "att&ck", "d3fend", "diamond model", "kill chain", "threat intel platform", "tip"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
-    },
-    "int-disciplines/finint.md": {
-      "applies_when": ["finint", "financial intelligence", "swift", "blockchain", "sanctions", "illicit finance", "aml", "virtual asset", "fatf"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-10",
-      "classification": "UNCLASSIFIED"
-    },
-    "modernization/modernization-themes.md": {
-      "applies_when": ["modernization", "data fabric", "ai/ml adoption", "zero trust", "hybrid cloud", "it modernization", "classification-aware compute"],
-      "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-11",
-      "classification": "UNCLASSIFIED"
-    },
-    "house-style/white-papers.md": {
-      "applies_when": ["white paper", "technical paper", "capability paper", "pitch paper", "ic deliverable", "technical writing"],
+    "house-style/briefs.md": {
+      "applies_when": [
+        "capability brief",
+        "milestone brief",
+        "slides",
+        "marp",
+        "slide deck",
+        "briefing",
+        "customer brief",
+        "audience adaptation"
+      ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-12",
       "classification": "UNCLASSIFIED"
     },
     "house-style/proposals.md": {
-      "applies_when": ["proposal", "far 15", "ota", "contract response", "technical volume", "management volume", "past performance volume", "cost volume", "win themes"],
+      "applies_when": [
+        "proposal",
+        "far 15",
+        "ota",
+        "contract response",
+        "technical volume",
+        "management volume",
+        "past performance volume",
+        "cost volume",
+        "win themes"
+      ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-12",
       "classification": "UNCLASSIFIED"
     },
-    "house-style/briefs.md": {
-      "applies_when": ["capability brief", "milestone brief", "slides", "marp", "slide deck", "briefing", "customer brief", "audience adaptation"],
+    "house-style/white-papers.md": {
+      "applies_when": [
+        "white paper",
+        "technical paper",
+        "capability paper",
+        "pitch paper",
+        "ic deliverable",
+        "technical writing"
+      ],
       "owner": "intel-pack@adelphi.ai",
       "last_reviewed": "2026-05-12",
       "classification": "UNCLASSIFIED"
     },
-    "ai-ml/eval-patterns.md": {
-      "applies_when": ["ai-ml", "eval", "evaluation", "mission utility", "hitl", "model evaluation", "ic eval", "eval design"],
+    "int-disciplines/cybint.md": {
+      "applies_when": [
+        "cybint",
+        "cyber threat intelligence",
+        "cti",
+        "att&ck",
+        "d3fend",
+        "diamond model",
+        "kill chain",
+        "threat intel platform",
+        "tip"
+      ],
       "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-13",
+      "last_reviewed": "2026-05-10",
       "classification": "UNCLASSIFIED"
     },
-    "classification/aws-partitions.md": {
-      "applies_when": ["classification", "aws", "govcloud", "il4", "il5", "iso", "isob", "isof", "partition", "cloud architecture"],
+    "int-disciplines/finint.md": {
+      "applies_when": [
+        "finint",
+        "financial intelligence",
+        "swift",
+        "blockchain",
+        "sanctions",
+        "illicit finance",
+        "aml",
+        "virtual asset",
+        "fatf"
+      ],
       "owner": "intel-pack@adelphi.ai",
-      "last_reviewed": "2026-05-13",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/geoint.md": {
+      "applies_when": [
+        "geoint",
+        "imint",
+        "fmv",
+        "imagery",
+        "nitf",
+        "stanag-4609",
+        "kml",
+        "geotiff",
+        "mgrs",
+        "geojson"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-07",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/humint.md": {
+      "applies_when": [
+        "humint",
+        "case management",
+        "asset validation",
+        "biometrics",
+        "domex"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-07",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/masint.md": {
+      "applies_when": [
+        "masint",
+        "radint",
+        "acint",
+        "irint",
+        "nucint",
+        "sensor fusion",
+        "signature library",
+        "phenomenology"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/medint.md": {
+      "applies_when": [
+        "medint",
+        "medical intelligence",
+        "biosurveillance",
+        "disease surveillance",
+        "biothreat",
+        "public health",
+        "pandemic",
+        "epidemiology",
+        "ncmi"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-11",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/osint.md": {
+      "applies_when": [
+        "osint",
+        "socmint",
+        "pai",
+        "publicly available information",
+        "stix",
+        "misp",
+        "persona separation",
+        "open-source"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/sigint.md": {
+      "applies_when": [
+        "sigint",
+        "comint",
+        "elint",
+        "fisint",
+        "eob",
+        "electronic order of battle",
+        "communications metadata",
+        "signal classification"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-10",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/techint.md": {
+      "applies_when": [
+        "techint",
+        "foreign materiel exploitation",
+        "fmx",
+        "captured equipment",
+        "reverse engineering",
+        "weapon system analysis",
+        "hardware exploitation",
+        "foreign weapon systems"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-11",
+      "classification": "UNCLASSIFIED"
+    },
+    "int-disciplines/techsigint.md": {
+      "applies_when": [
+        "techsigint",
+        "technical sigint",
+        "elint",
+        "fisint",
+        "radar emissions",
+        "foreign instrumentation",
+        "telemetry",
+        "electronic order of battle"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-11",
+      "classification": "UNCLASSIFIED"
+    },
+    "modernization/modernization-themes.md": {
+      "applies_when": [
+        "modernization",
+        "data fabric",
+        "ai/ml adoption",
+        "zero trust",
+        "hybrid cloud",
+        "it modernization",
+        "classification-aware compute"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-11",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/ato-document-suite.md": {
+      "applies_when": [
+        "ssp",
+        "system security plan",
+        "irp",
+        "incident response",
+        "conmon",
+        "continuous monitoring",
+        "contingency",
+        "dr",
+        "disaster recovery",
+        "evidence package",
+        "pdr",
+        "cdr",
+        "trr",
+        "ato submission"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/ato-process-overview.md": {
+      "applies_when": [
+        "ato",
+        "rmf",
+        "authorization",
+        "isso",
+        "issm",
+        "ao",
+        "authorizing official",
+        "iatt",
+        "denial",
+        "continuous authorization"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/cmmc-2.0.md": {
+      "applies_when": [
+        "cmmc",
+        "cmmc 2.0",
+        "cybersecurity maturity",
+        "level 2",
+        "level 3",
+        "fci",
+        "cui",
+        "classification",
+        "tradecraft"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/dfars-252-204-7012.md": {
+      "applies_when": [
+        "dfars 7012",
+        "dfars 252.204-7012",
+        "covered defense information",
+        "cdi",
+        "cyber incident reporting",
+        "72 hour",
+        "classification",
+        "tradecraft"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/eo-14028.md": {
+      "applies_when": [
+        "eo 14028",
+        "executive order 14028",
+        "sbom",
+        "software bill of materials",
+        "cyclonedx",
+        "spdx",
+        "zero trust",
+        "ecosystem"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/fips-140-3.md": {
+      "applies_when": [
+        "fips 140-3",
+        "fips 140",
+        "cryptographic module",
+        "cmvp",
+        "validated crypto",
+        "classification",
+        "ecosystem"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/icd-203.md": {
+      "applies_when": [
+        "icd-203",
+        "analytic standards",
+        "uncertainty",
+        "tradecraft",
+        "analytic product"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-07",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/icd-206.md": {
+      "applies_when": [
+        "icd 206",
+        "icd-206",
+        "source description",
+        "sourcing standards",
+        "source reliability",
+        "source credibility",
+        "citation",
+        "attribution"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-11",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/itar-ear.md": {
+      "applies_when": [
+        "itar",
+        "ear",
+        "export control",
+        "usml",
+        "ccl",
+        "defense article",
+        "dual-use",
+        "classification",
+        "ecosystem"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/nist-800-171.md": {
+      "applies_when": [
+        "nist 800-171",
+        "cui",
+        "controlled unclassified information",
+        "110 controls",
+        "dfars 7012",
+        "classification",
+        "tradecraft"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/nist-800-53-rev5.md": {
+      "applies_when": [
+        "nist 800-53",
+        "rmf",
+        "security controls",
+        "control families",
+        "moderate baseline",
+        "high baseline",
+        "classification"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/poam-format.md": {
+      "applies_when": [
+        "poam",
+        "plan of action",
+        "milestones",
+        "findings",
+        "remediation",
+        "fisma",
+        "compliance tracking"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-09",
+      "classification": "UNCLASSIFIED"
+    },
+    "tradecraft/words-of-estimative-probability.md": {
+      "applies_when": [
+        "wep",
+        "words of estimative probability",
+        "sherman kent",
+        "confidence language",
+        "hedging",
+        "estimative language",
+        "icd 203",
+        "analytic confidence"
+      ],
+      "owner": "intel-pack@adelphi.ai",
+      "last_reviewed": "2026-05-11",
       "classification": "UNCLASSIFIED"
     }
   }
