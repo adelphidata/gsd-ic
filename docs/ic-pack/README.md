@@ -46,6 +46,8 @@ Per the [design spec](../specs/2026-05-05-ic-agent-pack-design.md) §2.3, each p
 
 - [ADDING-AN-AGENT.md](ADDING-AN-AGENT.md) — author and register a new agent
 - [ADDING-A-REFERENCE.md](ADDING-A-REFERENCE.md) — add a knowledge-layer reference doc
+- [SME-CURATION-FRAMEWORK.md](SME-CURATION-FRAMEWORK.md) — SME workflow, curation states, quality bars
+- [REF-CURATION-STATUS.md](REF-CURATION-STATUS.md) — per-ref curation state snapshot (auto-derived from manifest)
 - [ADDING-A-SKILL.md](ADDING-A-SKILL.md) — author a behavioral skill (promotion criteria included)
 - [ADDING-A-HOOK.md](ADDING-A-HOOK.md) — add a deterministic hook with patterns + tests
 - [ADDING-A-CUSTOMER-OVERLAY.md](ADDING-A-CUSTOMER-OVERLAY.md) — onboard a new customer to the catalog
