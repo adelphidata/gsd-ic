@@ -81,6 +81,7 @@
     "hooks/patterns/intel-injection-patterns.json",
     "intel-refs/",
     "references/agent-contracts.ic-pack.md",
+    "sdk/shared",
     "skills/adelphi-house-style/",
     "skills/classification-conventions/",
     "skills/intel-coding-conventions/",
@@ -103,12 +104,14 @@
     "node": ">=22.0.0"
   },
   "scripts": {
+    "pretest": "npm run lint:skill-deps",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:install": "node --test tests/install/*.test.cjs",
     "test:validators": "bash tools/ci/tests/_run-all.sh",
     "test:all": "npm run test && npm run test:validators",
     "ci": "bash tools/ci/_run-all.sh",
+    "lint:skill-deps": "node scripts/lint-skill-deps.cjs",
     "release": "bash tools/release/release-pack.sh",
     "sync-upstream": "bash tools/sync/sync-from-upstream.sh"
   },

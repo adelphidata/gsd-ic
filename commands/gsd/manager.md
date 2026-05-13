@@ -10,7 +10,8 @@ allowed-tools:
   - Grep
   - AskUserQuestion
   - Skill
-  - Task
+  - Agent
+requires: [phase]
 ---
 <objective>
 Single-terminal command center for managing a milestone. Shows a dashboard of all phases with visual status indicators, recommends optimal next actions, and dispatches work — discuss runs inline, plan/execute run as background agents.
@@ -39,6 +40,6 @@ Project context, phase list, dependencies, and recommendations are resolved insi
 If `--analyze-deps` is in $ARGUMENTS:
 Read and execute `~/.claude/get-shit-done/workflows/analyze-dependencies.md` end-to-end.
 
-Execute the manager workflow from @~/.claude/get-shit-done/workflows/manager.md end-to-end.
+Execute end-to-end.
 Maintain the dashboard refresh loop until the user exits or all phases complete.
 </process>

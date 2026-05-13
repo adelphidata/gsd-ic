@@ -149,6 +149,13 @@
   - [Namespace Meta-Skills (Two-Stage Routing)](#123-namespace-meta-skills-two-stage-routing)
   - [Context-Window Utilization Guard](#124-context-window-utilization-guard)
   - [Phase-Lifecycle Status-Line Read-Side](#125-phase-lifecycle-status-line-read-side)
+- [v1.41.0 Features](#v1410-features)
+  - [Per-Phase-Type Model Selection](#126-per-phase-type-model-selection)
+  - [Dynamic Routing with Failure-Tier Escalation](#127-dynamic-routing-with-failure-tier-escalation)
+  - [Update Banner Opt-In](#128-update-banner-opt-in)
+  - [Issue-Driven Orchestration Guide](#129-issue-driven-orchestration-guide)
+  - [Graphify Commit-Based Staleness](#130-graphify-commit-based-staleness)
+  - [MVP Mode SDK Resolution Layer](#131-mvp-mode-sdk-resolution-layer)
 - [v1.32 Features](#v132-features)
   - [STATE.md Consistency Gates](#69-statemd-consistency-gates)
   - [Autonomous `--to N` Flag](#70-autonomous---to-n-flag)
@@ -405,10 +412,13 @@
 - REQ-SHIP-03: System MUST auto-generate PR body from SUMMARY.md, VERIFICATION.md, and REQUIREMENTS.md
 - REQ-SHIP-04: System MUST update STATE.md with shipping status and PR number
 - REQ-SHIP-05: System MUST support `--draft` flag for draft PRs
+- REQ-SHIP-06: System MUST support append-only project PR body sections configured with `ship.pr_body_sections`
 
 **Prerequisites:** Phase verified, `gh` CLI installed and authenticated, work on feature branch
 
-**Produces:** GitHub PR with rich body, STATE.md updated
+**Produces:** GitHub PR with rich body, optional configured PRD-style sections, STATE.md updated
+
+**User documentation:** [Custom PR Body Sections](ship-pr-body-sections.md)
 
 ---
 
@@ -510,7 +520,7 @@
 
 ### 12. Freeform Routing
 
-**Command:** `/gsd-do`
+**Command:** `/gsd-progress --do` (see also `/gsd-manager` for interactive routing)
 
 **Purpose:** Analyze freeform text and route to the appropriate GSD command.
 
@@ -524,7 +534,7 @@
 
 ### 13. Note Capture
 
-**Command:** `/gsd-note`
+**Command:** `/gsd-capture`
 
 **Purpose:** Zero-friction idea capture without interrupting workflow. Append timestamped notes, list all notes, or promote notes to structured todos.
 
@@ -1073,7 +1083,6 @@ The banner is silent when up-to-date and rate-limits "check failed" diagnostics 
 
 **Generated Artifacts:**
 - `USER-PROFILE.md` — Full behavioral profile with evidence citations
-- `/gsd-dev-preferences` command — Load preferences in any session
 - `CLAUDE.md` profile section — Auto-discovered by Claude Code
 
 **Flags:**
@@ -1168,7 +1177,7 @@ When verification returns `human_needed`, items are persisted as a trackable HUM
 
 ### 42. Cross-AI Peer Review
 
-**Command:** `/gsd-review --phase N [--gemini] [--claude] [--codex] [--coderabbit] [--opencode] [--qwen] [--cursor] [--all]`
+**Command:** `/gsd-review --phase N [--gemini] [--claude] [--codex] [--coderabbit] [--opencode] [--qwen] [--cursor] [--ollama] [--lm-studio] [--llama-cpp] [--all]`
 
 **Purpose:** Invoke external AI CLIs (Gemini, Claude, Codex, CodeRabbit, OpenCode, Qwen Code, Cursor) to independently review phase plans. Produces structured REVIEWS.md with per-reviewer feedback.
 
@@ -1178,8 +1187,14 @@ When verification returns `human_needed`, items are persisted as a trackable HUM
 - REQ-REVIEW-03: System MUST invoke each selected CLI independently
 - REQ-REVIEW-04: System MUST collect responses and produce `REVIEWS.md`
 - REQ-REVIEW-05: Reviews MUST be consumable by `/gsd-plan-phase --reviews`
+- REQ-REVIEW-06: System MUST support project-level no-flag defaults via `review.default_reviewers`
+- REQ-REVIEW-07: Reviewer precedence MUST be explicit flags > `--all` > `review.default_reviewers` > all detected reviewers
 
 **Produces:** `{phase}-REVIEWS.md` — Per-reviewer structured feedback
+
+**User configuration note:**
+- Set `review.default_reviewers` in `.planning/config.json` (or via `gsd config-set`) to control no-flag `/gsd-review` fan-out.
+- Use `--all` for a full pre-merge sweep without changing project defaults.
 
 ---
 
@@ -2057,7 +2072,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 
 ### 90. Queryable Codebase Intelligence
 
-**Command:** `/gsd-intel [query <term>|status|diff|refresh]`
+**Command:** `/gsd-map-codebase --query [<term>|status|diff|refresh]`
 **Config:** `intel.enabled`
 
 **Purpose:** Maintain a queryable JSON index of codebase structure, API surface, dependency graph, file roles, and architecture decisions in `.planning/intel/`. Enables targeted lookups without reading the entire codebase.
@@ -2191,13 +2206,13 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 
 ### 97. Rapid Codebase Scan
 
-**Command:** `/gsd-scan [--focus tech|arch|quality|concerns|tech+arch]`
+**Command:** `/gsd-map-codebase --fast [--focus tech|arch|quality|concerns]`
 
-**Purpose:** Lightweight alternative to `/gsd-map-codebase` that spawns a single mapper agent for a specific focus area, producing targeted output in `.planning/codebase/` without the overhead of 4 parallel agents.
+**Purpose:** Lightweight alternative to `/gsd-map-codebase` that spawns a single mapper agent for one or two combined focus areas, producing targeted output in `.planning/codebase/` without the overhead of 4 parallel agents.
 
 **Requirements:**
 - REQ-SCAN-01: Scan MUST spawn exactly one mapper agent (not four parallel agents)
-- REQ-SCAN-02: Focus area MUST be one of: `tech`, `arch`, `quality`, `concerns`, `tech+arch` (default)
+- REQ-SCAN-02: Focus area MUST be one of: `tech`, `arch`, `quality`, `concerns`, or the combined `tech+arch` shorthand (default: `tech+arch`); combined focus runs as a single agent covering both areas in one pass
 - REQ-SCAN-03: Output MUST be written to `.planning/codebase/` in the same format as `/gsd-map-codebase`
 
 ---
@@ -2315,7 +2330,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 
 ### 105. GSD-2 Reverse Migration
 
-**Command:** `/gsd-from-gsd2 [--dry-run] [--force] [--path <dir>]`
+**Command:** `/gsd-import --from-gsd2 [--dry-run] [--force] [--path <dir>]`
 
 **Purpose:** Migrate a project from GSD-2 format (`.gsd/` directory with Milestone→Slice→Task hierarchy) back to the v1 `.planning/` format, restoring full compatibility with all GSD v1 commands.
 
@@ -2607,7 +2622,7 @@ Users who run a memory / knowledge-base MCP server (for example, ExoCortex-style
 
 ### 121. Knowledge Graph Integration
 
-**Purpose:** Build, query, and inspect a lightweight knowledge graph of the project in `.planning/graphs/`. Opt-in per project. Exposed as the `/gsd-graphify` user-facing command and the `gsd-tools.cjs graphify …` programmatic verb family. Complements `/gsd-intel` (snapshot-oriented) with a graph-oriented view of nodes and edges across commands, agents, workflows, and phases.
+**Purpose:** Build, query, and inspect a lightweight knowledge graph of the project in `.planning/graphs/`. Opt-in per project. Exposed as the `/gsd-graphify` user-facing command and the `gsd-tools.cjs graphify …` programmatic verb family. Complements `/gsd-map-codebase --query` (snapshot-oriented) with a graph-oriented view of nodes and edges across commands, agents, workflows, and phases.
 
 **Requirements:**
 - REQ-GRAPH-01: Opt-in via `graphify.enabled: true` in `.planning/config.json`. When disabled, `/gsd-graphify` prints an activation hint and stops without writing.
@@ -2646,12 +2661,12 @@ Users who run a memory / knowledge-base MCP server (for example, ExoCortex-style
 **Purpose:** Replace the flat eager skill listing with a two-stage hierarchical routing layer. The model sees 6 namespace routers instead of 86 entries, selects a namespace, then routes to the sub-skill. Descriptions use pipe-separated keyword tags (≤ 60 chars) for routing density.
 
 **Commands:**
-- `/gsd-ns-workflow` — phase pipeline router (discuss / plan / execute / verify / phase / progress)
-- `/gsd-ns-project` — project lifecycle (milestones, audits, summary)
-- `/gsd-ns-review` — quality gates (code review, debug, audit, security, eval, ui)
-- `/gsd-ns-context` — codebase intelligence (map, graphify, docs, learnings)
-- `/gsd-ns-manage` — config / workspace / workstreams / thread / update / ship / inbox
-- `/gsd-ns-ideate` — exploration & capture (explore, sketch, spike, spec, capture)
+- `/gsd-workflow` — phase pipeline router (discuss / plan / execute / verify / phase / progress)
+- `/gsd-project` — project lifecycle (milestones, audits, summary)
+- `/gsd-quality` — quality gates (code review, debug, audit, security, eval, ui)
+- `/gsd-context` — codebase intelligence (map, graphify, docs, learnings)
+- `/gsd-manage` — config / workspace / workstreams / thread / update / ship / inbox
+- `/gsd-ideate` — exploration & capture (explore, sketch, spike, spec, capture)
 
 **Token cost:**
 
@@ -2698,3 +2713,152 @@ Users who run a memory / knowledge-base MCP server (for example, ExoCortex-style
 - REQ-LIFECYCLE-03: All four fields default to undefined; existing STATE.md files render byte-for-byte identically.
 
 **Reference issue:** [#2833](https://github.com/gsd-build/get-shit-done/issues/2833) — see [`docs/STATE-MD-LIFECYCLE.md`](STATE-MD-LIFECYCLE.md) for the full field reference and rendering rules.
+
+---
+
+## v1.41.0 Features
+
+### 126. Per-Phase-Type Model Selection
+
+**Purpose:** Express model tuning at the phase level (planning, research, execution, verification) without learning the full agent taxonomy. Sits between per-agent `model_overrides` (precise, verbose) and the global `model_profile` tier (coarse, uniform).
+
+**Config key:** `models` in `.planning/config.json`
+
+**Phase-type slots:**
+
+| Slot | Agents assigned |
+|------|-----------------|
+| `planning` | `gsd-planner`, `gsd-roadmapper`, `gsd-pattern-mapper` |
+| `discuss` | (reserved for future subagent) |
+| `research` | `gsd-phase-researcher`, `gsd-project-researcher`, `gsd-research-synthesizer`, `gsd-codebase-mapper`, `gsd-ui-researcher` |
+| `execution` | `gsd-executor`, `gsd-debugger`, `gsd-doc-writer` |
+| `verification` | `gsd-verifier`, `gsd-plan-checker`, `gsd-integration-checker`, `gsd-nyquist-auditor`, `gsd-ui-checker`, `gsd-ui-auditor`, `gsd-doc-verifier` |
+| `completion` | (reserved for future subagent) |
+
+**Accepted values:** `"opus"` / `"sonnet"` / `"haiku"` / `"inherit"`
+
+**Resolution precedence (highest → lowest):**
+
+```text
+1. model_overrides[<agent>]
+2. dynamic_routing.tier_models[<tier>]   (when enabled)
+3. models[<phase_type>]                  (this feature)
+4. model_profile
+5. Runtime default
+```
+
+**Requirements:**
+- REQ-PHASE-MODELS-01: Six named `models.*` slots accepted by `config-schema.cjs` and `config-schema.ts`; `config-set` rejects unknown phase-types.
+- REQ-PHASE-MODELS-02: Configs without a `models` block behave byte-for-byte identically to pre-v1.41 behavior.
+- REQ-PHASE-MODELS-03: `discuss` and `completion` are accepted by the schema for forward compatibility; setting them today is a no-op until a subagent maps to each.
+
+**Reference issue:** [#3023](https://github.com/gsd-build/get-shit-done/pull/3030)
+
+---
+
+### 127. Dynamic Routing with Failure-Tier Escalation
+
+**Purpose:** Pay for the cheap tier by default; escalate to a more capable model automatically when the orchestrator detects a soft failure (verification inconclusive, plan-check FLAG, etc.).
+
+**Config key:** `dynamic_routing` in `.planning/config.json`
+
+**Behavior:**
+- `enabled: false` (default) — feature is off; all agents use the precedence chain unchanged.
+- `enabled: true` — the resolver picks `tier_models[default_tier]` for the first spawn and escalates one tier up on orchestrator-detected soft failure, capped by `max_escalations`.
+
+**Composition:** `model_overrides` always wins; `dynamic_routing.tier_models[<tier>]` resolves above `models.<phase_type>` and `model_profile`.
+
+**Requirements:**
+- REQ-DYNROUTE-01: `dynamic_routing.enabled` acts as a master switch; when `false` or block is absent, zero behavior change.
+- REQ-DYNROUTE-02: New resolver `resolveModelForTier(cwd, agent, attempt)` in `core.cjs` is the single call-site for orchestrator integration.
+- REQ-DYNROUTE-03: `max_escalations` caps the escalation chain to prevent runaway cost.
+
+**Reference issue:** [#3024](https://github.com/gsd-build/get-shit-done/pull/3031)
+
+---
+
+### 128. Update Banner Opt-In
+
+**Purpose:** Surface update availability to users who have declined or bypassed the GSD statusline, without requiring the statusline.
+
+**Behavior:**
+- At install time, if the installer detects no GSD statusline, it offers an opt-in `SessionStart` hook.
+- The hook reads the existing `~/.cache/gsd/gsd-update-check.json` cache — the same cache used by the statusline — and prints a banner only when an update is available.
+- Silent when up-to-date.
+- Failure diagnostics rate-limited to once per 24 h.
+- Cleanly removed by `npx get-shit-done-cc --uninstall`.
+
+**Requirements:**
+- REQ-BANNER-01: Banner does not install without explicit opt-in.
+- REQ-BANNER-02: No additional network requests — reuses the existing background update-check cache.
+- REQ-BANNER-03: Uninstall path removes the banner hook.
+
+**Reference issue:** [#2795](https://github.com/gsd-build/get-shit-done/pull/2795)
+
+---
+
+### 129. Issue-Driven Orchestration Guide
+
+**Purpose:** Document a recipe for driving the full GSD workflow from a GitHub / Linear / Jira issue, mapping tracker-centric concepts onto existing GSD primitives.
+
+**Document:** [`docs/issue-driven-orchestration.md`](issue-driven-orchestration.md)
+
+**Covered workflow:**
+1. Create an isolated workspace per issue (`/gsd-workspace --new`)
+2. Run the manager dashboard to get oriented (`/gsd-manager`)
+3. Execute autonomously (`/gsd-autonomous`)
+4. Verify and review (`/gsd-verify-work`, `/gsd-review`)
+5. Ship and close the issue (`/gsd-ship`)
+
+No new commands or daemon process — purely a documentation artifact that maps existing primitives onto a tracker-driven workflow.
+
+**Reference issue:** [#2840](https://github.com/gsd-build/get-shit-done/pull/2840)
+
+---
+
+### 130. Graphify Commit-Based Staleness
+
+**Purpose:** Surface whether the architecture graph was built from the current commit or an older one, complementing the existing mtime-based stale signal.
+
+**Command:** `/gsd-graphify status`
+
+**New fields returned (graphify v0.7+ graphs):**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `built_at_commit` | string | Commit SHA the graph was built from |
+| `current_commit` | string | Current `git HEAD` |
+| `commits_behind` | number | How many commits behind HEAD the graph is |
+| `commit_stale` | boolean \| null | `true`=stale, `false`=current, `null`=unavailable (pre-v0.7, non-git) |
+
+**Rendered output (when signal is available):**
+```
+Source commit: abc1234 (3 commits behind HEAD)
+```
+
+**Security:** `built_at_commit` validated as 4–40 hex chars before reaching `git` — a hostile `graph.json` cannot inject dashed options into argv.
+
+**Fallback:** pre-v0.7 graphs and non-git checkouts return `commit_stale: null`; callers fall back to the existing mtime-based `stale` flag. No behavior change for existing users.
+
+**Reference issue:** [#3170](https://github.com/gsd-build/get-shit-done/issues/3170)
+
+---
+
+### 131. MVP Mode SDK Resolution Layer
+
+**Purpose:** Replace per-workflow MVP-mode predicate duplication with three canonical SDK query verbs. All consuming workflows now call a single source of truth instead of inlining 4–8 bash lines each.
+
+**New query verbs:**
+
+| Verb | Returns | Used by |
+|------|---------|---------|
+| `gsd-sdk query phase.mvp-mode <N>` | `{active, source, roadmap_mode, config_mvp_mode, cli_flag_present}` | `plan-phase`, `execute-phase`, `verify-work`, `progress` |
+| `gsd-sdk query task.is-behavior-adding <plan-file>` | `{is_behavior_adding, checks: {tdd_true, has_behavior_block, has_source_files}, reason}` | `gsd-executor` agent |
+| `gsd-sdk query user-story.validate "<text>"` | `{valid, slots: {role, capability, outcome}, errors[]}` | `gsd-verifier`, `/gsd-mvp-phase` |
+
+**Resolution precedence for `phase.mvp-mode`:**
+CLI flag → ROADMAP `**Mode:** mvp` → `workflow.mvp_mode` config → `false`
+
+**Bug fix:** `roadmap.get-phase --pick mode` in the SDK's `roadmap.ts` previously returned `null` for phases with `**Mode:** mvp`, causing MVP_MODE to silently fall through to false on the native dispatch path. Restores parity with the CJS implementation.
+
+**Reference issue:** [#3178](https://github.com/gsd-build/get-shit-done/pull/3178)
