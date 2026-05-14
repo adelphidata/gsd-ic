@@ -39,12 +39,23 @@ npx /path/to/adelphi-gsd-ic-<version>.tgz install --customer=<nga|nsa|nro|cia|di
 **Expected output** (stderr progress lines, then one stdout completion line):
 
 ```text
-[gsd-ic] GSD detected (modern-skills); pack pinned to GSD 1.39.0-rc.4
+[gsd-ic] GSD detected (claude-agents); pack pinned to GSD 1.50.0-canary.0
 [gsd-ic] pack content installed under /path/to/your/program/.claude/
 [gsd-ic] customer overlay wired (nga)
 [gsd-ic] IC-pack hooks registered in .claude/settings.json
 install complete: @adelphi/gsd-ic for customer=nga in /path/to/your/program
 ```
+
+The detected label varies by runtime and stock GSD install layout:
+
+| Label | Probe path | Runtime |
+|---|---|---|
+| `claude-agents` | `.claude/agents/gsd-*.md` | Claude Code (primary — most installs) |
+| `claude-commands` | `.claude/commands/gsd/*.md` | Claude Code (fallback) |
+| `modern-skills-codex` | `.codex/skills/gsd-*` | Codex |
+| `modern-skills` | `.claude/skills/gsd-*` | Augment-style nested skills (rare) |
+| `legacy-commands` | `commands/gsd/*.md` at root | Pre-`.claude/` layout |
+| `cline` | `.clinerules` containing `gsd` | Cline |
 
 The install verifies GSD is present, copies pack content (58 agents, 3 hooks, 5 skills, 36 reference docs) into `.claude/`, writes the customer overlay's `agent_skills` assignments into `.planning/config.json`, and registers the three IC-pack hooks in `.claude/settings.json`. Re-running with the same `--customer=<name>` is a safe idempotent refresh.
 

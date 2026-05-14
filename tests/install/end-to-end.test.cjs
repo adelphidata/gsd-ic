@@ -11,9 +11,18 @@ function tmp(label) {
 
 const PACK_ROOT = path.resolve(__dirname, '..', '..');
 
+// Fixture mirrors what `npx get-shit-done-cc@latest` actually writes for
+// Claude runtime: `.claude/agents/gsd-*.md` and `.claude/commands/gsd/*.md`
+// (see upstream bin/install.js:8177 — "Claude Code reads local project
+// commands from .claude/commands/gsd/, not .claude/skills/"). Earlier
+// fixtures wrote `.claude/skills/gsd-help/SKILL.md`, a layout stock GSD
+// does not produce for Claude — leading to false-positive test passes that
+// masked a real install bug in verifyGsd's probe paths.
 function setupFakeGsdInstall(target) {
-  fs.mkdirSync(path.join(target, '.claude/skills/gsd-help'), { recursive: true });
-  fs.writeFileSync(path.join(target, '.claude/skills/gsd-help/SKILL.md'), 'stock');
+  fs.mkdirSync(path.join(target, '.claude/agents'), { recursive: true });
+  fs.writeFileSync(path.join(target, '.claude/agents/gsd-planner.md'), 'stock');
+  fs.mkdirSync(path.join(target, '.claude/commands/gsd'), { recursive: true });
+  fs.writeFileSync(path.join(target, '.claude/commands/gsd/help.md'), 'stock');
 }
 
 function runInstall(args, opts = {}) {
@@ -72,7 +81,8 @@ describe('end-to-end install', () => {
     assert.equal(fs.existsSync(path.join(target, '.claude/agents/gsd-customer-context-mapper.md')), false);
     assert.equal(fs.existsSync(path.join(target, '.claude/hooks/gsd-classification-banner.js')), false);
     // Stock GSD signal still present.
-    assert.equal(fs.existsSync(path.join(target, '.claude/skills/gsd-help/SKILL.md')), true);
+    assert.equal(fs.existsSync(path.join(target, '.claude/agents/gsd-planner.md')), true);
+    assert.equal(fs.existsSync(path.join(target, '.claude/commands/gsd/help.md')), true);
   });
 
   it('uninstall is idempotent on a non-installed target', () => {
@@ -82,6 +92,7 @@ describe('end-to-end install', () => {
     const out = runInstall(['uninstall', `--target=${target}`]);
     assert.match(out, /uninstall complete/i);
     // Stock content still present.
-    assert.equal(fs.existsSync(path.join(target, '.claude/skills/gsd-help/SKILL.md')), true);
+    assert.equal(fs.existsSync(path.join(target, '.claude/agents/gsd-planner.md')), true);
+    assert.equal(fs.existsSync(path.join(target, '.claude/commands/gsd/help.md')), true);
   });
 });

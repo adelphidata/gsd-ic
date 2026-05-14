@@ -7,10 +7,17 @@ const path = require('path');
  * Detect a stock GSD install in the target directory.
  *
  * Heuristics in priority order:
- *   1. Modern install: .claude/skills/gsd-* (Claude Code 2.1.88+)
- *   2. Modern install (Codex): .codex/skills/gsd-*
- *   3. Legacy install: commands/gsd/*.md
- *   4. .clinerules with gsd content (Cline runtime)
+ *   1. Claude runtime agents: .claude/agents/gsd-*.md (most reliable Claude signal —
+ *      stock GSD always installs its agents here regardless of skill profile).
+ *   2. Claude runtime commands: .claude/commands/gsd/*.md (per upstream
+ *      bin/install.js: "Claude Code reads local project commands from
+ *      .claude/commands/gsd/, not .claude/skills/").
+ *   3. Codex runtime skills: .codex/skills/gsd-* (Codex still uses skill folders).
+ *   4. Augment-style nested skills: .claude/skills/gsd-* (other runtimes that
+ *      convert commands to skill folders; rarely seen for Claude runtime but
+ *      kept for back-compat with synthetic-fixture test paths).
+ *   5. Legacy install: commands/gsd/*.md at target root (pre-`.claude/` layout).
+ *   6. Cline: .clinerules file containing gsd reference.
  *
  * Future: parse a recorded GSD version from the target and compare against
  * gsdPinned for compatibility. v1 doesn't enforce version bounds — only
@@ -24,8 +31,10 @@ function verifyGsd({ target, gsdPinned }) {
   }
 
   const probes = [
-    { path: '.claude/skills', glob: /^gsd-/, label: 'modern-skills' },
+    { path: '.claude/agents', glob: /^gsd-.*\.md$/, label: 'claude-agents' },
+    { path: '.claude/commands/gsd', glob: /\.md$/, label: 'claude-commands' },
     { path: '.codex/skills', glob: /^gsd-/, label: 'modern-skills-codex' },
+    { path: '.claude/skills', glob: /^gsd-/, label: 'modern-skills' },
     { path: 'commands/gsd', glob: /\.md$/, label: 'legacy-commands' },
   ];
 

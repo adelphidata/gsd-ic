@@ -42,8 +42,12 @@ describe('install idempotency', () => {
   it('produces identical file set + content after re-running install', () => {
     const packSource = makePackSource();
     const target = tmp('tgt');
-    fs.mkdirSync(path.join(target, '.claude/skills/gsd-help'), { recursive: true });
-    fs.writeFileSync(path.join(target, '.claude/skills/gsd-help/SKILL.md'), 'stock');
+    // Realistic Claude-runtime stock GSD layout. See end-to-end.test.cjs for
+    // the rationale on why `.claude/skills/gsd-help/SKILL.md` is wrong.
+    fs.mkdirSync(path.join(target, '.claude/agents'), { recursive: true });
+    fs.writeFileSync(path.join(target, '.claude/agents/gsd-planner.md'), 'stock');
+    fs.mkdirSync(path.join(target, '.claude/commands/gsd'), { recursive: true });
+    fs.writeFileSync(path.join(target, '.claude/commands/gsd/help.md'), 'stock');
 
     installPack({ packSource, target, customer: 'nga' });
     wireOverlay({ packSource, target, customer: 'nga' });
