@@ -32,7 +32,12 @@ fi
 denylist=(
   '^bin/install\.js$'
   '^bin/gsd-sdk\.js$'
-  '^sdk/'
+  '^sdk/src/'
+  '^sdk/dist/'
+  '^sdk/prompts/'
+  '^sdk/package\.json$'
+  '^sdk/package-lock\.json$'
+  '^sdk/tsconfig\.json$'
   '^scripts/'
   '^get-shit-done/'
   '^README\.[A-Za-z][A-Za-z0-9_-]*\.md$'
@@ -60,7 +65,7 @@ done <<< "$files_arr"
 if command -v npm >/dev/null 2>&1; then
   pack_out="$(cd "$ROOT" && npm pack --dry-run --json 2>/dev/null || true)"
   if [ -n "$pack_out" ]; then
-    leaked="$(printf "%s" "$pack_out" | jq -r '.[0].files[]?.path // empty' 2>/dev/null | grep -E '^(sdk/|scripts/|get-shit-done/|bin/install\.js|bin/gsd-sdk\.js|README\.[A-Za-z][A-Za-z0-9_-]*\.md$)' || true)"
+    leaked="$(printf "%s" "$pack_out" | jq -r '.[0].files[]?.path // empty' 2>/dev/null | grep -E '^(sdk/src/|sdk/dist/|sdk/prompts/|sdk/package\.json$|sdk/package-lock\.json$|sdk/tsconfig\.json$|scripts/|get-shit-done/|bin/install\.js$|bin/gsd-sdk\.js$|README\.[A-Za-z][A-Za-z0-9_-]*\.md$)' || true)"
     if [ -n "$leaked" ]; then
       while IFS= read -r leak; do
         vfail "npm pack would include upstream-source path: $leak"

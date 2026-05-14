@@ -46,6 +46,7 @@ EXCLUDES=(
   'docs/ic-pack'
   'hooks/patterns'
   'tests/hooks'
+  '.planning'
 )
 
 # Build a `find` exclusion clause.
