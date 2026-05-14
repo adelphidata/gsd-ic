@@ -108,7 +108,8 @@
     "ws": "^8.20.0"
   },
   "devDependencies": {
-    "c8": "^11.0.0"
+    "c8": "^11.0.0",
+    "vitest": "^1.6.0"
   },
   "optionalDependencies": {
     "fallow": "^2.70.0"
@@ -124,11 +125,5 @@
     "lint:skill-deps": "node scripts/lint-skill-deps.cjs",
     "release": "bash tools/release/release-pack.sh",
     "sync-upstream": "bash tools/sync/sync-from-upstream.sh"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@anthropic-ai/claude-agent-sdk": "^0.2.84",
-    "ws": "^8.20.0",
-    "vitest": "^1.6.0"
   }
 }
